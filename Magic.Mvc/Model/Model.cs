@@ -9,7 +9,7 @@ namespace Magic.Mvc.Model
     /// <summary>
     /// 模型基类
     /// </summary>
-    public class Model : IModel
+    public class Model : IModel, ICloneable
     {
         public PropertyInfo[] getPrimaryKeys()
         {
@@ -41,6 +41,11 @@ namespace Magic.Mvc.Model
         {
             Check.IsNull(propertyName);
             ModelInfoProvider.setPropertyValue(this, propertyName, value);
+        }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
         }
     }
 }
