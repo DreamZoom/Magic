@@ -13,11 +13,12 @@ namespace Magic.Mvc.Model
     {
         PropertyInfo[] getPrimaryKeys()
         {
-            return null;
+            return ModelInfoProvider.getFiledsByAttribute(this.GetType(),typeof(KeyAttribute));
         }
         PropertyInfo getIdentify()
         {
-            return null;
+            var fs = ModelInfoProvider.getFiledsByAttribute(this.GetType(), typeof(IdentifyAttribute));
+            return fs.FirstOrDefault(); 
         }
     }
 }
