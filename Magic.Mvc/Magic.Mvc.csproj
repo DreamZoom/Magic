@@ -39,11 +39,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Check.cs" />
     <Compile Include="Model\Attributes\IdentifyAttribute.cs" />
     <Compile Include="Model\IModel.cs" />
     <Compile Include="Model\Attributes\KeyAttribute.cs" />
     <Compile Include="Model\Model.cs" />
+    <Compile Include="Model\ModelInfoProvider.cs" />
+    <Compile Include="Model\Attributes\UniqueAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
