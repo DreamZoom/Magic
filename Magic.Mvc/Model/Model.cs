@@ -11,14 +11,36 @@ namespace Magic.Mvc.Model
     /// </summary>
     public class Model : IModel
     {
-        PropertyInfo[] getPrimaryKeys()
+        public PropertyInfo[] getPrimaryKeys()
         {
             return ModelInfoProvider.getFiledsByAttribute(this.GetType(),typeof(KeyAttribute));
         }
-        PropertyInfo getIdentify()
+        public PropertyInfo getIdentify()
         {
             var fs = ModelInfoProvider.getFiledsByAttribute(this.GetType(), typeof(IdentifyAttribute));
             return fs.FirstOrDefault(); 
+        }
+
+        /// <summary>
+        /// 获取属性值
+        /// </summary>
+        /// <param name="propertyName"></param>
+        /// <returns></returns>
+        public object Property(string propertyName)
+        {
+            Check.IsNull(propertyName);
+            return ModelInfoProvider.getPropertyValue(this, propertyName);
+        }
+
+        /// <summary>
+        /// 设置属性值
+        /// </summary>
+        /// <param name="propertyName"></param>
+        /// <param name="value"></param>
+        public void Property(string propertyName, object value)
+        {
+            Check.IsNull(propertyName);
+            ModelInfoProvider.setPropertyValue(this, propertyName, value);
         }
     }
 }
