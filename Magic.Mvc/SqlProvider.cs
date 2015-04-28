@@ -23,7 +23,7 @@ namespace Magic.Mvc
             var identity = model.getIdentify();
             foreach (var p in propertys)
             {
-                if (!Magic.Mvc.Equals.IsNull(identity) && identity.Name==p.Name) continue;
+                if (!Magic.Mvc.Equals.IsNull(identity) && identity.Name == p.Name) continue;
 
                 fileds.Add(string.Format("[{0}]", p.Name));
                 values.Add(string.Format("@{0}", p.Name));
@@ -46,7 +46,7 @@ namespace Magic.Mvc
             var identity = model.getIdentify();
             foreach (var p in propertys)
             {
-                if (primarys.Any(m=>m.Name==p.Name))
+                if (primarys.Any(m => m.Name == p.Name))
                 {
                     wheres.Add(string.Format("[{0}]=@{0}", p.Name));
                 }
@@ -111,6 +111,25 @@ namespace Magic.Mvc
             foreach (var p in propertys)
             {
                 listSQLParamter.Add(new SqlParameter() { ParameterName = p.Name, Value = p.GetValue(model, null) });
+            }
+            return listSQLParamter.ToArray();
+        }
+
+        /// <summary>
+        /// 获取sql参数
+        /// </summary>
+        /// <returns></returns>
+        public virtual SqlParameter[] GetParameters(Type type, params object[] keys)
+        {
+
+            var propertys = Model.ModelInfoProvider.getFiledsByAttribute(type, typeof(Model.KeyAttribute));
+            List<SqlParameter> listSQLParamter = new List<SqlParameter>();
+            if (propertys.Count() != keys.Count()) throw new ArgumentException("参数个数与主键个数不匹配");
+            int i = 0;
+            foreach (var p in propertys)
+            {
+                listSQLParamter.Add(new SqlParameter() { ParameterName = p.Name, Value = keys[i] });
+                i++;
             }
             return listSQLParamter.ToArray();
         }

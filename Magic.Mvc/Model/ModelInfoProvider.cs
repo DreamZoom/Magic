@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Reflection;
+using System.Data;
 
 namespace Magic.Mvc.Model
 {
@@ -85,5 +86,7 @@ namespace Magic.Mvc.Model
             }
 
         }
+
+       
     }
 }
