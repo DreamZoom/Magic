@@ -50,9 +50,11 @@
     <Compile Include="Config.cs" />
     <Compile Include="Controller\ControllerExtensions.cs" />
     <Compile Include="Controller\Manage.cs" />
-    <Compile Include="DataServer.cs" />
+    <Compile Include="DataExecutor.cs" />
+    <Compile Include="DataExecutors.cs" />
     <Compile Include="Equals.cs" />
-    <Compile Include="IDataServer.cs" />
+    <Compile Include="Html\ConfigExtensions.cs" />
+    <Compile Include="IDataExecutor.cs" />
     <Compile Include="Model\Attributes\IdentifyAttribute.cs" />
     <Compile Include="Model\IModel.cs" />
     <Compile Include="Model\Attributes\KeyAttribute.cs" />
@@ -63,10 +65,9 @@
     <Compile Include="Service\IService.cs" />
     <Compile Include="Service\Service.cs" />
     <Compile Include="SqlProvider.cs" />
+    <Compile Include="SqlProviders.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Html\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -47,5 +47,16 @@ namespace Magic.Mvc.Model
         {
             return this.MemberwiseClone();
         }
+
+        public object[] GetKeyValues()
+        {
+            List<object> list = new List<object>();
+            var primarys= ModelInfoProvider.getFiledsByAttribute(this.GetType(), typeof(KeyAttribute));
+            foreach (var p in primarys)
+            {
+                list.Add(Property(p.Name));
+            }
+            return list.ToArray();
+        }
     }
 }

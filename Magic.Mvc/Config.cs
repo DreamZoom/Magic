@@ -11,11 +11,11 @@ namespace Magic.Mvc
         {
             get
             {
-                return System.Configuration.ConfigurationManager.AppSettings[key];
+                return System.Configuration.ConfigurationManager.AppSettings[key] ?? "";
             }
             set
             {
-                System.Configuration.ConfigurationManager.AppSettings[key] = value;
+                System.Configuration.ConfigurationManager.AppSettings[key] = value ?? "";
             }
         }
     }

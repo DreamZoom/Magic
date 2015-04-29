@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 
 namespace Magic.Mvc
 {
-    public interface IDataServer
+    public interface IDataExecutor
     {
         int Execute(string sql);
 

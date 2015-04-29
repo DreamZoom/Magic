@@ -15,7 +15,7 @@ namespace Magic.Mvc
         /// </summary>
         /// <param name="model">模型对象</param>
         /// <returns></returns>
-        public string BuildInsertSQL(Model.Model model)
+        public virtual string BuildInsertSQL(Model.Model model)
         {
             List<string> fileds = new List<string>();
             List<string> values = new List<string>();
@@ -37,7 +37,7 @@ namespace Magic.Mvc
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public string BuildUpdateSQL(Model.Model model)
+        public virtual string BuildUpdateSQL(Model.Model model)
         {
             List<string> fileds = new List<string>();
             List<string> wheres = new List<string>();
@@ -64,7 +64,7 @@ namespace Magic.Mvc
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public string BuildDeleteSQL(Model.Model model)
+        public virtual string BuildDeleteSQL(Model.Model model)
         {
             List<string> wheres = new List<string>();
             var primarys = model.getPrimaryKeys();
@@ -76,14 +76,14 @@ namespace Magic.Mvc
             return string.Format(" DELETE FROM [{0}]  WHERE {1}", model.GetType().Name, string.Join(",", wheres.ToArray()));
         }
 
-        public string BuildDeleteSQL(Type type)
+        public virtual string BuildDeleteSQL(Type type)
         {
             return string.Format(" DELETE FROM [{0}] ", type.Name);
         }
 
 
 
-        public string BuildSelectSQL(Type type, int top = -1)
+        public virtual string BuildSelectSQL(Type type, int top = -1)
         {
             List<string> fileds = new List<string>();
             var propertys = type.GetProperties();

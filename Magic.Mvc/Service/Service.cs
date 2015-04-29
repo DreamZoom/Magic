@@ -10,32 +10,19 @@ namespace Magic.Mvc.Service
     public class Service : IService
     {
         /// <summary>
-        /// sql语句生成
-        /// </summary>
-        protected  SqlProvider Provider  { get; set; }
-
-        /// <summary>
-        /// 数据库操作
-        /// </summary>
-        protected DataServer DataServer { get; set; }
-
-        /// <summary>
         /// 绑定的模型类型
         /// </summary>
         public Type ModelType { get; set; }
 
         public Service()
         {
-            Provider=new SqlProvider();
-            DataServer = new DataServer(System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+           
         }
 
         public Service(Type modeltype)
         {
             Check.IsNull(modeltype);
             this.ModelType = modeltype;
-            Provider = new SqlProvider();
-            DataServer = new DataServer(System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
         }
 
 
@@ -49,9 +36,10 @@ namespace Magic.Mvc.Service
         public bool Add(Model.Model model)
         {
             Check.IsNull(model);
-            string sql = Provider.BuildInsertSQL(model);
-            IDataParameter[] parameters = DataServer.GetParameters(model);
-            return DataServer.Execute(sql, parameters) > 0;
+            string sql = SqlProviders.Current.BuildInsertSQL(model);
+            IDataParameter[] parameters = DataExecutors.Current.GetParameters(model);
+
+            return DataExecutors.Current.Execute(sql, parameters) > 0;
         }
 
         /// <summary>
@@ -62,9 +50,9 @@ namespace Magic.Mvc.Service
         public bool Update(Model.Model model)
         {
             Check.IsNull(model);
-            string sql = Provider.BuildUpdateSQL(model);
-            IDataParameter[] parameters = DataServer.GetParameters(model);
-            return DataServer.Execute(sql, parameters) > 0;
+            string sql = SqlProviders.Current.BuildUpdateSQL(model);
+            IDataParameter[] parameters = DataExecutors.Current.GetParameters(model);
+            return DataExecutors.Current.Execute(sql, parameters) > 0;
         }
 
         /// <summary>
@@ -75,9 +63,9 @@ namespace Magic.Mvc.Service
         public bool Delete(Model.Model model)
         {
             Check.IsNull(model);
-            string sql = Provider.BuildDeleteSQL(model);
-            IDataParameter[] parameters = DataServer.GetParameters(model);
-            return DataServer.Execute(sql, parameters) > 0;
+            string sql = SqlProviders.Current.BuildDeleteSQL(model);
+            IDataParameter[] parameters = DataExecutors.Current.GetParameters(model);
+            return DataExecutors.Current.Execute(sql, parameters) > 0;
         }
 
         /// <summary>
@@ -88,10 +76,10 @@ namespace Magic.Mvc.Service
         public Model.Model GetModel(params object[] keys)
         {
             Check.IsNull(keys);
-            string sql = Provider.BuildSelectSQL(ModelType, 1);
-            IDataParameter[] parameters = DataServer.GetParameters(ModelType,keys);
-            var dt = DataServer.Query(sql, parameters);
-            return Provider.TableToModelList(ModelType,dt).FirstOrDefault();
+            string sql = SqlProviders.Current.BuildSelectSQL(ModelType, 1);
+            IDataParameter[] parameters = DataExecutors.Current.GetParameters(ModelType,keys);
+            var dt = DataExecutors.Current.Query(sql, parameters);
+            return SqlProviders.Current.TableToModelList(ModelType, dt).FirstOrDefault();
         }
 
         public Model.Model GetModel(string where=null)
@@ -101,7 +89,7 @@ namespace Magic.Mvc.Service
 
         public Model.Model GetModel(string where,string order)
         {
-            string sql = Provider.BuildSelectSQL(ModelType, 1);
+            string sql = SqlProviders.Current.BuildSelectSQL(ModelType, 1);
             if(!string.IsNullOrWhiteSpace(where))
             {
                 sql += string.Format(" where {0} ", where);
@@ -111,8 +99,8 @@ namespace Magic.Mvc.Service
             {
                 sql += string.Format(" order by {0} ", order);
             }
-            var dt = DataServer.Query(sql);
-            return Provider.TableToModelList(ModelType, dt).FirstOrDefault();
+            var dt = DataExecutors.Current.Query(sql);
+            return SqlProviders.Current.TableToModelList(ModelType, dt).FirstOrDefault();
         }
 
 
@@ -123,18 +111,17 @@ namespace Magic.Mvc.Service
 
         public IEnumerable<Model.Model> GetModelList(string where,string order)
         {
-            string sql = Provider.BuildSelectSQL(ModelType, 1);
+            string sql = SqlProviders.Current.BuildSelectSQL(ModelType, 1);
             if (!string.IsNullOrWhiteSpace(where))
             {
                 sql += string.Format(" where {0} ", where);
             }
-
             if (!string.IsNullOrWhiteSpace(order))
             {
                 sql += string.Format(" order by {0} ", order);
             }
-            var dt = DataServer.Query(sql);
-            return Provider.TableToModelList(ModelType, dt);
+            var dt = DataExecutors.Current.Query(sql);
+            return SqlProviders.Current.TableToModelList(ModelType, dt);
         }
 
     }

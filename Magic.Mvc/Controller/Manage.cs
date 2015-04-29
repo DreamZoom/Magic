@@ -19,7 +19,7 @@ namespace Magic.Mvc.Controller
             return View();
         }
 
-        public ActionResult Edit()
+        public ActionResult Edit(object[] key)
         {
             return View();
         }

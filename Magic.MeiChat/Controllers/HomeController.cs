@@ -8,7 +8,7 @@ namespace Magic.MeiChat.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(string[] key=null)
         {
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
 

@@ -8,18 +8,18 @@ using System.Data.SqlClient;
 
 namespace Magic.Mvc
 {
-    public class DataServer
+    public class DataExecutor 
     {
 
         public string ConnectionString { get; set; }
 
         public SqlConnection Connection { get; set; }
-        public DataServer(string connectionString)
+        public DataExecutor(string connectionString)
         {
             this.ConnectionString = connectionString;
             this.Connection = new SqlConnection(ConnectionString);
         }
-        public int Execute(string sql)
+        public virtual int Execute(string sql)
         {
             CheckConnection();
             using (SqlCommand cmd = new SqlCommand(sql, Connection))
@@ -28,7 +28,7 @@ namespace Magic.Mvc
             }
         }
 
-        public int Execute(string sql, IDataParameter[] parameters)
+        public virtual int Execute(string sql, IDataParameter[] parameters)
         {
             CheckConnection();
             using (SqlCommand cmd = new SqlCommand(sql, Connection))
@@ -38,7 +38,7 @@ namespace Magic.Mvc
             }
         }
 
-        public DataTable Query(string sql)
+        public virtual DataTable Query(string sql)
         {
             CheckConnection();
             DataSet ds = new DataSet();
@@ -52,7 +52,7 @@ namespace Magic.Mvc
             return ds.Tables[0];
         }
 
-        public DataTable Query(string sql, IDataParameter[] parameters)
+        public virtual DataTable Query(string sql, IDataParameter[] parameters)
         {
             CheckConnection();
             DataSet ds = new DataSet();
