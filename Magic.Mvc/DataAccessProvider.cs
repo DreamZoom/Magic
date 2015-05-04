@@ -5,16 +5,16 @@ using System.Text;
 
 namespace Magic.Mvc
 {
-    public class DataExecutors
+    public class DataAccessProvider
     {
-        private static DataExecutor _executor = null;
-        public static DataExecutor Current
+        private static DataAccess _executor = null;
+        public static DataAccess Current
         {
             get
             {
                 if (_executor == null)
                 {
-                    _executor = new DataExecutor(System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+                    _executor = new DataAccess(System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
                 }
                 return _executor;
             }

@@ -8,13 +8,13 @@ using System.Data.SqlClient;
 
 namespace Magic.Mvc
 {
-    public class DataExecutor 
+    public class DataAccess 
     {
 
         public string ConnectionString { get; set; }
 
         public SqlConnection Connection { get; set; }
-        public DataExecutor(string connectionString)
+        public DataAccess(string connectionString)
         {
             this.ConnectionString = connectionString;
             this.Connection = new SqlConnection(ConnectionString);
