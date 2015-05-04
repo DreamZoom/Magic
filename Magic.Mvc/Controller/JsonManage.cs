@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Web.Mvc; 
+using System.Web.Mvc;
+using System.Reflection;
 namespace Magic.Mvc.Controller
 {
     public class JsonManage : System.Web.Mvc.Controller
@@ -17,7 +18,16 @@ namespace Magic.Mvc.Controller
          * 映射对应serviceapi
          * 
          * */ 
-        public Service.Service Service { get; set; }
+         public Service.Service Service { get; set; }
+
+         public ActionResult Api(string apiname,object[] parms)
+         {
+             MethodInfo method = Service.GetType().GetMethod(apiname);
+
+             method.Invoke(Service, parms);
+             return View();
+         }
+
 
     }
 }

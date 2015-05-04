@@ -49,6 +49,7 @@
     <Compile Include="Check.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Controller\ControllerExtensions.cs" />
+    <Compile Include="Controller\JsonManage.cs" />
     <Compile Include="Controller\Manage.cs" />
     <Compile Include="DataAccess.cs" />
     <Compile Include="DataAccessProvider.cs" />
