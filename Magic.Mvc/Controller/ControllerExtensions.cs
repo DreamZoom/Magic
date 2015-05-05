@@ -19,5 +19,30 @@ namespace Magic.Mvc.Controller
             return new Config()[key];
         }
         #endregion
+
+
+        public static ActionResult Success(this System.Web.Mvc.Controller controller, string message, string returnUrl, int inteval = 5)
+        {
+            var result = new ViewResult()
+            {
+                 ViewName = "Success"
+            };
+            result.ViewBag.Message = message;
+            result.ViewBag.ReturnUrl = returnUrl;
+            result.ViewBag.Interval = inteval;
+            return result;
+        }
+
+        public static ActionResult Error(this System.Web.Mvc.Controller controller, string message, string returnUrl, int inteval = 5)
+        {
+            var result = new ViewResult()
+            {
+                ViewName = "Error"
+            };
+            result.ViewBag.Message = message;
+            result.ViewBag.ReturnUrl = returnUrl;
+            result.ViewBag.Interval = inteval;
+            return result;
+        }
     }
 }
