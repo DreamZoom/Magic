@@ -54,6 +54,7 @@
     <Compile Include="DataAccess.cs" />
     <Compile Include="DataAccessProvider.cs" />
     <Compile Include="Equals.cs" />
+    <Compile Include="Helper\EMailHelper.cs" />
     <Compile Include="Html\ConfigExtensions.cs" />
     <Compile Include="IDataAccess.cs" />
     <Compile Include="Model\Attributes\IdentifyAttribute.cs" />
