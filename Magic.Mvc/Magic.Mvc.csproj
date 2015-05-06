@@ -57,6 +57,7 @@
     <Compile Include="Helper\EMailHelper.cs" />
     <Compile Include="Html\ConfigExtensions.cs" />
     <Compile Include="IDataAccess.cs" />
+    <Compile Include="MagicModelBuilder.cs" />
     <Compile Include="Model\Attributes\IdentifyAttribute.cs" />
     <Compile Include="Model\IModel.cs" />
     <Compile Include="Model\Attributes\KeyAttribute.cs" />

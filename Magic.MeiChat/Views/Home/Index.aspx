@@ -10,6 +10,7 @@
             <hgroup class="title">
                 <h1>Home Page.</h1>
                 <h2><%: ViewBag.Message %></h2>
+                
             </hgroup>
             <p>
                 To learn more about ASP.NET MVC visit

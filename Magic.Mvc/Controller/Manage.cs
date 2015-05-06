@@ -14,7 +14,7 @@ namespace Magic.Mvc.Controller
         /// <summary>
         /// 控制器名称
         /// </summary>
-        public string ControllerName
+        public virtual string ControllerName
         {
             get
             {
@@ -27,9 +27,20 @@ namespace Magic.Mvc.Controller
         protected override void Initialize(System.Web.Routing.RequestContext requestContext)
         {
             base.Initialize(requestContext);
-            ObjectFactory.Create(ControllerName,typeof(Model.IModel));
-            
+
+            if (this.Binders.ContainsKey(typeof(Model.IModel)))
+            {
+                this.Binders.Add(typeof(Model.IModel), new MagicModelBuilder());
+            }
+
+
+            var model = ObjectFactory.Create(ControllerName, typeof(Model.IModel));
+            Check.IsNull(model);
+            ModelType = model.GetType();
+
         }
+
+
         #region 基本操作
         public ActionResult Create()
         {
