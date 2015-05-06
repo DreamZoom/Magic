@@ -185,6 +185,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Manage\Controllers\TestController.cs" />
+    <Compile Include="Areas\Manage\ManageAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -197,6 +199,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Manage\Views\Test\Index.aspx" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -253,6 +256,8 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Areas\Manage\Views\Web.config" />
+    <Content Include="Areas\Manage\Views\Shared\IFrame.Master" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -268,6 +273,28 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Themes\ace\css\ace-fonts.css" />
+    <Content Include="Themes\ace\css\ace-ie.min.css" />
+    <Content Include="Themes\ace\css\ace-part2.min.css" />
+    <Content Include="Themes\ace\css\ace-rtl.min.css" />
+    <Content Include="Themes\ace\css\ace-skins.min.css" />
+    <Content Include="Themes\ace\css\ace.min.css" />
+    <Content Include="Themes\ace\css\ace.onpage-help.css" />
+    <Content Include="Themes\ace\css\bootstrap-theme.css" />
+    <Content Include="Themes\ace\css\bootstrap-theme.min.css" />
+    <Content Include="Themes\ace\css\bootstrap.css" />
+    <Content Include="Themes\ace\css\bootstrap.min.css" />
+    <Content Include="Themes\ace\css\font-awesome.css" />
+    <Content Include="Themes\ace\css\font-awesome.min.css" />
+    <Content Include="Themes\ace\fonts\fontawesome-webfont.svg" />
+    <Content Include="Themes\ace\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Themes\ace\js\ace-elements.min.js" />
+    <Content Include="Themes\ace\js\ace-extra.min.js" />
+    <Content Include="Themes\ace\js\ace.min.js" />
+    <Content Include="Themes\ace\js\bootstrap.js" />
+    <Content Include="Themes\ace\js\bootstrap.min.js" />
+    <Content Include="Themes\ace\js\jquery-2.0.3.min.js" />
+    <Content Include="Themes\ace\js\npm.js" />
     <Content Include="Views\User\Index.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -307,9 +334,21 @@
     <Content Include="Views\Shared\_LoginPartial.aspx" />
     <Content Include="Views\Shared\Site.Master" />
     <Content Include="Views\Web.config" />
+    <Content Include="Themes\ace\css\bootstrap-theme.css.map" />
+    <Content Include="Themes\ace\css\bootstrap.css.map" />
+    <Content Include="Themes\ace\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Themes\ace\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Themes\ace\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Themes\ace\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Themes\ace\fonts\fontawesome-webfont.eot" />
+    <Content Include="Themes\ace\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Themes\ace\fonts\fontawesome-webfont.woff" />
+    <Content Include="Themes\ace\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Themes\ace\fonts\FontAwesome.otf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Manage\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

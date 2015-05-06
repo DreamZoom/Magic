@@ -9,7 +9,7 @@ using System.Text;
 
 namespace Magic.MeiChat.Controllers
 {
-    public class HomeController : Magic.Mvc.Controller.Manage
+    public class HomeController : Controller
     {
         public ActionResult Index(string[] key=null)
         {
