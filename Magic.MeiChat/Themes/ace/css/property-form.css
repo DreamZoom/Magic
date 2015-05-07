@@ -1,0 +1,26 @@
+﻿body {
+}
+
+.property-from {
+    padding:10px;
+    /*border:solid 1px #ddd;
+    background-color:#eee;*/
+}
+
+
+.property-from .warning{
+    color:#ff6a00;
+}
+    .property-from .editor-label {
+        
+    }
+
+    .property-from .editor-field {
+       margin-bottom:10px;
+    }
+    .property-from .editor-field input {
+       width:60%;
+    }
+    .property-from .editor-label, .property-from .editor-field {
+        
+    }

@@ -186,6 +186,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Manage\Controllers\TestController.cs" />
+    <Compile Include="Areas\Manage\Controllers\UserController.cs" />
     <Compile Include="Areas\Manage\ManageAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -199,6 +200,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Manage\Views\Shared\Create.aspx" />
     <Content Include="Areas\Manage\Views\Test\Index.aspx" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -286,6 +288,7 @@
     <Content Include="Themes\ace\css\bootstrap.min.css" />
     <Content Include="Themes\ace\css\font-awesome.css" />
     <Content Include="Themes\ace\css\font-awesome.min.css" />
+    <Content Include="Themes\ace\css\property-form.css" />
     <Content Include="Themes\ace\fonts\fontawesome-webfont.svg" />
     <Content Include="Themes\ace\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Themes\ace\js\ace-elements.min.js" />

@@ -8,14 +8,14 @@ namespace Magic.Mvc
 {
     public class MagicModelBuilder : DefaultModelBinder
     {
-        protected override object CreateModel(ControllerContext controllerContext, ModelBindingContext bindingContext, Type modelType)
+        public override object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
-            var controller =controllerContext.Controller as Controller.Manage;
+            var controller = controllerContext.Controller as Controller.Manage;
             if (controller != null)
             {
-                bindingContext.ModelMetadata = ModelMetadataProviders.Current.GetMetadataForType(null, controller.ModelType);
+                bindingContext.ModelMetadata = new ModelMetadata(new DataAnnotationsModelMetadataProvider(), null, null, controller.ModelType, bindingContext.ModelMetadata.PropertyName);// ModelMetadataProviders.Current.GetMetadataForType(null, controller.ModelType);
             }
-            return base.CreateModel(controllerContext, bindingContext, modelType);
+            return base.BindModel(controllerContext, bindingContext);
         }
     }
 }

@@ -28,15 +28,17 @@ namespace Magic.Mvc.Controller
         {
             base.Initialize(requestContext);
 
-            if (this.Binders.ContainsKey(typeof(Model.IModel)))
+            if (!ModelBinders.Binders.ContainsKey(typeof(Model.Model)))
             {
-                this.Binders.Add(typeof(Model.IModel), new MagicModelBuilder());
+                ModelBinders.Binders.Add(typeof(Model.Model), new MagicModelBuilder());
             }
 
 
-            var model = ObjectFactory.Create(ControllerName, typeof(Model.IModel));
-            Check.IsNull(model);
-            ModelType = model.GetType();
+            var type = ObjectFactory.Create(ControllerName, typeof(Model.Model));
+            Check.IsNull(type);
+            ModelType = type;
+
+            Service = new Service.Service(ModelType);
 
         }
 
