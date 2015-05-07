@@ -21,6 +21,8 @@ namespace Magic.Mvc.Controller
         #endregion
 
 
+        #region 操作提示
+
         public static ActionResult Success(this System.Web.Mvc.Controller controller, string message, string returnUrl, int inteval = 5)
         {
             var result = new ViewResult()
@@ -81,6 +83,23 @@ namespace Magic.Mvc.Controller
             };
             return result;
         }
+
+        #endregion
+
+        #region 根据模型获取参数
+        public static string GetPrimaryWhere(this System.Web.Mvc.Controller controller, Type type,System.Web.HttpRequestBase request)
+        {
+            var propertys = Model.ModelInfoProvider.getFiledsByAttribute(type, typeof(Model.KeyAttribute));
+            List<string> where = new List<string>();
+            foreach (var p in propertys)
+            {
+                if (string.IsNullOrWhiteSpace(request[p.Name])) continue;
+                where.Add(string.Format("[{0}]={1}", p.Name, request[p.Name]));
+            }
+            return string.Join(" and ",where);
+        }
+
+        #endregion
 
     }
 }

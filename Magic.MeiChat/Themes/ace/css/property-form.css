@@ -24,3 +24,15 @@
     .property-from .editor-label, .property-from .editor-field {
         
     }
+    .property-from .display-label {
+        font-weight: 500;
+        font-size: 14px;
+    }
+
+     .property-from .display-field {
+        padding-left:40px;
+        font-weight: 400;
+        font-size: 14px;
+        margin-bottom:10px;
+        border-bottom:dotted 1px #ddd;
+    }

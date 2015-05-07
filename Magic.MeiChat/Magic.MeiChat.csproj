@@ -201,6 +201,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Manage\Views\Shared\Create.aspx" />
+    <Content Include="Areas\Manage\Views\Shared\Details.aspx" />
+    <Content Include="Areas\Manage\Views\Shared\Edit.aspx" />
     <Content Include="Areas\Manage\Views\Test\Index.aspx" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />

@@ -72,10 +72,11 @@ namespace Magic.Mvc.Controller
             return View(model);
         }
 
-        public ActionResult Edit(string[] keys)
+        public ActionResult Edit()
         {
+            string where = this.GetPrimaryWhere(this.ModelType, Request);
 
-            var model = Service.GetModel(keys);
+            var model = Service.GetModel(where);
             if (model == null)
             {
                 return this.Error("信息错误，未找到记录。", Url.Action("List"));
@@ -141,6 +142,19 @@ namespace Magic.Mvc.Controller
                 ModelState.AddModelError("", err.Message);
             }
 
+            return View(model);
+        }
+
+
+        public ActionResult Details()
+        {
+            string where = this.GetPrimaryWhere(this.ModelType, Request);
+
+            var model = Service.GetModel(where);
+            if (model == null)
+            {
+                return this.Error("信息错误，未找到记录。", Url.Action("List"));
+            }
             return View(model);
         }
         #endregion
