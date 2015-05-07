@@ -99,6 +99,74 @@ namespace Magic.Mvc
         }
 
 
+        #region 分页处理方法
+        /// <summary>
+        /// 获取分页SQL语句，排序字段需要构成唯一记录
+        /// </summary>
+        /// <param name="_recordCount">记录总数</param>
+        /// <param name="_pageSize">每页记录数</param>
+        /// <param name="_pageIndex">当前页数</param>
+        /// <param name="_safeSql">SQL查询语句</param>
+        /// <param name="_orderField">排序字段，多个则用“,”隔开</param>
+        /// <returns>分页SQL语句</returns>
+        public string CreatePagingSql(int _recordCount, int _pageSize, int _pageIndex, string _safeSql, string _orderField)
+        {
+            //重新组合排序字段，防止有错误
+
+
+            //计算总页数
+            _pageSize = _pageSize <= 0 ? _recordCount : _pageSize;
+            int pageCount = (_recordCount + _pageSize - 1) / _pageSize;
+
+            //检查当前页数
+            if (_pageIndex < 1)
+            {
+                _pageIndex = 1;
+            }
+            if (_pageIndex > pageCount)
+            {
+                _pageIndex = pageCount;
+                _pageSize = 0;
+            }
+            int start=(_pageIndex-1)*_pageSize;
+            int end =0;
+            if((_recordCount-start)>=_pageSize){
+                end=start+_pageSize;
+            }
+            else{
+                end=_recordCount;
+            }
+            //        SELECT * FROM (
+            //SELECT ROW_NUMBER() OVER(ORDER by UserName asc) AS rownumber,*                           
+            //FROM (SELECT  [UserName],[Password] FROM [User]) T 
+            //) TT WHERE rownumber BETWEEN 0 AND 0
+            string sql = @"SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER By ID) AS rownumber,* FROM ({1}) T ) TT  WHERE rownumber BETWEEN {2} AND {3}";
+            return string.Format(sql, _orderField, _safeSql, start, end);
+        }
+
+        /// <summary>
+        /// 获取记录总数SQL语句
+        /// </summary>
+        /// <param name="_n">限定记录数</param>
+        /// <param name="_safeSql">SQL查询语句</param>
+        /// <returns>记录总数SQL语句</returns>
+        public string CreateTopnSql(int _n, string _safeSql)
+        {
+            return string.Format(" SELECT TOP {0} * FROM ({1}) AS T ", _n, _safeSql);
+        }
+
+        /// <summary>
+        /// 获取记录总数SQL语句
+        /// </summary>
+        /// <param name="_safeSql">SQL查询语句</param>
+        /// <returns>记录总数SQL语句</returns>
+        public string CreateCountingSql(string _safeSql)
+        {
+            return string.Format(" SELECT COUNT(1) AS RecordCount FROM ({0}) AS T ", _safeSql);
+        }
+
+        #endregion
+
         /// <summary>
         /// 获取sql参数
         /// </summary>

@@ -36,7 +36,7 @@ namespace Magic.MeiChat.Controllers
 
             try
             {
-                smtp.Send(mms);
+               // smtp.Send(mms);
                 ViewBag.Message ="发送成功";
             }
             catch (Exception ex)

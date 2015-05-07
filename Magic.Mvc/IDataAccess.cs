@@ -10,6 +10,9 @@ namespace Magic.Mvc
 {
     public interface IDataAccess
     {
+        object ExecuteSingle(string sql);
+        object ExecuteSingle(string sql, IDataParameter[] parameters);
+
         int Execute(string sql);
 
         int Execute(string sql, IDataParameter[] parameters);

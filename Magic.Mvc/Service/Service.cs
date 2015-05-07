@@ -16,7 +16,7 @@ namespace Magic.Mvc.Service
 
         public Service()
         {
-           
+
         }
 
         public Service(Type modeltype)
@@ -26,7 +26,7 @@ namespace Magic.Mvc.Service
         }
 
 
-       
+
 
         /// <summary>
         /// 添加模型
@@ -77,20 +77,20 @@ namespace Magic.Mvc.Service
         {
             Check.IsNull(keys);
             string sql = SqlProviders.Current.BuildSelectSQL(ModelType, 1);
-            IDataParameter[] parameters = DataAccessProvider.Current.GetParameters(ModelType,keys);
+            IDataParameter[] parameters = DataAccessProvider.Current.GetParameters(ModelType, keys);
             var dt = DataAccessProvider.Current.Query(sql, parameters);
             return SqlProviders.Current.TableToModelList(ModelType, dt).FirstOrDefault();
         }
 
-        public Model.Model GetModel(string where=null)
+        public Model.Model GetModel(string where = null)
         {
             return GetModel(where, null);
         }
 
-        public Model.Model GetModel(string where,string order)
+        public Model.Model GetModel(string where, string order)
         {
             string sql = SqlProviders.Current.BuildSelectSQL(ModelType, 1);
-            if(!string.IsNullOrWhiteSpace(where))
+            if (!string.IsNullOrWhiteSpace(where))
             {
                 sql += string.Format(" where {0} ", where);
             }
@@ -109,7 +109,7 @@ namespace Magic.Mvc.Service
             return GetModelList(where, null);
         }
 
-        public IEnumerable<Model.Model> GetModelList(string where,string order)
+        public IEnumerable<Model.Model> GetModelList(string where, string order)
         {
             string sql = SqlProviders.Current.BuildSelectSQL(ModelType, 1);
             if (!string.IsNullOrWhiteSpace(where))
@@ -124,5 +124,39 @@ namespace Magic.Mvc.Service
             return SqlProviders.Current.TableToModelList(ModelType, dt);
         }
 
+
+        /// <summary>
+        /// 分页获取数据
+        /// </summary>
+        /// <param name="where">条件</param>
+        /// <param name="order">排序</param>
+        /// <param name="page">当前页数</param>
+        /// <param name="pagesize">分页大小</param>
+        /// <returns></returns>
+        public TabledList<Model.Model> GetModelList(string where, string order, int page, int pagesize)
+        {
+            string sql = SqlProviders.Current.BuildSelectSQL(ModelType);
+            if (!string.IsNullOrWhiteSpace(where))
+            {
+                sql += " where " + where;
+            }
+            if (string.IsNullOrWhiteSpace(order))
+            {
+
+                order = "ID";
+            }
+            var countSql = SqlProviders.Current.CreateCountingSql(sql);
+            var rcount = DataAccessProvider.Current.ExecuteSingle(countSql);
+            int recordCount = rcount == null ? 0 : (int)rcount;
+
+
+            sql = SqlProviders.Current.CreatePagingSql(recordCount, pagesize, page, sql, order);
+
+            var dt = DataAccessProvider.Current.Query(sql);
+            var ls = SqlProviders.Current.TableToModelList(ModelType, dt);
+            TabledList<Model.Model> tabledList = new TabledList<Model.Model>(ls, ModelType, page, pagesize, recordCount);
+
+            return tabledList;
+        }
     }
 }

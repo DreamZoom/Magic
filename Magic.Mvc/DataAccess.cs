@@ -19,6 +19,25 @@ namespace Magic.Mvc
             this.ConnectionString = connectionString;
             this.Connection = new SqlConnection(ConnectionString);
         }
+
+        public virtual object ExecuteSingle(string sql)
+        {
+            CheckConnection();
+            using (SqlCommand cmd = new SqlCommand(sql, Connection))
+            {
+                return cmd.ExecuteScalar();
+            }
+        }
+
+        public virtual object ExecuteSingle(string sql, IDataParameter[] parameters)
+        {
+            CheckConnection();
+            using (SqlCommand cmd = new SqlCommand(sql, Connection))
+            {
+                return cmd.ExecuteScalar();
+            }
+        }
+
         public virtual int Execute(string sql)
         {
             CheckConnection();

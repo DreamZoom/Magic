@@ -40,6 +40,7 @@ namespace Magic.Mvc.Controller
 
             Service = new Service.Service(ModelType);
 
+            this.PageSize = 20;
         }
 
 
@@ -156,6 +157,45 @@ namespace Magic.Mvc.Controller
                 return this.Error("信息错误，未找到记录。", Url.Action("List"));
             }
             return View(model);
+        }
+
+        /// <summary>
+        /// 分页大小
+        /// </summary>
+        public int PageSize { get; set; }
+        /// <summary>
+        /// 显示列表 
+        /// </summary>
+        /// <param name="page"></param>
+        /// <returns></returns>
+        public ActionResult List(int page = 1)
+        {
+            string where = this.BindWhere(ModelType);
+            string order = "ID";
+            var list = Service.GetModelList(where, order, page, PageSize);//获取数据列表
+
+            CreateActionLinks(list.ActionLinks);
+            CreateBatchActionLinks(list.BatchActionLinks);
+            CreateDataFormatter(list.DataFormatter);
+            return View(list);
+        }
+
+
+        protected virtual void CreateActionLinks(Dictionary<string,string> links)
+        {
+            links.Add("编辑", Url.Action("Edit") + "?ID={ID}");
+            links.Add("详情", Url.Action("Details") + "?ID={ID}");
+            links.Add("删除", Url.Action("Delete") + "?ID={ID}");
+        }
+
+        protected virtual void CreateBatchActionLinks(Dictionary<string, string> links)
+        {
+            links.Add("创建", Url.Action("create"));
+        }
+
+        protected virtual void CreateDataFormatter(Dictionary<string, Func<object, object, string>> formatters)
+        {
+
         }
         #endregion
     }

@@ -20,7 +20,11 @@ namespace Magic.Mvc.Model
             var fs = ModelInfoProvider.getFiledsByAttribute(this.GetType(), typeof(IdentifyAttribute));
             return fs.FirstOrDefault(); 
         }
-
+        public virtual string getIdentifyFiled()
+        {
+            
+            return "ID";
+        }
         /// <summary>
         /// 获取属性值
         /// </summary>
