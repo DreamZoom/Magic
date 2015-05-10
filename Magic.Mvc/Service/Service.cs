@@ -33,7 +33,7 @@ namespace Magic.Mvc.Service
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public bool Add(Model.Model model)
+        public virtual bool Add(Model.Model model)
         {
             Check.IsNull(model);
             string sql = SqlProviders.Current.BuildInsertSQL(model);
@@ -47,7 +47,7 @@ namespace Magic.Mvc.Service
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public bool Update(Model.Model model)
+        public virtual bool Update(Model.Model model)
         {
             Check.IsNull(model);
             string sql = SqlProviders.Current.BuildUpdateSQL(model);
@@ -60,7 +60,7 @@ namespace Magic.Mvc.Service
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public bool Delete(Model.Model model)
+        public virtual bool Delete(Model.Model model)
         {
             Check.IsNull(model);
             string sql = SqlProviders.Current.BuildDeleteSQL(model);
@@ -73,7 +73,7 @@ namespace Magic.Mvc.Service
         /// </summary>
         /// <param name="keys"></param>
         /// <returns></returns>
-        public Model.Model GetModel(params object[] keys)
+        public virtual Model.Model GetModel(params object[] keys)
         {
             Check.IsNull(keys);
             string sql = SqlProviders.Current.BuildSelectSQL(ModelType, 1);
@@ -82,12 +82,12 @@ namespace Magic.Mvc.Service
             return SqlProviders.Current.TableToModelList(ModelType, dt).FirstOrDefault();
         }
 
-        public Model.Model GetModel(string where = null)
+        public virtual Model.Model GetModel(string where = null)
         {
             return GetModel(where, null);
         }
 
-        public Model.Model GetModel(string where, string order)
+        public virtual Model.Model GetModel(string where, string order)
         {
             string sql = SqlProviders.Current.BuildSelectSQL(ModelType, 1);
             if (!string.IsNullOrWhiteSpace(where))
@@ -104,12 +104,12 @@ namespace Magic.Mvc.Service
         }
 
 
-        public IEnumerable<Model.Model> GetModelList(string where)
+        public virtual IEnumerable<Model.Model> GetModelList(string where)
         {
             return GetModelList(where, null);
         }
 
-        public IEnumerable<Model.Model> GetModelList(string where, string order)
+        public virtual IEnumerable<Model.Model> GetModelList(string where, string order)
         {
             string sql = SqlProviders.Current.BuildSelectSQL(ModelType, 1);
             if (!string.IsNullOrWhiteSpace(where))
@@ -133,7 +133,7 @@ namespace Magic.Mvc.Service
         /// <param name="page">当前页数</param>
         /// <param name="pagesize">分页大小</param>
         /// <returns></returns>
-        public TabledList<Model.Model> GetModelList(string where, string order, int page, int pagesize)
+        public virtual TabledList<Model.Model> GetModelList(string where, string order, int page, int pagesize)
         {
             string sql = SqlProviders.Current.BuildSelectSQL(ModelType);
             if (!string.IsNullOrWhiteSpace(where))
