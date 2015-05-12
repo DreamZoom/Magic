@@ -26,10 +26,12 @@ namespace MedicalCrab.Core.Services
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public override bool Add(Models.User model)
+        public override bool Add(Magic.Mvc.Model.Model model)
         {
-            var user = this.GetModel(string.Format("[UserName]={0}", model.UserName));
-            if (model != null) throw new Exception("该账户已存在!");
+            var m = model as Models.User;
+            if (m == null) throw new ArgumentNullException();
+            var user = this.GetModel(string.Format("[UserName]={0}", m.UserName));
+            if (user != null) throw new Exception("该账户已存在!");
             return base.Add(model);
         }
 

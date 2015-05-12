@@ -134,7 +134,7 @@ namespace Magic.Mvc
             int i = 0;
             foreach (var p in propertys)
             {
-                listSQLParamter.Add(new SqlParameter() { ParameterName = p.Name, Value = keys[i] });
+                listSQLParamter.Add(new SqlParameter() { ParameterName = p.Name, Value = Convert.ChangeType(keys[i],p.PropertyType) });
                 i++;
             }
             return listSQLParamter.ToArray();

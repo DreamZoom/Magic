@@ -73,11 +73,11 @@ namespace Magic.Mvc.Controller
             return View(model);
         }
 
-        public ActionResult Edit()
+        public ActionResult Edit(string ID)
         {
             string where = this.GetPrimaryWhere(this.ModelType, Request);
 
-            var model = Service.GetModel(where);
+            var model = Service.GetModelByID(ID);
             if (model == null)
             {
                 return this.Error("信息错误，未找到记录。", Url.Action("List"));
@@ -108,9 +108,9 @@ namespace Magic.Mvc.Controller
         }
 
 
-        public ActionResult Delete(string[] keys)
+        public ActionResult Delete(string ID)
         {
-            var model = Service.GetModel(keys);
+            var model = Service.GetModelByID(ID);
             if (model == null)
             {
                 return this.Error("信息错误，未找到记录。", Url.Action("List"));
@@ -119,9 +119,9 @@ namespace Magic.Mvc.Controller
         }
 
         [HttpPost]
-        public ActionResult Delete(string[] keys, bool confirm = true)
+        public ActionResult Delete(string ID, bool confirm = true)
         {
-            var model = Service.GetModel(keys);
+            var model = Service.GetModelByID(ID);
             if (model == null)
             {
                 return this.Error("信息错误，未找到记录。", Url.Action("List"));
@@ -147,11 +147,9 @@ namespace Magic.Mvc.Controller
         }
 
 
-        public ActionResult Details()
+        public ActionResult Details(string ID)
         {
-            string where = this.GetPrimaryWhere(this.ModelType, Request);
-
-            var model = Service.GetModel(where);
+            var model = Service.GetModelByID(ID);
             if (model == null)
             {
                 return this.Error("信息错误，未找到记录。", Url.Action("List"));

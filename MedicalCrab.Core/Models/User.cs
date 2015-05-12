@@ -9,8 +9,6 @@ namespace MedicalCrab.Core.Models
 {
     public class User :Magic.Mvc.Model.Model
     {
-        [Display(Name="编号")]
-        public int ID { get; set; }
 
         [Display(Name="用户名")]
         public string UserName { get; set; }

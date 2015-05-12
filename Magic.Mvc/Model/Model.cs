@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Reflection;
+using System.ComponentModel.DataAnnotations;
 
 namespace Magic.Mvc.Model
 {
@@ -11,6 +12,17 @@ namespace Magic.Mvc.Model
     /// </summary>
     public class Model : IModel, ICloneable
     {
+        [Display(Name="编号")]
+        [Identify]
+        [Key]
+        [ScaffoldColumn(false)]
+        public string ID { get; set; }
+
+        public Model()
+        {
+            this.ID = Guid.NewGuid().ToString();
+        }
+
         public PropertyInfo[] getPrimaryKeys()
         {
             return ModelInfoProvider.getFiledsByAttribute(this.GetType(),typeof(KeyAttribute));
@@ -21,8 +33,7 @@ namespace Magic.Mvc.Model
             return fs.FirstOrDefault(); 
         }
         public virtual string getIdentifyFiled()
-        {
-            
+        {    
             return "ID";
         }
         /// <summary>

@@ -122,7 +122,7 @@ namespace Magic.Mvc.Html
         private string FormatFromModel(string tempString, Model.Model model)
         {
             var propertys = model.GetType().GetProperties();
-            Regex r = new Regex("{[a-z|0-9]*}");
+            Regex r = new Regex("{[A-Z|a-z|0-9]*}");
             return r.Replace(tempString, (m) =>
             {
                 var value =model.Property(m.Value.Trim('{','}'));

@@ -73,7 +73,7 @@ namespace Magic.Mvc.Service
         /// </summary>
         /// <param name="keys"></param>
         /// <returns></returns>
-        public virtual Model.Model GetModel(params object[] keys)
+        public virtual Model.Model GetModelByKeys(params object[] keys)
         {
             Check.IsNull(keys);
             string sql = SqlProviders.Current.BuildSelectSQL(ModelType, 1);
@@ -81,7 +81,10 @@ namespace Magic.Mvc.Service
             var dt = DataAccessProvider.Current.Query(sql, parameters);
             return SqlProviders.Current.TableToModelList(ModelType, dt).FirstOrDefault();
         }
-
+        public virtual Model.Model GetModelByID(string ID)
+        {
+            return GetModel(string.Format("ID={0}",ID));
+        }
         public virtual Model.Model GetModel(string where = null)
         {
             return GetModel(where, null);

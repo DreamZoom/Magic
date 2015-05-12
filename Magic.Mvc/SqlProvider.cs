@@ -56,7 +56,7 @@ namespace Magic.Mvc
 
             }
 
-            return string.Format(" UPDATE [{0}] SET {1} WHERE {2}", model.GetType().Name, string.Join(",", fileds.ToArray()), string.Join(",", wheres.ToArray()));
+            return string.Format(" UPDATE [{0}] SET {1} WHERE {2}", model.GetType().Name, string.Join(",", fileds.ToArray()), string.Join(" and ", wheres.ToArray()));
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace Magic.Mvc
                 wheres.Add(string.Format("[{0}]=@{0}", p.Name));
             }
 
-            return string.Format(" DELETE FROM [{0}]  WHERE {1}", model.GetType().Name, string.Join(",", wheres.ToArray()));
+            return string.Format(" DELETE FROM [{0}]  WHERE {1}", model.GetType().Name, string.Join(" and ", wheres.ToArray()));
         }
 
         public virtual string BuildDeleteSQL(Type type)
