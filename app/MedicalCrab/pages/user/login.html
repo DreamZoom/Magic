@@ -7,6 +7,7 @@
 		<title></title>
 		<script src="../../js/mui.js"></script>
 		<link href="../../css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/custom.css" />
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
 		</script>
@@ -18,27 +19,21 @@
 			<h1 class="mui-title">登录</h1>
 		</header>
 		<div class="mui-content">
-			<form class="mui-input-group">
+			<div class="mui-card">
+				<form class="mui-input-group">
 
-				<div class="mui-input-row">
-					<label><i class="mui-icon"></i></label>
-					<input type="text" placeholder="普通输入框">
-				</div>
-				<div class="mui-input-row">
-					<label>Input</label>
-					<input type="text" class="mui-input-clear" placeholder="带清除按钮的输入框">
-				</div>
-
-				<div class="mui-input-row">
-					<label>Input</label>
-					<input type="text" class="mui-input-speech mui-input-clear" placeholder="语音输入">
-				</div>
-				<div class="mui-button-row">
-					<button class="mui-btn mui-btn-primary" onclick="return false;">确认</button>&nbsp;&nbsp;
-					<button class="mui-btn mui-btn-danger" onclick="return false;">取消</button>
-				</div>
-			</form>
-
+					<div class="mui-input-row">
+						<input type="text" placeholder="账户">
+					</div>
+					<div class="mui-input-row">
+						<input type="text" class="mui-input-clear" placeholder="密码">
+					</div>
+					<div class="mui-button-row">
+						<a href="" class="mui-pull-left">忘记密码？</a><button type="submit" class="mui-btn  mui-btn-blue ">登录</button>
+					</div>
+				</form>
+			</div>
+			
 		</div>
 	</body>
 

@@ -10,6 +10,12 @@ namespace MedicalCrab.Core.Services
     /// </summary>
     public class UserSevice : Magic.Mvc.Service.Service
     {
+
+        public UserSevice()
+            :base(typeof(Models.User))
+        {
+
+        }
         /// <summary>
         /// 注册用户
         /// </summary>

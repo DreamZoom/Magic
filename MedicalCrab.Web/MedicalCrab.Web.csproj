@@ -185,6 +185,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
+    <Compile Include="Areas\Api\Controllers\ApiControllerExtensions.cs" />
+    <Compile Include="Areas\Api\Controllers\UserController.cs" />
     <Compile Include="Areas\Manage\ManageAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -258,6 +261,7 @@
     <Content Include="Global.asax" />
     <Content Include="Areas\Manage\Views\Web.config" />
     <Content Include="Areas\Manage\Views\Shared\IFrame.Master" />
+    <Content Include="Areas\Api\Views\Web.config" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -348,6 +352,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Api\Models\" />
+    <Folder Include="Areas\Api\Views\Shared\" />
     <Folder Include="Areas\Manage\Controllers\" />
     <Folder Include="Areas\Manage\Models\" />
   </ItemGroup>
