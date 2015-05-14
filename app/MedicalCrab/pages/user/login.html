@@ -10,6 +10,7 @@
 		<link href="../../css/mui.css" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css" href="../../css/custom.css" />
 		<link rel="stylesheet" type="text/css" href="../../css/font-awesome.min.css"/>
+		<script src="../../js/app.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../js/tools.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
@@ -23,12 +24,12 @@
 		</header>
 		<div class="mui-content">
 			
-			<form class="ui-login-form" id="login">
+			<form class="ui-login-form" id="login" data-api="user/login">
 				<input name='username' type="text" class="mui-input-clear mui-input" placeholder="账号">
 				<input name='password' type="password" class="mui-input-clear mui-input" placeholder="密码">
 			</form>
 			<div class="mui-content-padded">
-				<submit id='login' class="mui-btn mui-btn-block mui-btn-primary" target-id="login"><i class="fa fa-spinner fa-spin"></i>  登录</submit>
+				<submit id='login' class="mui-btn mui-btn-block mui-btn-primary" target-id="login"> 登录</submit>
 				<a  href="register.html">注册新用户</a><a  href="register.html" class="mui-pull-right">忘记密码？</a>
 			</div>
 		</div>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
+  <metadata minClientVersion="1.0.0">
+    <id>log4net-loggly</id>
+    <version>6.0.5</version>
+    <title>Log4Net Loggly</title>
+    <authors>Loggly</authors>
+    <owners>Loggly</owners>
+    <projectUrl>https://github.com/psquickitjayant/log4net-loggly</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Custom log4Net Appender to send logs to Loggly</description>
+    <summary>Custom log4Net Appender to send logs to Loggly</summary>
+    <releaseNotes>https://github.com/psquickitjayant/log4net-loggly/releases/tag/6.0.5</releaseNotes>
+    <language>en-US</language>
+    <tags>Loggly log4net log4net appender logs</tags>
+    <dependencies>
+      <dependency id="log4net" version="2.0.3" />
+      <dependency id="Newtonsoft.Json" version="6.0.8" />
+    </dependencies>
+  </metadata>
+</package>

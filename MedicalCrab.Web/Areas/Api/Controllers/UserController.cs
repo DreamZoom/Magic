@@ -11,7 +11,7 @@ namespace MedicalCrab.Web.Areas.Api.Controllers
 {
     public class UserController : Controller
     {
-
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         MedicalCrab.Core.Services.UserSevice userService = new Core.Services.UserSevice();
 
         /// <summary>
@@ -38,12 +38,13 @@ namespace MedicalCrab.Web.Areas.Api.Controllers
         {
             try
             {
-                if(ModelState.Count>0)
+                log.Debug(user.UserName);
+                if(!ModelState.IsValid)
                 {
                     throw new Exception(string.Join(",",ModelState.ToArray()));
                 }
                 userService.Register(user);
-                return this.SuccessJson("登录成功。");
+                return this.SuccessJson("注册成功。");
             }
             catch(Exception err)
             {

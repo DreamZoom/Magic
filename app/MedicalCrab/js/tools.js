@@ -1,9 +1,7 @@
-window.application={};
-
-//全局工具
-(function(mui,app){
-	
-})(mui,application);
+function log(obj){
+	for(var p in obj)
+	   console.log(p);
+}
 
 mui.ready(function() {
 
@@ -36,9 +34,28 @@ mui.ready(function() {
 	 * 提交form
 	 * 
 	 */
+	function getJson(str){
+		var parms = str.split('&');
+		var jsonobj={};
+		parms.forEach(function(s,i){
+			console.log(i);
+			var p =s.split('=');		
+			if(p.length==2){
+				jsonobj[p[0]]=p[1];
+			}
+		});
+		return jsonobj;
+	}
+	
     mui(document).on('tap', 'submit', function() {
     	var target = this.getAttribute("target-id");
-    	alert($("#"+target).serialize());
-    	 
+    	
+    	var str = ($("#"+target).serialize());
+    	console.log(str);
+    	var json = getJson(str);
+    	var api = $("#"+target).attr("data-api");
+    	app.network.post(app.RomateUrl+api,json,function(data){
+    		alert(data.message);
+    	});
     });
 });

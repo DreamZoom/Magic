@@ -5,10 +5,13 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
+		<script src="../../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../js/mui.js"></script>
 		<link href="../../css/mui.css" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css" href="../../css/custom.css" />
-		<link rel="stylesheet" type="text/css" href="../../css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/font-awesome.min.css"/>
+		<script src="../../js/app.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/tools.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
 		</script>
@@ -21,13 +24,13 @@
 		</header>
 		<div class="mui-content">
 			
-			<form class="ui-login-form">
-				<input id='account' type="text" class="mui-input-clear mui-input" placeholder="账号">
-				<input id='password' type="password" class="mui-input-clear mui-input" placeholder="密码">
-				<input id='password' type="password" class="mui-input-clear mui-input" placeholder="确认密码">
+			<form class="ui-login-form" id="register" data-api="user/register">
+				<input name='UserName' type="text" class="mui-input-clear mui-input" placeholder="账号">
+				<input name='Password' type="password" class="mui-input-clear mui-input" placeholder="密码">
+				<input name='Email' type="text" class="mui-input-clear mui-input" placeholder="邮箱">
 			</form>
 			<div class="mui-content-padded">
-				<button id='login' class="mui-btn mui-btn-block mui-btn-primary"><i class="fa fa-spinner fa-spin"></i> 注册新用户</button>
+				<submit target-id='register' class="mui-btn mui-btn-block mui-btn-primary">注册新用户</submit>
 			</div>
 		</div>
 	</body>

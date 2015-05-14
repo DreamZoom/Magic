@@ -13,7 +13,6 @@ namespace Magic.Mvc.Model
     public class Model : IModel, ICloneable
     {
         [Display(Name="编号")]
-        [Identify]
         [Key]
         [ScaffoldColumn(false)]
         public string ID { get; set; }

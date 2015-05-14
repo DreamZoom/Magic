@@ -22,7 +22,11 @@ namespace MedicalCrab.Core.Services
         /// <param name="user">用户信息</param>
         /// <returns></returns>
         public bool Register(Models.User user)
-        {           
+        {
+            user.Address = "";
+            user.Phone = "";
+            user.RegTime = DateTime.Now;
+            
             this.Add(user);
             return true;
         }
@@ -36,7 +40,7 @@ namespace MedicalCrab.Core.Services
         {
             var m = model as Models.User;
             if (m == null) throw new ArgumentNullException();
-            var user = this.GetModel(string.Format("[UserName]={0}", m.UserName));
+            var user = this.GetModel(string.Format("[UserName]='{0}'", m.UserName));
             if (user != null) throw new Exception("该账户已存在!");
             return base.Add(model);
         }
@@ -49,7 +53,7 @@ namespace MedicalCrab.Core.Services
         /// <returns></returns>
         public bool Login(string username,string password)
         {
-            var model = this.GetModel(string.Format("[UserName]={0} and [Password]={1}", username,password));
+            var model = this.GetModel(string.Format("[UserName]='{0}' and [Password]='{1}'", username,password));
             return model != null;
         }
     }
