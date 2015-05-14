@@ -2,3 +2,39 @@ html,
 body {
 	background-color: #efeff4;
 }
+.ui-logo {
+	width: 100px;
+	height: 100px;
+	margin: 60px auto 25px auto;
+	background-image: url(../images/user-photo.png);
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	border-radius: 60px;
+}
+.mui-content-padded {
+	margin-top: 20px;
+}
+.ui-login-form {
+	border: solid 1px #ddd;
+	border-radius: 5px;
+	margin: 10px;
+	overflow: hidden;
+	background-color: #ddd;
+}
+.ui-login-form input {
+	border: none;
+	margin: 0px;
+	font-size: 18px;
+	padding: 15px !important;
+	border-radius: 0px;
+	height: auto;
+}
+
+
+.ui-login-form input {
+	margin-bottom: 1px;
+}
+.mui-btn-block {
+	padding: 12px 0px;
+}

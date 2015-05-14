@@ -5,9 +5,12 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
+		<script src="../../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../js/mui.js"></script>
 		<link href="../../css/mui.css" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css" href="../../css/custom.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/font-awesome.min.css"/>
+		<script src="../../js/tools.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
 		</script>
@@ -19,21 +22,15 @@
 			<h1 class="mui-title">登录</h1>
 		</header>
 		<div class="mui-content">
-			<div class="mui-card">
-				<form class="mui-input-group">
-
-					<div class="mui-input-row">
-						<input type="text" placeholder="账户">
-					</div>
-					<div class="mui-input-row">
-						<input type="text" class="mui-input-clear" placeholder="密码">
-					</div>
-					<div class="mui-button-row">
-						<a href="" class="mui-pull-left">忘记密码？</a><button type="submit" class="mui-btn  mui-btn-blue ">登录</button>
-					</div>
-				</form>
-			</div>
 			
+			<form class="ui-login-form" id="login">
+				<input name='username' type="text" class="mui-input-clear mui-input" placeholder="账号">
+				<input name='password' type="password" class="mui-input-clear mui-input" placeholder="密码">
+			</form>
+			<div class="mui-content-padded">
+				<submit id='login' class="mui-btn mui-btn-block mui-btn-primary" target-id="login"><i class="fa fa-spinner fa-spin"></i>  登录</submit>
+				<a  href="register.html">注册新用户</a><a  href="register.html" class="mui-pull-right">忘记密码？</a>
+			</div>
 		</div>
 	</body>
 
