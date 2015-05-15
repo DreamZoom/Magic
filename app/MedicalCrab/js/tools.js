@@ -22,6 +22,10 @@ mui.ready(function() {
 				},
 				waiting: {
 					autoShow: true
+				},
+				show:{
+					duration:150,
+					aniShow:"pop-in"
 				}
 			});
 			return;
@@ -54,6 +58,7 @@ mui.ready(function() {
     	console.log(str);
     	var json = getJson(str);
     	var api = $("#"+target).attr("data-api");
+    
     	app.network.post(app.RomateUrl+api,json,function(data){
     		alert(data.message);
     	});
