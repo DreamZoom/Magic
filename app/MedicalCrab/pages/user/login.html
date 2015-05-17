@@ -10,8 +10,9 @@
 		<link href="../../css/mui.css" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css" href="../../css/custom.css" />
 		<link rel="stylesheet" type="text/css" href="../../css/font-awesome.min.css"/>
+		<script src="../../js/user.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../js/app.js" type="text/javascript" charset="utf-8"></script>
-		<script src="../../js/tools.js" type="text/javascript" charset="utf-8"></script>
+		
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
 		</script>
@@ -24,7 +25,7 @@
 		</header>
 		<div class="mui-content">
 			
-			<form class="ui-login-form" id="login" data-api="user/login">
+			<form class="ui-login-form" id="login" data-api="user/login" data-success-event="user.logined">
 				<input name='username' type="text" class="mui-input-clear mui-input" placeholder="账号">
 				<input name='password' type="password" class="mui-input-clear mui-input" placeholder="密码">
 			</form>

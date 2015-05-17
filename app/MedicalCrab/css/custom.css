@@ -2,15 +2,10 @@ html,
 body {
 	background-color: #efeff4;
 }
-.ui-logo {
-	width: 100px;
-	height: 100px;
-	margin: 60px auto 25px auto;
-	background-image: url(../images/user-photo.png);
-	background-position: center center;
-	background-repeat: no-repeat;
-	background-size: 100% 100%;
-	border-radius: 60px;
+.user-logo {
+	width: 80px;
+	height: 80px;
+	margin-right: 10px;
 }
 .mui-content-padded {
 	margin-top: 20px;
@@ -30,11 +25,27 @@ body {
 	border-radius: 0px;
 	height: auto;
 }
-
-
 .ui-login-form input {
 	margin-bottom: 1px;
 }
 .mui-btn-block {
 	padding: 12px 0px;
 }
+.mui-table-view:before {
+	height: 0px;
+}
+.mui-table-view-cell:after{
+	left: 0px;
+}
+icon {
+	margin-right: 10px;
+	color: #007AFF;
+}
+
+
+
+
+
+
+
+

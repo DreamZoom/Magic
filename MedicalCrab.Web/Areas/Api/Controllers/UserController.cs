@@ -6,6 +6,8 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Mvc;
 using MedicalCrab.Core;
+using System.Security.Cryptography;
+using System.Text;  
 
 namespace MedicalCrab.Web.Areas.Api.Controllers
 {
@@ -24,7 +26,11 @@ namespace MedicalCrab.Web.Areas.Api.Controllers
         {
             if (userService.Login(username, password))
             {
-                return this.SuccessJson("登录成功。");
+                byte[] result = Encoding.Default.GetBytes(username+DateTime.Now.ToString());
+                MD5 md5 = new MD5CryptoServiceProvider();
+                byte[] output = md5.ComputeHash(result);
+                string token = BitConverter.ToString(output).Replace("-", "");
+                return this.SuccessJson(new { token = token }, "登录成功。");
             }
             return this.ErrorJson("登录失败。用户名或密码错误。");
         }
@@ -52,5 +58,18 @@ namespace MedicalCrab.Web.Areas.Api.Controllers
             }
 
         }
+
+
+        public ActionResult UserInfo(string username)
+        {
+            log.Debug(username);
+            var model = userService.GetModel(string.Format("[UserName]='{0}'",username));
+            if (model != null)
+            {
+                return this.SuccessJson(model,"获取用户信息成功。");
+            }
+            return this.ErrorJson("获取用户信息失败");
+        }
+        
     }
 }
