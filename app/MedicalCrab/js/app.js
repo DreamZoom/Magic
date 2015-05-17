@@ -23,6 +23,9 @@
     }
 	//api服务器地址
 	app.RomateUrl = "http://192.168.0.111/api/";
+	
+	//全局对象
+	app.request = { url:"http://192.168.0.111/" };
 
 	app.open = function(url, params) {
 		var page = plus.webview.getWebviewById(url);
@@ -158,7 +161,14 @@
 
 	win.app.api.get = function(api, data, success, error) {
 		var apiurl = app.RomateUrl + api;
-		app.network.get(apiurl, data, success, error);
+		app.network.get(apiurl, data, function(data){
+			if(data.data){
+				data.data["request"]=app.request;
+				if(success){
+					success(data);
+				}
+			}
+		}, error);
 	};
 
 	win.app.api.post = function(api, data, success, error) {
@@ -227,4 +237,30 @@ mui.ready(function() {
 			spinner.remove();
 		});
 	});
+
+    
+    //content
+    
+});
+
+
+mui.plusReady(function(){
+	$("content").each(function(index,el){
+		var api = $(el).attr("data-api");
+		var tid = $(el).attr("data-template");
+		if(api && tid){	
+			var d = localStorage.getItem("api/"+api);
+			var source = $("#"+tid).html();
+			var template= Handlebars.compile(source);
+			$(el).html(template(d));
+			app.api.get(api,{username:"wxllzf"},function(data){
+				app.log(data.data);
+				localStorage.setItem("api/"+api,data.data); 
+				$(el).html(template(data.data));
+			},function(err){
+				
+			})
+		}
+	});
+	
 });

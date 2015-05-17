@@ -13,6 +13,12 @@ namespace MedicalCrab.Core.Models
         [Display(Name="用户名")]
         public string UserName { get; set; }
 
+         [Display(Name = "个性签名")]
+        public string SignDiscription { get; set; }
+
+         [Display(Name = "头像")]
+        public string UserImage { get; set; }
+
         [Display(Name = "密码")]
         public string Password { get; set; }
 

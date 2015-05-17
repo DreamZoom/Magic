@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="HandheldFriendly" content="true">
+<meta name="MobileOptimized" content="320">
+<title>Hello H5+</title>
+<link rel="stylesheet" type="text/css" href="res/doc.css" charset="utf-8">
+<link rel="stylesheet" type="text/css" href="res/prettify.sons.css" charset="utf-8">
+<script type="text/javascript" src="res/doc.js" charset="utf-8"></script><script type="text/javascript" src="res/prettify.js" charset="utf-8"></script>
+</head>
+<body><div id="content" class="content">
+<h1><a name="plus.zip">zip</a></h1>
+<p>Zip模块管理文件压缩和解压，通过plus.zip可获取压缩管理对象。</p>
+<h2>方法：</h2>
+<ul>
+<li>
+<a href="#plus.zip.compress">compress</a>: 用于压缩Zip文件</li>
+<li>
+<a href="#plus.zip.decompress">decompress</a>: 用于解压缩Zip文件。</li>
+</ul>
+<h2>回调方法：</h2>
+<ul>
+<li>
+<a href="#plus.zip.ZipSuccessCallback">ZipSuccessCallback</a>: 操作成功回调函数接口，在解压Zip文件或压缩成Zip文件成功时调用</li>
+<li>
+<a href="#plus.zip.ZipErrorCallback">ZipErrorCallback</a>: 操作错误回调函数接口，在解压Zip文件或压缩成Zip文件失败时调用</li>
+</ul>
+<h2>权限：</h2>
+<p>permissions</p>
+<pre class="prettyprint linenums">
+"Zip": {
+	"description": "文件压缩与解压缩"
+}
+			</pre>
+<h1><a name="plus.zip.ZipSuccessCallback">ZipSuccessCallback</a></h1>
+<p>操作成功回调函数接口，在解压Zip文件或压缩成Zip文件成功时调用</p>
+<pre class="prettyprint linenums">
+void onSuccess(){
+	// Code here
+}
+				</pre>
+<h2>参数：</h2>
+<p>无</p>
+<h2>返回值：</h2>
+<font class="type">void</font>
+			: 无<h1><a name="plus.zip.ZipErrorCallback">ZipErrorCallback</a></h1>
+<p>操作错误回调函数接口，在解压Zip文件或压缩成Zip文件失败时调用</p>
+<pre class="prettyprint linenums">
+void onError(error){
+	// Handle the error
+}
+				</pre>
+<h2>参数：</h2>
+<ul><li>error: 
+		<em>(
+			<font class="type">DOMException</font>
+			)
+			可选 </em><br>Zip文件操作的错误信息</li></ul>
+<h2>返回值：</h2>
+<font class="type">void</font>
+			: 无<br><br>
+</div></body>
+</html>
