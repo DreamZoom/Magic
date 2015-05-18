@@ -22,10 +22,10 @@
     	}
     }
 	//api服务器地址
-	app.RomateUrl = "http://192.168.0.111/api/";
+	app.RomateUrl = "http://192.168.1.53:2835/api/";
 	
 	//全局对象
-	app.request = { url:"http://192.168.0.111/" };
+	app.request = { url:"http://192.168.1.53:2835/" };
 
 	app.open = function(url, params) {
 		var page = plus.webview.getWebviewById(url);
@@ -60,6 +60,11 @@
 		if (!token) {
 			app.open("/pages/user/login.html");
 		}
+	}
+	
+	//
+	app.getUser=function(){
+		
 	}
 
 })(window);
@@ -187,11 +192,23 @@ mui.ready(function() {
 	 */
 	mui(document).on('tap', 'a', function() {
 		var url = this.getAttribute("href");
-		if (!url) return;
-		var container = this.getAttribute("data-container"); ///框架id
+		if (!url || url.indexOf("#")>= 0) return;
+		var container = this.getAttribute("data-target"); ///框架id
 		if (!container) {
 			window.app.open(url);
 			return;
+		}
+		else{
+			app.log(container);
+			app.log(url);
+			var view = plus.webview.getWebviewById(container);
+			if(view){
+				app.log(url);
+				view.loadURL(url);
+			}
+			else{
+				window.app.open(url); 
+			}
 		}
 
 	});
@@ -245,22 +262,25 @@ mui.ready(function() {
 
 
 mui.plusReady(function(){
-	$("content").each(function(index,el){
-		var api = $(el).attr("data-api");
-		var tid = $(el).attr("data-template");
-		if(api && tid){	
-			var d = localStorage.getItem("api/"+api);
-			var source = $("#"+tid).html();
-			var template= Handlebars.compile(source);
-			$(el).html(template(d));
-			app.api.get(api,{username:"wxllzf"},function(data){
-				app.log(data.data);
-				localStorage.setItem("api/"+api,data.data); 
-				$(el).html(template(data.data));
-			},function(err){
-				
-			})
-		}
-	});
+	if($){
+		$("content").each(function(index,el){
+			var api = $(el).attr("data-api");
+			var tid = $(el).attr("data-template");
+			if(api && tid){	
+				var d = localStorage.getItem("api/"+api);
+				var source = $("#"+tid).html();
+				var template= Handlebars.compile(source);
+				$(el).html(template(d));
+				app.api.get(api,{username:"wxllzf"},function(data){
+					app.log(data.data);
+					localStorage.setItem("api/"+api,data.data); 
+					$(el).html(template(data.data));
+				},function(err){
+					
+				})
+			}
+		}); 
+	}
+	
 	
 });

@@ -26,7 +26,8 @@ namespace MedicalCrab.Core.Services
             user.Address = "";
             user.Phone = "";
             user.RegTime = DateTime.Now;
-            
+            user.SignDiscription = "";
+            user.UserImage = "";
             this.Add(user);
             return true;
         }
