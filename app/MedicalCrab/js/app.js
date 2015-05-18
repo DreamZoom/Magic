@@ -6,27 +6,45 @@
 
 	win.app = {};
 
-    app.log=function(obj){
+    /*
+     * 输出对象属性值，以调试app
+     */
+    app.log=function(obj,deep){
+    	var _str="";
+    	if(deep){
+    		_str+="|-"
+    		for(var i=0;i<deep;i++) _str+="--";
+    	}
+    	_str+="   ";
     	if(typeof(obj) =="object"){
     		for (var p in obj) {
-    			console.log(p);
-                app.log(obj[p]);
+    			console.log(_str+p);
+                app.log(obj[p],deep+1);
 			}
     	}
     	else if(typeof(obj) =="string" || typeof(obj) =="boolean" || typeof(obj) =="number")
     	{
-    		console.log(obj);
+    		console.log(_str+obj);
     	}
     	else if(typeof(obj) =="function"){
-    		console.log(obj);
+    		console.log(_str+obj);
     	}
     }
 	//api服务器地址
-	app.RomateUrl = "http://192.168.1.53:2835/api/";
+	app.RomateUrl = "http://192.168.0.111:2835/";
 	
+	app.ApiUrl=app.RomateUrl+"api/";
 	//全局对象
-	app.request = { url:"http://192.168.1.53:2835/" };
+	app.Request = { 
+		ServerUrl:app.RomateUrl ,
+		ApiUrl:app.ApiUrl
+	};
+	
+	app.User=null;
 
+    /*
+     * 打开一个窗口
+     */
 	app.open = function(url, params) {
 		var page = plus.webview.getWebviewById(url);
 		if (page) {
@@ -47,14 +65,23 @@
 		});
 	}
 
+    /*
+     * 获取访问令牌
+     */
 	app.getToken = function() {
 		return plus.storage.getItem("user-token");
 	}
 
+  	/*
+  	 *  设置访问令牌（登录时设置 ）
+  	 */
 	app.setToken = function(token) {
 		plus.storage.setItem("user-token", token);
 	}
 
+    /*
+     * 检测令牌是否合法
+     */
 	app.checkToken = function() {
 		var token = app.getToken();
 		if (!token) {
@@ -62,10 +89,6 @@
 		}
 	}
 	
-	//
-	app.getUser=function(){
-		
-	}
 
 })(window);
 
@@ -74,7 +97,6 @@
 
 	win.app.network = {
 		post: function(url, data, success, error) {
-			console.log(url);
 			$.ajax({
 				type: "post",
 				url: url,
@@ -132,43 +154,20 @@
 		}
 	};
 
-
-	win.app.page = {
-		open: function(url, params) {
-			console.log(url + "page.open")
-			var page = plus.webview.getWebviewById(url);
-			if (page) {
-				page.show();
-				return;
-			}
-
-			mui.openWindow({
-				id: url,
-				url: url,
-				waiting: {
-					autoShow: true
-				},
-				show: {
-					duration: 100,
-					aniShow: "pop-in"
-				}
-			});
-		}
-	};
-
 })(mui, window);
 
 
-//api
+// api的请求处理
 (function(mui, win) {
 
 	win.app.api = {};
 
 	win.app.api.get = function(api, data, success, error) {
-		var apiurl = app.RomateUrl + api;
+		var apiurl = app.ApiUrl + api;
+		console.log(apiurl); 
 		app.network.get(apiurl, data, function(data){
 			if(data.data){
-				data.data["request"]=app.request;
+				data.data.request=app.Request;
 				if(success){
 					success(data);
 				}
@@ -185,7 +184,7 @@
 
 
 ///tools
-mui.ready(function() {
+mui.plusReady(function() {
 
 	/*
 	 * a 标签跳转
@@ -277,10 +276,9 @@ mui.plusReady(function(){
 					$(el).html(template(data.data));
 				},function(err){
 					
-				})
+				});
 			}
 		}); 
 	}
-	
 	
 });

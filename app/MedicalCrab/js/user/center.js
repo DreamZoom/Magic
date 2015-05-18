@@ -1,6 +1,6 @@
 mui.plusReady(function() {
 
-	//$("#userimage")
+	//上传图片
 	function upload_userimage(file) {
 		var wt = plus.nativeUI.showWaiting();
 		var task = plus.uploader.createUpload(server, {
@@ -17,9 +17,23 @@ mui.plusReady(function() {
 		});
 		task.addData("client", "HelloH5+");
 		task.addFile(f.path, {
-				key: f.name
-		});		
+			key: f.name
+		});
 		task.start();
+	}
+
+	// 拍照添加文件
+	function appendByCamera() {
+		plus.camera.getCamera().captureImage(function(p) {
+			upload_userimage(p);
+		});
+	}
+	
+	// 从相册添加文件
+	function appendByGallery() {
+		plus.gallery.pick(function(p) {
+			upload_userimage(p);
+		});
 	}
 
 });

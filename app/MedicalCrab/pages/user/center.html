@@ -21,7 +21,7 @@
 	<body>
 		<script type="text/x-handlebars-template" id="userinfo">
 			<a href="#picture" class="mui-navigate-right">
-				<img class="mui-pull-left user-logo" src="{{request.url}}{{UserImage}}" id="userimage">
+				<img class="mui-pull-left user-logo" src="{{request.ServerUrl}}{{UserImage}}" id="userimage">
 				<div class="mui-media-body">
 					<h4>{{UserName}}</h4>
 					<p class='mui-ellipsis-2'>{{SignDiscription}}</p>
@@ -50,9 +50,9 @@
 			<div id="picture" class="mui-popover mui-popover-action mui-popover-bottom">
 				<ul class="mui-table-view">
 					<li class="mui-table-view-cell">
-						<a href="#">拍照上传</a>
+						<a id="">拍照上传</a>
 					</li>
-					<li class="mui-table-view-cell">
+					<li class="mui-table-view-cell"> 
 						<a href="#">选取相册</a>
 					</li>
 				</ul>

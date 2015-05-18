@@ -9,7 +9,7 @@
 			app.setToken(data.token);
 			app.open("center.html");
 		}
-		else{
+		else{ 
 			mui.toast("token 无效");
 		}
 	}

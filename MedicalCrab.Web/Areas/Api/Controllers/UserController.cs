@@ -70,6 +70,11 @@ namespace MedicalCrab.Web.Areas.Api.Controllers
             }
             return this.ErrorJson("获取用户信息失败");
         }
+
+        public ActionResult UploadHandImage(string username)
+        {
+            return this.ErrorJson("获取用户信息失败");
+        }
         
     }
 }
