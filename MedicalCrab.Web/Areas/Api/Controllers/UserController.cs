@@ -7,7 +7,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using MedicalCrab.Core;
 using System.Security.Cryptography;
-using System.Text;  
+using System.Text;
 
 namespace MedicalCrab.Web.Areas.Api.Controllers
 {
@@ -24,13 +24,14 @@ namespace MedicalCrab.Web.Areas.Api.Controllers
         /// <returns></returns>
         public ActionResult Login(string username, string password)
         {
-            if (userService.Login(username, password))
+            var user = userService.Login(username, password);
+            if (user!=null)
             {
-                byte[] result = Encoding.Default.GetBytes(username+DateTime.Now.ToString());
+                byte[] result = Encoding.Default.GetBytes(username + DateTime.Now.ToString());
                 MD5 md5 = new MD5CryptoServiceProvider();
                 byte[] output = md5.ComputeHash(result);
                 string token = BitConverter.ToString(output).Replace("-", "");
-                return this.SuccessJson(new { token = token }, "登录成功。");
+                return this.SuccessJson(new { user=user, token = token }, "登录成功。");
             }
             return this.ErrorJson("登录失败。用户名或密码错误。");
         }
@@ -45,14 +46,14 @@ namespace MedicalCrab.Web.Areas.Api.Controllers
             try
             {
                 log.Debug(user.UserName);
-                if(!ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
-                    throw new Exception(string.Join(",",ModelState.ToArray()));
+                    throw new Exception(string.Join(",", ModelState.ToArray()));
                 }
                 userService.Register(user);
                 return this.SuccessJson("注册成功。");
             }
-            catch(Exception err)
+            catch (Exception err)
             {
                 return this.ErrorJson(err.Message);
             }
@@ -63,18 +64,36 @@ namespace MedicalCrab.Web.Areas.Api.Controllers
         public ActionResult UserInfo(string username)
         {
             log.Debug(username);
-            var model = userService.GetModel(string.Format("[UserName]='{0}'",username));
+            var model = userService.GetModel(string.Format("[UserName]='{0}'", username));
             if (model != null)
             {
-                return this.SuccessJson(model,"获取用户信息成功。");
+                return this.SuccessJson(model, "获取用户信息成功。");
             }
             return this.ErrorJson("获取用户信息失败");
         }
 
         public ActionResult UploadHandImage(string username)
         {
-            return this.ErrorJson("获取用户信息失败");
+            var files = Request.Files;
+            if (files.Count > 0)
+            {
+                try
+                {
+                    var user = userService.getByUserName(username);
+                    if (user == null) throw new Exception("获取用户信息失败");
+                    var file = files[0];
+                    var filename ="/upload/handimage/" + user.UserName + file.FileName.Substring(file.FileName.LastIndexOf('.'));
+                    file.SaveAs(Server.MapPath(filename));
+                    return this.SuccessJson(filename);
+                }
+                catch(Exception err)
+                {
+                    return this.ErrorJson(err.Message);
+                }
+
+            }
+            return this.SuccessJson("不支持断点续传");
         }
-        
+
     }
 }

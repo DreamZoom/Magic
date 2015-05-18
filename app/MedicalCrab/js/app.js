@@ -40,7 +40,7 @@
 		ApiUrl:app.ApiUrl
 	};
 	
-	app.User=null;
+	
 
     /*
      * 打开一个窗口
@@ -65,6 +65,20 @@
 		});
 	}
 
+
+	/*
+	 *  获取用户
+	 */
+	app.getUser=function(){
+		return {UserName:plus.storage.getItem("user")};
+	}
+	
+	/*
+	 *  缓存user
+	 */
+	app.setUser=function(user){
+		plus.storage.setItem("user",user.UserName);
+	}
     /*
      * 获取访问令牌
      */

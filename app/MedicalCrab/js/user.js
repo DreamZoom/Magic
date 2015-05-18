@@ -7,6 +7,7 @@
 	win.user.logined=function(data){
 		if(data.token){
 			app.setToken(data.token);
+			app.setUser(data.user);
 			app.open("center.html");
 		}
 		else{ 

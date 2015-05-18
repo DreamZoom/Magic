@@ -52,10 +52,15 @@ namespace MedicalCrab.Core.Services
         /// <param name="username">用户名</param>
         /// <param name="password">密码</param>
         /// <returns></returns>
-        public bool Login(string username,string password)
+        public Models.User Login(string username,string password)
         {
-            var model = this.GetModel(string.Format("[UserName]='{0}' and [Password]='{1}'", username,password));
-            return model != null;
+            var model = this.GetModel(string.Format("[UserName]='{0}' and [Password]='{1}'", username, password)) as Models.User;
+            return model;
+        }
+
+        public Models.User getByUserName(string username)
+        {
+            return this.GetModel(string.Format("[UserName]='{0}'", username)) as Models.User;
         }
     }
 }
