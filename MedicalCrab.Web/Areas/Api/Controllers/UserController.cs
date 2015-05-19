@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
+
 using System.Web.Http;
 using System.Web.Mvc;
 using MedicalCrab.Core;
@@ -72,27 +72,25 @@ namespace MedicalCrab.Web.Areas.Api.Controllers
             return this.ErrorJson("获取用户信息失败");
         }
 
-        public ActionResult UploadHandImage(string username)
+        [System.Web.Mvc.HttpPost]
+        public ActionResult UploadHandImage(string username,int x,int y,int w,int h)
         {
-            var files = Request.Files;
-            if (files.Count > 0)
+            var file = Request.Files["upload_img"];
+            if (file!=null && file.ContentLength!=0)
             {
                 try
                 {
-                    var user = userService.getByUserName(username);
-                    if (user == null) throw new Exception("获取用户信息失败");
-                    var file = files[0];
-                    var filename ="/upload/handimage/" + user.UserName + file.FileName.Substring(file.FileName.LastIndexOf('.'));
-                    file.SaveAs(Server.MapPath(filename));
-                    return this.SuccessJson(filename);
+                    string filename = Uploader.SaveUserHandImage(username, file, x, y, w, h);
+                    userService.SaveUserImage(username, filename);
+                    return this.SuccessJson("头像上传成功");
                 }
-                catch(Exception err)
+                catch (Exception err)
                 {
                     return this.ErrorJson(err.Message);
                 }
 
             }
-            return this.SuccessJson("不支持断点续传");
+            return this.ErrorJson("请选择文件");
         }
 
     }

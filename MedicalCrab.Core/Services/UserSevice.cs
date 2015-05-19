@@ -62,5 +62,14 @@ namespace MedicalCrab.Core.Services
         {
             return this.GetModel(string.Format("[UserName]='{0}'", username)) as Models.User;
         }
+
+        public void SaveUserImage(string username,string filename)
+        {
+            var user = this.getByUserName(username);
+            if (user == null) throw new Exception("获取用户信息失败");
+
+            user.UserImage = filename;
+            this.Update(user);
+        }
     }
 }

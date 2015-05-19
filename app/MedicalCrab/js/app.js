@@ -31,8 +31,8 @@
     	}
     }
 	//api服务器地址
-	//app.RomateUrl = "http://192.168.0.111:2835/";
-	app.RomateUrl = "http://192.168.1.53:2835/";
+	app.RomateUrl = "http://192.168.0.111:2835/";
+//	app.RomateUrl = "http://192.168.1.53:2835/";
 	
 	app.ApiUrl=app.RomateUrl+"api/";
 	//全局对象
@@ -286,12 +286,14 @@ mui.plusReady(function(){
 				var source = $("#"+tid).html();
 				var template= Handlebars.compile(source);
 				$(el).html(template(d));
+				var loading = plus.nativeUI.showWaiting();
 				app.api.get(api,{username:"wxllzf"},function(data){
+					loading.close(); 
 					app.log(data.data);
 					localStorage.setItem("api/"+api,data.data); 
 					$(el).html(template(data.data));
 				},function(err){
-					
+					loading.close();
 				});
 			}
 		}); 
