@@ -20,7 +20,7 @@
 
 	<body>
 		<script type="text/x-handlebars-template" id="userinfo">
-			<a href="#picture" class="mui-navigate-right">
+			<a id="userlogo" class="mui-navigate-right">
 				<img class="mui-pull-left user-logo" src="{{request.ServerUrl}}{{UserImage}}" id="userimage">
 				<div class="mui-media-body">
 					<h4>{{UserName}}</h4>
@@ -47,21 +47,6 @@
 
 				</li>
 			</ul>
-			<div id="picture" class="mui-popover mui-popover-action mui-popover-bottom">
-				<ul class="mui-table-view">
-					<li class="mui-table-view-cell">
-						<a id="from-camera">拍照上传</a>
-					</li>
-					<li class="mui-table-view-cell"> 
-						<a id="from-gallery">选取相册</a>
-					</li>
-				</ul>
-				<ul class="mui-table-view">
-					<li class="mui-table-view-cell">
-						<a href="#picture"><b>取消</b></a>
-					</li>
-				</ul>
-			</div>
 			<p></p>
 			<ul class="mui-table-view">
 				<li class="mui-table-view-cell">
@@ -119,5 +104,4 @@
 			</ul>
 		</div>
 	</body>
-
 </html>
