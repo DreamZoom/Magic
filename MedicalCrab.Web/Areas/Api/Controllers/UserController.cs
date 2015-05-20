@@ -73,24 +73,28 @@ namespace MedicalCrab.Web.Areas.Api.Controllers
         }
 
         [System.Web.Mvc.HttpPost]
-        public ActionResult UploadHandImage(string username,int x,int y,int w,int h)
+        public string UploadHandImage(string username,int x,int y,int w,int h,int sw,int sh)
         {
+            Response.Charset = "UTF8";
+            string result = "";
             var file = Request.Files["upload_img"];
             if (file!=null && file.ContentLength!=0)
             {
                 try
                 {
-                    string filename = Uploader.SaveUserHandImage(username, file, x, y, w, h);
+                    string filename = Uploader.SaveUserHandImage(username, file, x, y, w, h,sw,sh);
                     userService.SaveUserImage(username, filename);
-                    return this.SuccessJson("头像上传成功");
+                    result = filename;
+                    return result;
                 }
                 catch (Exception err)
                 {
-                    return this.ErrorJson(err.Message);
+                    result = "no";
+                    return result;
                 }
 
             }
-            return this.ErrorJson("请选择文件");
+            return result;
         }
 
     }

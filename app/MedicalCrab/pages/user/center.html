@@ -21,7 +21,7 @@
 	<body>
 		<script type="text/x-handlebars-template" id="userinfo">
 			<a id="userlogo" class="mui-navigate-right">
-				<img class="mui-pull-left user-logo" src="{{UserImage}}" id="userimage">
+				<img class="mui-pull-left user-logo" src="{{request.ServerUrl}}{{UserImage}}" id="userimage">
 				<div class="mui-media-body">
 					<h4>{{UserName}}</h4>
 					<p class='mui-ellipsis-2'>{{SignDiscription}}</p>

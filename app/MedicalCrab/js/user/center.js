@@ -55,5 +55,9 @@ mui.plusReady(function() {
     mui(document).on("tap","#userlogo",function(){
     	appendImage(); 
     });
+    
+    var self = plus.webview.currentWebview();
+
+    
 
 });

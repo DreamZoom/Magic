@@ -18,17 +18,32 @@
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
 		</script>
-
+		<style type="text/css">
+		 html{
+		 	background-color: #000000;
+		 }
+			.img-box{
+        		width: 100%;
+        		height: 100%;
+        		background-color: #000000;
+        	}	         	
+		</style>
 	</head>
 
 	<body>
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">裁剪图片</h1>
-			<a class="mui-icon mui-pull-right cmd-ok">完成</a>
+			<a class="mui-btn mui-btn-primary mui-btn-link mui-pull-right cmd-ok">完成</a>
 		</header>
 		<div class="mui-content">
-			<img class="cropper" src="" width="100%" style="max-width: 100%; max-height: 100%;vertical-align:middle;" />
+			<table border="" cellspacing="" cellpadding="" class="img-box">
+				<tr>
+					<td align="center" valign="middle">
+						<img class="cropper" src="" style="max-width: 100%; max-height: 100%;" />
+					</td>
+				</tr>
+			</table>
 
 		</div>
 	</body>

@@ -1,58 +1,51 @@
 /*
  * app
  */
-
 (function(win) {
 
 	win.app = {};
 
-    /*
-     * 输出对象属性值，以调试app
-     */
-    app.log=function(obj,deep){
-    	var _str="";
-    	if(deep){
-    		_str+="|-"
-    		for(var i=0;i<deep;i++) _str+="--";
-    	}
-    	_str+="   ";
-    	if(typeof(obj) =="object"){
-    		for (var p in obj) {
-    			console.log(_str+p);
-                app.log(obj[p],deep+1);
+	/*
+	 * 输出对象属性值，以调试app
+	 */
+	app.log = function(obj, deep) {
+		var _str = "";
+		if (deep) {
+			_str += "|-"
+			for (var i = 0; i < deep; i++) _str += "--";
+		}
+		_str += "   ";
+		if (typeof(obj) == "object") {
+			for (var p in obj) {
+				console.log(_str + p);
+				app.log(obj[p], deep + 1);
 			}
-    	}
-    	else if(typeof(obj) =="string" || typeof(obj) =="boolean" || typeof(obj) =="number")
-    	{
-    		console.log(_str+obj);
-    	}
-    	else if(typeof(obj) =="function"){
-    		console.log(_str+obj);
-    	}
-    }
+		} else if (typeof(obj) == "string" || typeof(obj) == "boolean" || typeof(obj) == "number") {
+			console.log(_str + obj);
+		} else if (typeof(obj) == "function") {
+			console.log(_str + obj);
+		}
+	}
+
 	//api服务器地址
 	app.RomateUrl = "http://192.168.0.111:2835/";
-//	app.RomateUrl = "http://192.168.1.53:2835/";
-	
-	app.ApiUrl=app.RomateUrl+"api/";
+	//	app.RomateUrl = "http://192.168.1.53:2835/";
+	app.ApiUrl = app.RomateUrl + "api/";
 	//全局对象
-	app.Request = { 
-		ServerUrl:app.RomateUrl ,
-		ApiUrl:app.ApiUrl
+	app.Request = {
+		ServerUrl: app.RomateUrl,
+		ApiUrl: app.ApiUrl
 	};
-	
-	
 
-    /*
-     * 打开一个窗口
-     */
+	/*
+	 * 打开一个窗口
+	 */
 	app.open = function(url, params) {
 		var page = plus.webview.getWebviewById(url);
 		if (page) {
 			page.show();
 			return;
 		}
-
 		mui.openWindow({
 			id: url,
 			url: url,
@@ -63,7 +56,7 @@
 				duration: 100,
 				aniShow: "pop-in"
 			},
-			extras:params 
+			extras: params
 		});
 	}
 
@@ -71,42 +64,57 @@
 	/*
 	 *  获取用户
 	 */
-	app.getUser=function(){
-		return {UserName:plus.storage.getItem("user")};
+	app.getUser = function() {
+		return app.storage.getItem("user");
 	}
-	
+
 	/*
 	 *  缓存user
 	 */
-	app.setUser=function(user){
-		plus.storage.setItem("user",user.UserName);
+	app.setUser = function(user) {
+		app.storage.setItem("user", user);
 	}
-    /*
-     * 获取访问令牌
-     */
+
+	/*
+	 * 获取访问令牌
+	 */
 	app.getToken = function() {
-		return plus.storage.getItem("user-token");
+		return app.storage.getItem("user-token");
 	}
 
-  	/*
-  	 *  设置访问令牌（登录时设置 ）
-  	 */
+	/*
+	 *  设置访问令牌（登录时设置 ）
+	 */
 	app.setToken = function(token) {
-		plus.storage.setItem("user-token", token);
+		app.storage.setItem("user-token", token);
 	}
 
-    /*
-     * 检测令牌是否合法
-     */
+	/*
+	 * 检测令牌是否合法
+	 */
 	app.checkToken = function() {
 		var token = app.getToken();
 		if (!token) {
 			app.open("/pages/user/login.html");
 		}
 	}
-	
+
+	app.storage = {
+		setItem: function(key, value) {
+			var s = JSON.stringify(value);
+			alert(s);
+			plus.storage.setItem(key, s);
+		},
+		getItem: function(key) {
+			var s = plus.storage.getItem(key);
+			return JSON.parse(s);
+		}
+	};
 
 })(window);
+
+
+
 
 
 (function(mui, win) {
@@ -173,6 +181,8 @@
 })(mui, window);
 
 
+
+
 // api的请求处理
 (function(mui, win) {
 
@@ -180,15 +190,16 @@
 
 	win.app.api.get = function(api, data, success, error) {
 		var apiurl = app.ApiUrl + api;
-		console.log(apiurl); 
-		app.network.get(apiurl, data, function(data){
-			if(data.data){
-				data.data.request=app.Request;
-				if(success){
-					success(data);
+
+		app.network.get(apiurl, data,
+			function(data) {
+				if (data.data) {
+					data.data.request = app.Request;
+					if (success) {
+						success(data);
+					}
 				}
-			}
-		}, error);
+			}, error);
 	};
 
 	win.app.api.post = function(api, data, success, error) {
@@ -196,43 +207,35 @@
 		app.network.post(apiurl, data, success, error);
 	};
 
-})(mui,window);
+})(mui, window);
 
 
-///tools
+
 mui.plusReady(function() {
 
-	/*
-	 * a 标签跳转
-	 */
 	mui(document).on('tap', 'a', function() {
+
 		var url = this.getAttribute("href");
-		if (!url || url.indexOf("#")>= 0) return;
+		if (!url || url.indexOf("#") >= 0) return;
 		var container = this.getAttribute("data-target"); ///框架id
 		if (!container) {
 			window.app.open(url);
 			return;
-		}
-		else{
+		} else {
 			app.log(container);
 			app.log(url);
 			var view = plus.webview.getWebviewById(container);
-			if(view){
+			if (view) {
 				app.log(url);
 				view.loadURL(url);
-			}
-			else{
-				window.app.open(url); 
+			} else {
+				window.app.open(url);
 			}
 		}
 
 	});
 
 
-	/*
-	 * 提交form
-	 *
-	 */
 	function getJson(str) {
 		var parms = str.split('&');
 		var jsonobj = {};
@@ -257,46 +260,44 @@ mui.plusReady(function() {
 
 		var spinner = $("<i class='fa fa-spinner fa-spin'></i>").appendTo($(this));
 		app.network.post(app.RomateUrl + api, json, function(data) {
-			spinner.remove();
-			var evalJs = event + "(data.data);";
-			try {
-				eval(evalJs);
-			} catch (e) {
-				//TODO handle the exception
-				//salert("ww");
-			}
-		}, function() {
-			spinner.remove();
-		});
+				spinner.remove();
+				var evalJs = event + "(data.data);";
+				try {
+					eval(evalJs);
+				} catch (e) {
+					//TODO handle the exception
+					//salert("ww");
+				}
+			},
+			function() {
+				spinner.remove();
+			});
 	});
 
-    
-    //content
-    
-});
 
 
-mui.plusReady(function(){
-	if($){
-		$("content").each(function(index,el){
-			var api = $(el).attr("data-api");
-			var tid = $(el).attr("data-template");
-			if(api && tid){	
-				var d = localStorage.getItem("api/"+api);
-				var source = $("#"+tid).html();
-				var template= Handlebars.compile(source);
-				$(el).html(template(d));
-				var loading = plus.nativeUI.showWaiting();
-				app.api.get(api,{username:"wxllzf"},function(data){
-					loading.close(); 
+	$("content").each(function(index, el) {
+		var api = $(el).attr("data-api");
+		var tid = $(el).attr("data-template");
+	    var username = app.getUser().UserName;
+		if (api && tid) {
+			var d = localStorage.getItem("api/" + api);
+			var source = $("#" + tid).html();
+			var template = Handlebars.compile(source);
+			$(el).html(template(d));
+			var loading = plus.nativeUI.showWaiting();
+			app.api.get(api, {
+					username: username
+				},
+				function(data) {
+					loading.close();
 					app.log(data.data);
-					localStorage.setItem("api/"+api,data.data); 
+					localStorage.setItem("api/" + api, data.data);
 					$(el).html(template(data.data));
-				},function(err){
+				},
+				function(err) {
 					loading.close();
 				});
-			}
-		}); 
-	}
-	
+		}
+	}); 
 });

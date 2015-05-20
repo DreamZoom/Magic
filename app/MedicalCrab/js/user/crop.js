@@ -9,29 +9,23 @@ mui.plusReady(function() {
 		var task = plus.uploader.createUpload(server, {
 			method: "POST"
 		}, function(t, status) { //上传完成
-			wt.close();
-			mui.toast(status);
-			try {
-				console.log(t.responseText);
-				alert(t.responseText);
-				var result = JSON.parse(t.responseText);
-				alert(t.responseText);
-				if (status == 200) {
-					mui.toast("上传成功：");
-					mui.toast(result.message);
-
-				} else {
-					mui.toast("上传失败：" + status);
-
-				}
-			} catch (e) {
-				mui.toast("ss");
+			wt.close(); 
+			console.log(t.responseText);
+			
+			if (status == 200) {
+				mui.toast("上传头像成功");
+				
+			} else {
+				mui.toast("上传失败：" + status);
 			}
+			
+			self.close(); 
 		});
 
-		task.addData("username", app.getUser().UserName);
+		task.addData("username", app.getUser().UserName);  
 		for(var p in params){
 			task.addData(p, ""+params[p]);
+			console.log(p+"-----"+params[p]);
 		}
 		task.addFile(file, {
 			key: "upload_img"
@@ -55,8 +49,20 @@ mui.plusReady(function() {
 			aspectRatio: 1 / 1,
 	        setSelect: [ 0, 0, 200, 200 ],
 	        allowResize:false,
+	        allowSelect:false,
 	        onSelect:function(rect){
-	        	select_rect=rect;
+	        	
+	        	var w =$(".cropper").css("width").replace('px',''); 
+	        	var h =$(".cropper").css("height").replace('px','');
+	        	
+	        	select_rect={
+	        		x:rect.x,
+	        		y:rect.y,
+	        		w:rect.w,
+	        		h:rect.h,
+	        		sw:w,
+	        		sh:h 
+                };
 	        }
 		},function(){
 			crop_api=this;
@@ -78,4 +84,7 @@ mui.plusReady(function() {
 
 	});
 
+    //alert(plus.screen.resolutionHeight) ; 
+    //$(".mui-content").css("height",(plus.screen.resolutionHeight-48)+"px");
+    
 });
