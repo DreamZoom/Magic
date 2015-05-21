@@ -84,7 +84,5 @@ mui.plusReady(function() {
 
 	});
 
-    //alert(plus.screen.resolutionHeight) ; 
-    //$(".mui-content").css("height",(plus.screen.resolutionHeight-48)+"px");
     
 });
