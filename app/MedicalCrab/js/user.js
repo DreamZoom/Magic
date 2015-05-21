@@ -11,9 +11,6 @@
 			
 			var self =plus.webview.currentWebview();
 			app.open("center.html");
-//			setTimeout(function(){
-//				self.close();
-//			},1000);
 			app.log(app.getUser());
 		}
 		else{ 

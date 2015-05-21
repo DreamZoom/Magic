@@ -42,7 +42,13 @@ icon {
 	color: #007AFF;
 }
 
+.mui-switch-custom:before{
+	content: attr(data-off);
+}
 
+.mui-switch-custom.mui-active:before{
+	content: attr(data-on);
+}
 
 
 
