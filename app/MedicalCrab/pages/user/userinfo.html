@@ -8,31 +8,59 @@
 		<script src="../../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../js/mui.min.js"></script>
 		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/font-awesome.min.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/custom.css" />
-		<script src="../../js/inputs.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/user/userinfo.js" type="text/javascript" charset="utf-8"></script>
+
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
 		</script>
 		<style type="text/css">
 			.mui-input-row label {
-				padding-top: 5px;
-				padding-bottom: 0;
-				padding-left: 0;
+				width: 25%;
+				padding-right: 0;
 			}
 			.mui-input-row label~input,
 			.mui-input-row label~select,
 			.mui-input-row label~textarea {
-				padding-top: 0;
-				padding-bottom: 0;
-				height: 24px;
-				text-align: right;
+				width: 75%;
+				padding-right: 5px;
 			}
-			.mui-input-row label~select{
-				width: 10%
+			.mui-input-group .mui-input-row:after {
+				left: 0;
 			}
-			.select-value{
-				float: right;
-				margin-right: 15px;
+			.mui-input-group .mui-textarea-row {
+				position: relative;
+			}
+			.mui-input-group .mui-textarea-row:after {
+				position: absolute;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				height: 1px;
+				content: '';
+				background-color: #c8c7cc;
+				-webkit-transform: scaleY(.5);
+				transform: scaleY(.5);
+			}
+			.mui-navigate-right:after,
+			.mui-push-right:after {
+				right: 5px;
+				position: absolute;
+				top: 50%;
+				display: inline-block;
+				font-family: Muiicons;
+				font-size: inherit;
+				line-height: 1;
+				color: #bbb;
+				text-decoration: none;
+				-webkit-transform: translateY(-50%);
+				transform: translateY(-50%);
+				-webkit-font-smoothing: antialiased;
+			}
+			.mui-navigate-right:after,
+			.mui-push-right:after {
+				content: '\e583';
 			}
 		</style>
 	</head>
@@ -44,37 +72,42 @@
 			<a class="mui-btn mui-btn-primary mui-btn-link mui-pull-right cmd-ok">完成</a>
 		</header>
 		<div class="mui-content">
-			<ul class="mui-table-view">
-				<li class="mui-table-view-cell">
-					<div class="mui-input-row">
-						<label>昵称</label>
-						<input type="text" placeholder="请输入昵称">
-					</div>
-				</li> 
-				<li class="mui-table-view-cell">					
-                    <a class="mui-navigate-right select" data-options='{"data":[{"text":"男","value":1},{"text":"女","value":0}]}'>
-					    性别 <span class="select-value">请选择</span>
-				    </a>     
-				</li>
-				<li class="mui-table-view-cell">
-					<div class="mui-input-row">
-						<label>邮箱</label>
-						<input type="text" placeholder="请输入邮箱">
-					</div>
-				</li>
-				<li class="mui-table-view-cell">
-					<div class="mui-input-row">
-						<label>电话</label>
-						<input type="text" placeholder="请输入电话">
-					</div>
-				</li>
-				<li class="mui-table-view-cell">
-					<div class="mui-input-row">
-						<label>个性签名</label>
-						<textarea name="" rows="2" cols="" placeholder="请输入签名"></textarea>
-					</div>
-				</li>
-			</ul>
+			<p></p>
+			<form class="mui-input-group">
+				<div class="mui-input-row">
+					<label>昵称 </label>
+					<input type="text" placeholder="请输入昵称">
+				</div>
+				<div class="mui-input-row">
+					<label>性别</label>
+					<input type="text" placeholder="请输入性别"><span class="mui-navigate-right"></span>
+				</div>
+
+				<div class="mui-input-row">
+					<label>生日</label>
+					<input type="date"  placeholder="请输入你的生日"><span class="mui-navigate-right"></span>
+				</div>
+
+				<div class="mui-input-row">
+					<label>邮箱</label>
+					<input type="email"  placeholder="请输入你的邮箱">
+				</div>
+
+				<div class="mui-input-row">
+					<label>电话</label>
+					<input type="tel"  placeholder="请输入你的电话">
+				</div>
+                <div class="mui-input-row">
+					<label>住址</label>
+					<input type="tel"  placeholder="请输入你的电话"><span class="mui-navigate-right"></span>
+				</div>
+				<div class="mui-textarea-row">
+					<textarea name="" rows="3" cols="" placeholder="个性签名"></textarea>
+				</div>
+				<div class="mui-button-row">
+					<button class="mui-btn mui-btn-primary" onclick="return false;">保存修改</button>
+				</div>
+			</form>
 		</div>
 	</body>
 
