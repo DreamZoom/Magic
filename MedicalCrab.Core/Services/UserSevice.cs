@@ -71,5 +71,22 @@ namespace MedicalCrab.Core.Services
             user.UserImage = filename;
             this.Update(user);
         }
+
+        /// <summary>
+        /// 修改用户信息
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        public Models.User EditUser(string username,Models.User user)
+        {
+            var u = this.getByUserName(username);
+            u.Phone = Utility.Check.IsNullOrDefault(user.Phone,string.Empty);
+            u.SignDiscription = Utility.Check.IsNullOrDefault(user.SignDiscription,string.Empty);
+            u.Address = Utility.Check.IsNullOrDefault(user.Address,string.Empty);
+            u.Email = Utility.Check.IsNullOrDefault(user.Email, string.Empty);
+            this.Update(u);
+            return u;
+        }
     }
 }

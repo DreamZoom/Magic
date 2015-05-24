@@ -10,6 +10,7 @@
 		<link href="../../css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css" href="../../css/font-awesome.min.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/custom.css" />
+		<script src="../../js/app.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../js/user/userinfo.js" type="text/javascript" charset="utf-8"></script>
 
 		<script type="text/javascript" charset="utf-8">
@@ -69,11 +70,11 @@
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">编辑资料</h1>
-			<a class="mui-btn mui-btn-primary mui-btn-link mui-pull-right cmd-ok">完成</a>
+			<!--<a class="mui-btn mui-btn-primary mui-btn-link mui-pull-right cmd-ok">完成</a>-->
 		</header>
-		<div class="mui-content">
+		<div class="mui-content" >
 			<p></p>
-			<form class="mui-input-group">
+			<form class="mui-input-group" id="userinfo" data-api="user/edit" data-params='{"UserName":app.Request.User.UserName}' data-success-event="OnSuccess">
 				<div class="mui-input-row">
 					<label>昵称 </label>
 					<input type="text" placeholder="请输入昵称">
@@ -90,22 +91,22 @@
 
 				<div class="mui-input-row">
 					<label>邮箱</label>
-					<input type="email"  placeholder="请输入你的邮箱">
+					<input type="email" name="Email"  placeholder="请输入你的邮箱">
 				</div>
 
 				<div class="mui-input-row">
 					<label>电话</label>
-					<input type="tel"  placeholder="请输入你的电话">
+					<input type="tel" name="Phone"  placeholder="请输入你的电话">
 				</div>
                 <div class="mui-input-row">
 					<label>住址</label>
-					<input type="tel"  placeholder="请输入你的电话"><span class="mui-navigate-right"></span>
+					<input type="tel" name="Address" placeholder="请输入你的地址"><span class="mui-navigate-right"></span>
 				</div>
 				<div class="mui-textarea-row">
-					<textarea name="" rows="3" cols="" placeholder="个性签名"></textarea>
+					<textarea name="SignDiscription" rows="3" cols="" placeholder="个性签名"></textarea>
 				</div>
 				<div class="mui-button-row">
-					<button class="mui-btn mui-btn-primary" onclick="return false;">保存修改</button>
+					<submit class="mui-btn mui-btn-primary"  target-id="userinfo">保存修改</submit>
 				</div>
 			</form>
 		</div>

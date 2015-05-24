@@ -111,8 +111,41 @@
 		}
 	};
 
+
+	app.serializeform = function(formid) {
+
+		function toJson(str) {
+			var parms = str.split('&');
+			var jsonobj = {};
+			parms.forEach(function(s, i) {
+				var p = s.split('=');
+				if (p.length == 2) {
+					jsonobj[p[0]] = p[1];
+				}
+			});
+			return jsonobj;
+		}
+		var str = ($("#" + formid).serialize());
+		str = decodeURIComponent(str);
+		return toJson(str);
+	}
+
+	app.forminit = function(id, obj) {
+		$("#" + id).find("input").each(function(i, element) {
+			var filed = $(this);
+			var filedname = filed.attr("name");
+			filed.val(obj[filedname]);
+		});
+
+		$("#" + id).find("textarea").each(function(i, element) {
+			var filed = $(this);
+			var filedname = filed.attr("name");
+			filed.val(obj[filedname]);
+		});
+	}
+
 })(window);
- 
+
 
 
 
@@ -190,7 +223,7 @@
 
 	win.app.api.get = function(api, data, success, error) {
 		var apiurl = app.ApiUrl + api;
-
+		app.log(apiurl);
 		app.network.get(apiurl, data,
 			function(data) {
 				if (data.data) {
@@ -203,15 +236,51 @@
 	};
 
 	win.app.api.post = function(api, data, success, error) {
-		var apiurl = app.RomateUrl + api;
+		var apiurl = app.ApiUrl + api;
+		app.log(apiurl);
 		app.network.post(apiurl, data, success, error);
 	};
+
+
 
 })(mui, window);
 
 
 
 mui.plusReady(function() {
+
+	/*
+	 * 用户地理位置更新
+	 */
+	app.updatelocation = function() {
+        
+		plus.geolocation.getCurrentPosition(function(position) {
+			
+			var user =app.getUser();
+			var result =mui.extend({UserName:user.UserName},position.coords);
+			app.log(result);
+			app.api.post("user/UpdateLocation",result,function(response){
+				if(response.result){
+				     app.log(response.data);
+				}
+			},function(){
+				 
+			});	
+		}, function() {
+			mui.toast("获取地理位置失败");
+		})
+
+	}
+    app.updatelocation();
+	/*
+	 * 初始化app.request
+	 */
+
+	app.Request.User = app.getUser();
+
+	/*
+	 * a 标签处理
+	 */
 
 	mui(document).on('tap', 'a', function() {
 
@@ -236,30 +305,22 @@ mui.plusReady(function() {
 	});
 
 
-	function getJson(str) {
-		var parms = str.split('&');
-		var jsonobj = {};
-		parms.forEach(function(s, i) {
-			console.log(i);
-			var p = s.split('=');
-			if (p.length == 2) {
-				jsonobj[p[0]] = p[1];
-			}
-		});
-		return jsonobj;
-	}
-
 	mui(document).on('tap', 'submit', function() {
 		var target = this.getAttribute("target-id");
 
-		var str = ($("#" + target).serialize());
-		console.log(str);
-		var json = getJson(str);
-		var api = $("#" + target).attr("data-api");
-		var event = $("#" + target).attr("data-success-event");
-
+		var json = app.serializeform(target);
+		var form = $("#" + target);
+		var api = form.attr("data-api");
+		var event = form.attr("data-success-event");
+		var params = form.attr("data-params");
+		if (params) {
+			eval("var pj=" + params);
+			json = mui.extend(json, pj);
+		}
+		alert(api);
+		app.log(api)
 		var spinner = $("<i class='fa fa-spinner fa-spin'></i>").appendTo($(this));
-		app.network.post(app.RomateUrl + api, json, function(data) {
+		app.api.post(api, json, function(data) {
 				spinner.remove();
 				var evalJs = event + "(data.data);";
 				try {
@@ -274,12 +335,10 @@ mui.plusReady(function() {
 			});
 	});
 
-
-
 	$("content").each(function(index, el) {
 		var api = $(el).attr("data-api");
 		var tid = $(el).attr("data-template");
-	    var username = app.getUser().UserName;
+		var username = app.getUser().UserName;
 		if (api && tid) {
 			var d = localStorage.getItem("api/" + api);
 			var source = $("#" + tid).html();
@@ -299,5 +358,5 @@ mui.plusReady(function() {
 					loading.close();
 				});
 		}
-	}); 
+	});
 });

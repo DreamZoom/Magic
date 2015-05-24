@@ -25,13 +25,13 @@ namespace MedicalCrab.Web.Areas.Api.Controllers
         public ActionResult Login(string username, string password)
         {
             var user = userService.Login(username, password);
-            if (user!=null)
+            if (user != null)
             {
                 byte[] result = Encoding.Default.GetBytes(username + DateTime.Now.ToString());
                 MD5 md5 = new MD5CryptoServiceProvider();
                 byte[] output = md5.ComputeHash(result);
                 string token = BitConverter.ToString(output).Replace("-", "");
-                return this.SuccessJson(new { user=user, token = token }, "登录成功。");
+                return this.SuccessJson(new { user = user, token = token }, "登录成功。");
             }
             return this.ErrorJson("登录失败。用户名或密码错误。");
         }
@@ -60,7 +60,6 @@ namespace MedicalCrab.Web.Areas.Api.Controllers
 
         }
 
-
         public ActionResult UserInfo(string username)
         {
             log.Debug(username);
@@ -73,16 +72,48 @@ namespace MedicalCrab.Web.Areas.Api.Controllers
         }
 
         [System.Web.Mvc.HttpPost]
-        public string UploadHandImage(string username,int x,int y,int w,int h,int sw,int sh)
+        public ActionResult Edit(string username, MedicalCrab.Core.Models.User user)
+        {
+            try
+            {
+                var u = userService.EditUser(username, user);
+                return this.SuccessJson(u, "获取用户信息成功。");
+            }
+            catch (Exception err)
+            {
+                return this.ErrorJson(err.Message);
+            }
+        }
+
+        /*
+         * 记录地理信息
+         * */
+        MedicalCrab.Core.Services.PositionLogService positionService = new Core.Services.PositionLogService();
+        public ActionResult UpdateLocation(MedicalCrab.Core.Models.PositionLog log)
+        {
+            try
+            {
+                //9d9a55bb-1572-49cb-8e68-44ce8e0945c7
+                var pos = positionService.AddPosition(log);
+                return this.SuccessJson(pos, "更新地理信息成功。");
+            }
+            catch (Exception err)
+            {
+                return this.ErrorJson(err.Message);
+            }
+        }
+
+        [System.Web.Mvc.HttpPost]
+        public string UploadHandImage(string username, int x, int y, int w, int h, int sw, int sh)
         {
             Response.Charset = "UTF8";
             string result = "";
             var file = Request.Files["upload_img"];
-            if (file!=null && file.ContentLength!=0)
+            if (file != null && file.ContentLength != 0)
             {
                 try
                 {
-                    string filename = Uploader.SaveUserHandImage(username, file, x, y, w, h,sw,sh);
+                    string filename = Uploader.SaveUserHandImage(username, file, x, y, w, h, sw, sh);
                     userService.SaveUserImage(username, filename);
                     result = filename;
                     return result;

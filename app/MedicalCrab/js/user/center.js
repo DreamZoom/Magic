@@ -1,7 +1,6 @@
 mui.plusReady(function() {
 
 	//上传图片
-	
 
 	function corpImage(file){
 		app.open("crop.html",{file:file}); 
@@ -58,6 +57,8 @@ mui.plusReady(function() {
     
     var self = plus.webview.currentWebview();
 
-    
+    mui(document).on("tap","#btn-edituser",function(){
+    	app.open("userinfo.html",{parentid:self.id});
+    })
 
 });
