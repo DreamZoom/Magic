@@ -43,7 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\PositionLog.cs" />
+    <Compile Include="Models\vNearUserPosition.cs" />
     <Compile Include="Services\PositionLogService.cs" />
+    <Compile Include="Services\vNearUserPositionService.cs" />
     <Compile Include="Uploader.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

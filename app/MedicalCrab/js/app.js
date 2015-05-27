@@ -262,6 +262,7 @@ mui.plusReady(function() {
 			app.api.post("user/UpdateLocation",result,function(response){
 				if(response.result){
 				     app.log(response.data);
+				     app.storage.setItem("position",response.data);
 				}
 			},function(){
 				 
