@@ -56,7 +56,7 @@ namespace MedicalCrab.Web.Areas.Api.Controllers
              Math.Cos(radLat1) * Math.Cos(radLat2) * Math.Pow(Math.Sin(b / 2), 2)));
             s = s * EARTH_RADIUS;
             s = Math.Round(s * 10000) / 10000;
-            return s;
+            return Math.Round(s,2);
         }
     }
 }

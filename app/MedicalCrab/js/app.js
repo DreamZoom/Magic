@@ -102,7 +102,6 @@
 	app.storage = {
 		setItem: function(key, value) {
 			var s = JSON.stringify(value);
-			alert(s);
 			plus.storage.setItem(key, s);
 		},
 		getItem: function(key) {
@@ -255,14 +254,20 @@ mui.plusReady(function() {
 	app.updatelocation = function() {
         
 		plus.geolocation.getCurrentPosition(function(position) {
-			
+			var lasttime = app.storage.getItem("position-datetime");
+			if(lasttime){
+				var nowtime =new Date();
+				var difftime=nowtime-lasttime;
+				var days=Math.floor(difftime/(60*1000));
+				if(days<30) return;
+			}
 			var user =app.getUser();
 			var result =mui.extend({UserName:user.UserName},position.coords);
-			app.log(result);
 			app.api.post("user/UpdateLocation",result,function(response){
 				if(response.result){
-				     app.log(response.data);
+					alert(response.data);
 				     app.storage.setItem("position",response.data);
+				     app.storage.setItem("position-datetime",new Date());
 				}
 			},function(){
 				 
