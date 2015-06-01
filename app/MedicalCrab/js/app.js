@@ -53,7 +53,7 @@
 				autoShow: true
 			},
 			show: {
-				duration: 100,
+				duration: 160,
 				aniShow: "pop-in"
 			},
 			extras: params
@@ -265,7 +265,7 @@ mui.plusReady(function() {
 			var result =mui.extend({UserName:user.UserName},position.coords);
 			app.api.post("user/UpdateLocation",result,function(response){
 				if(response.result){
-					alert(response.data);
+					//alert(response.data);
 				     app.storage.setItem("position",response.data);
 				     app.storage.setItem("position-datetime",new Date());
 				}
