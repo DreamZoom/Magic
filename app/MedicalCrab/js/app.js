@@ -262,6 +262,7 @@ mui.plusReady(function() {
 				if(days<30) return;
 			}
 			var user =app.getUser();
+			if(!user)return;
 			var result =mui.extend({UserName:user.UserName},position.coords);
 			app.api.post("user/UpdateLocation",result,function(response){
 				if(response.result){

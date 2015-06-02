@@ -20,4 +20,9 @@ mui.plusReady(function(){
 		loading.close(); 
 	});
 	
+	//点击附近的人
+	mui(document).on("tap","a[user]",function(){
+		app.open("../user/showuser.html");
+	});
+	
 });
