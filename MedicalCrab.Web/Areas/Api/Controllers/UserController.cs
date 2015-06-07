@@ -13,7 +13,7 @@ namespace MedicalCrab.Web.Areas.Api.Controllers
 {
     public class UserController : Controller
     {
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+       
         MedicalCrab.Core.Services.UserSevice userService = new Core.Services.UserSevice();
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace MedicalCrab.Web.Areas.Api.Controllers
         {
             try
             {
-                log.Debug(user.UserName);
+               
                 if (!ModelState.IsValid)
                 {
                     throw new Exception(string.Join(",", ModelState.ToArray()));
@@ -62,7 +62,7 @@ namespace MedicalCrab.Web.Areas.Api.Controllers
 
         public ActionResult UserInfo(string username)
         {
-            log.Debug(username);
+           
             var model = userService.GetModel(string.Format("[UserName]='{0}'", username));
             if (model != null)
             {

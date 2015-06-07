@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{70D14A95-58C1-47E5-A7C3-1DFA2BD6FD40}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{77A369A9-C754-42ED-93BF-06EDF49F7969}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MedicalCrab.Core</RootNamespace>
-    <AssemblyName>MedicalCrab.Core</AssemblyName>
+    <RootNamespace>IMWSService</RootNamespace>
+    <AssemblyName>IMWSService</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -31,36 +33,41 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Web" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Message.cs" />
-    <Compile Include="Models\PositionLog.cs" />
-    <Compile Include="Models\vNearUserPosition.cs" />
-    <Compile Include="Services\MessageService.cs" />
-    <Compile Include="Services\PositionLogService.cs" />
-    <Compile Include="Services\vNearUserPositionService.cs" />
-    <Compile Include="Uploader.cs" />
-    <Compile Include="Models\User.cs" />
+    <Compile Include="IMServerService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="IMServerService.Designer.cs">
+      <DependentUpon>IMServerService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="ProjectInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ProjectInstaller.Designer.cs">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\UserSevice.cs" />
-    <Compile Include="Utility\Check.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Magic.Mvc\Magic.Mvc.csproj">
-      <Project>{5dedcad9-fc6e-4260-b9fa-7035f1dd2e8a}</Project>
-      <Name>Magic.Mvc</Name>
-    </ProjectReference>
+    <EmbeddedResource Include="ProjectInstaller.resx">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Install.bat" />
+    <None Include="Uninstall.bat" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
