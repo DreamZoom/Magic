@@ -22,7 +22,7 @@ namespace MedicalCrab.Core.Models
         public int ContentType { get; set; }
 
         [Display(Name = "消息类型")]
-        public int MsgType { get; set; }
+        public MsgType MsgType { get; set; }
 
         [Display(Name = "发送时间")]
         public DateTime SendTime { get; set; }

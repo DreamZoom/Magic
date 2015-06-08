@@ -51,6 +51,7 @@
     <Reference Include="SuperSocket.SocketEngine, Version=1.6.0.4, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\SuperWebSocket.0.9.0.2\lib\net40\SuperSocket.SocketEngine.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="SuperWebSocket, Version=0.9.0.0, Culture=neutral, PublicKeyToken=7ba53b9a7cef5d1c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -66,12 +67,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MessageHelper.cs" />
+    <Compile Include="MessageModule.cs" />
+    <Compile Include="P2PModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebChat.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Magic.Mvc\Magic.Mvc.csproj">
+      <Project>{5dedcad9-fc6e-4260-b9fa-7035f1dd2e8a}</Project>
+      <Name>Magic.Mvc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MedicalCrab.Core\MedicalCrab.Core.csproj">
+      <Project>{70d14a95-58c1-47e5-a7c3-1dfa2bd6fd40}</Project>
+      <Name>MedicalCrab.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

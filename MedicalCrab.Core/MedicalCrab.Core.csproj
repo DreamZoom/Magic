@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Message.cs" />
+    <Compile Include="Models\MsgType.cs" />
     <Compile Include="Models\PositionLog.cs" />
     <Compile Include="Models\vNearUserPosition.cs" />
     <Compile Include="Services\MessageService.cs" />

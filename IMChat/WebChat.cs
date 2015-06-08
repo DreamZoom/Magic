@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using SuperWebSocket;
+using Newtonsoft.Json;
 
 namespace IMChat
 {
@@ -12,7 +13,9 @@ namespace IMChat
         private const string ip = "127.0.0.1";
         private const int port = 2014;
 
-        private WebSocketServer ws { get; set; }//SuperWebSocket中的WebSocketServer对象
+        public WebSocketServer ws { get; set; }//SuperWebSocket中的WebSocketServer对象
+
+        Dictionary<string, MessageModule> Modules { get; set; }
 
         public WebChat()
         {
@@ -20,7 +23,10 @@ namespace IMChat
             ws.NewSessionConnected += ws_NewSessionConnected;
             ws.NewMessageReceived += ws_NewMessageReceived;
             ws.NewDataReceived += ws_NewDataReceived;
-            ws.SessionClosed += ws_SessionClosed;            
+            ws.SessionClosed += ws_SessionClosed;
+
+            Modules = new Dictionary<string, MessageModule>();
+            Modules.Add("P2P", new P2PModule(this));
         }
 
         public void Close()
@@ -40,6 +46,7 @@ namespace IMChat
                 return;
             }
         }
+
 
         void ws_SessionClosed(WebSocketSession session, SuperSocket.SocketBase.CloseReason value)
         {
