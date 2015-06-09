@@ -79,13 +79,74 @@ icon {
 	padding: 0px !important;
 	border: 0px !important;
 }
-
+.messages{
+	margin-bottom: 60px;
+}
 .talk{
-	
+	margin-top: 10px;
+	overflow:hidden;
+	padding-bottom: 5px;
 }
 
-.talk .user{
+.msginfo{
+	text-align: center;
+	font-size: 16px;
+	-webkit-border-radius:6px;  
+    -moz-border-radius:6px;  
+    border-radius:6px; 
+    background: #F7E1B5;
+    padding: 6px;
+	max-width: 60%;
+	min-width: 20%;
+	min-height: 40px;
+	-moz-box-shadow:1px 1px 2px hsla(0, 0%, 0%, 0.3);
+    -webkit-box-shadow:1px 1px 2px hsla(0, 0%, 0%, 0.3);
+    box-shadow:1px 1px 2px hsla(0, 0%, 0%, 0.3);
+}
+.talk1 .user{
+	float: left;
+	padding: 4px;
+}
+.talk2 .user{
+	float: right;
+	padding: 4px;
+	float: right;
+}
+.talk1 .msginfo{
+	float: left;
 	
+}
+.talk:after{
+	content: "\0";
+	clear: both;
+}
+.talk2 .msginfo{
+	float: right;
+}
+
+.talk1 .msginfo:before{
+	position: relative;
+	content:"\0";
+	width:0px;
+	height:0px;
+	border-width:8px 8px 8px 8px;
+	border-style:solid;
+	float: left;
+	top:5px;
+	left:-20px;
+	border-color:transparent #F7E1B5  transparent transparent; 
+}
+.talk2 .msginfo:before{
+	position: relative;
+	content:"\0";
+	width:0px;
+	height:0px;
+	border-width:8px 8px 8px 8px;
+	border-style:solid;
+	border-color:transparent   transparent transparent #F7E1B5; 
+	float: right;
+	right:-20px;
+	top:5px;				
 }
 
 .span1,.span2,.span3,.span4,.span5,.span6,.span7,.span8,.span9,.span10{
@@ -127,3 +188,5 @@ icon {
 .span10{
 	width: 100%;
 }
+
+

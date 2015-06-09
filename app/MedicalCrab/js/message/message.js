@@ -14,7 +14,8 @@ mui.plusReady(function(){
 		}
 		this.socket.onmessage=function(messageEvent){
 			var message = JSON.parse(messageEvent.data);
-			alert(message.Content);
+			// alert(message.Content);
+			reciveMessage(message.Content);
 			// alert(message);
 		}
 		
@@ -41,12 +42,36 @@ mui.plusReady(function(){
 		
 	}
 	
-	var chat=new Chat('ws://192.168.1.53:2014',"wxllzf"); 
+	var chat=new Chat('ws://192.168.0.111:2014',"wxllzf"); 
 	
+	function sendMessage(message,user){
+		var user=app.getUser();
+		var data={
+			user:user,
+			message:{
+				content:message
+			}
+		};
+		var h = template("template-talk2",data);
+	    $(".messages").append(h);
+	}
+	
+	function reciveMessage(message,user){
+		var user=app.getUser();
+		var data={
+			user:user,
+			message:{
+				content:message
+			}
+		};
+		var h = template("template-talk1",data);
+	    $(".messages").append(h);
+	}
 	
 	mui(document).on("tap","#btn_send",function(){
 		
 		var txt =$("#chat_text").val();
+		sendMessage(txt,"");
 		chat.sendTextMessage("wxllzf",txt);
 	});
 });

@@ -12,6 +12,7 @@
 		<link rel="stylesheet" type="text/css" href="../../libs/bootstrap/css/bootstrap.css" />
 		<script src="../../js/app.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../libs/socket.io.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/template.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../js/message/message.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
@@ -19,20 +20,51 @@
 	</head>
 
 	<body>
+		<script type="text/template" id="template-talk1">
+			<div class="talk talk1">
+				<span class="user">
+					<img src="{{user.UserImage}}" width="30px" height="30px" />
+				</span>
+				<span class="msginfo">
+					{{message.content}}
+				</span>
+			</div>
+		</script>
+		<script type="text/template" id="template-talk2">
+			<div class="talk talk2">
+				<span class="user">
+					<img src="{{user.UserImage}}" width="30px" height="30px" />
+				</span>
+				<span class="msginfo">
+					{{message.content}} 
+				</span>
+			</div>		
+		</script>
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">聊天</h1>
 		</header>
 		<div class="mui-content">
 			<div class="messages">
-				<div class="talk">
+				<div class="talk talk1">
 					<span class="user">
-						s
+						sss
 					</span>
 					<span class="msginfo">
-						ff
+						呜呜呜呜，
+						哦哦哦哦哦，
+						此处处处长，
+						快快快快快
 					</span>
 				</div>
+				<div class="talk talk2">
+					<span class="user">
+						sss
+					</span>
+					<span class="msginfo">
+						快快快快快
+					</span>
+				</div>		
 			</div>
 			<div class="mui-bar mui-bar-footer">
 
