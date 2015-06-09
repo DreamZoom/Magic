@@ -79,3 +79,51 @@ icon {
 	padding: 0px !important;
 	border: 0px !important;
 }
+
+.talk{
+	
+}
+
+.talk .user{
+	
+}
+
+.span1,.span2,.span3,.span4,.span5,.span6,.span7,.span8,.span9,.span10{
+	display: inline-block;
+	margin: 0px;
+	margin-left: -2px;
+	padding: 0px;
+	padding-left: 2px;
+	border: 0px;
+}
+
+.span1{
+	width: 10%;
+}
+.span2{
+	width: 20%;
+}
+.span3{
+	width: 30%;
+}
+.span4{
+	width: 40%;
+}
+.span5{
+	width: 50%;
+}
+.span6{
+	width: 60%;
+}
+.span7{
+	width: 70%;
+}
+.span8{
+	width: 80%;
+}
+.span9{
+	width: 90%;
+}
+.span10{
+	width: 100%;
+}
