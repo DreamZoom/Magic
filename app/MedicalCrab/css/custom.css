@@ -67,6 +67,15 @@ icon {
 }
 .msg-text{
 	width: 100%;
+	
 	margin-bottom: 0px !important;
-	margin-top: 3px;
+	height: 40px !important;
+	margin-top: 1px;
+}
+.custom-table{
+	border: 0px;
+}
+.custom-table td{
+	padding: 0px !important;
+	border: 0px !important;
 }

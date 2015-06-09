@@ -10,12 +10,11 @@ namespace IMChat
 {
     public class WebChat : IDisposable
     {
-        private const string ip = "127.0.0.1";
         private const int port = 2014;
 
         public WebSocketServer ws { get; set; }//SuperWebSocket中的WebSocketServer对象
 
-        Dictionary<string, MessageModule> Modules { get; set; }
+        public Dictionary<string, MessageModule> Modules { get; set; }
 
         public WebChat()
         {
@@ -36,7 +35,7 @@ namespace IMChat
 
         public void Start()
         {
-            if(!ws.Setup(ip, port))
+            if(!ws.Setup(port))
             {
                 return;
             }
@@ -45,6 +44,13 @@ namespace IMChat
             {
                 return;
             }
+        }
+
+        public WebSocketSession getSessionByName(string name)
+        {
+            string path = "/" + name;
+            var session = ws.GetSessions(m => m.Path == path).FirstOrDefault();
+            return session;
         }
 
 
@@ -60,7 +66,19 @@ namespace IMChat
 
         void ws_NewMessageReceived(WebSocketSession session, string value)
         {
-            
+            //var message = MessageHelper.Json2Object(value);
+            //if (message.MsgType == MedicalCrab.Core.Models.MsgType.P2P)
+            //{
+            //    SuperWebSocket.WebSocketSession reciveSession = this.getSessionByName(message.Reciver);
+            //    SendToClient(reciveSession, message, value);
+            //}
+        }
+
+        public void SendToClient(SuperWebSocket.WebSocketSession reciveSession, MedicalCrab.Core.Models.Message message, string value)
+        {
+            if (reciveSession == null) return;
+            reciveSession.Send(value);
+            //any more
         }
 
         void ws_NewSessionConnected(WebSocketSession session)

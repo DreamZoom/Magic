@@ -23,16 +23,27 @@ namespace IMChat
 
         void ws_NewMessageReceived(SuperWebSocket.WebSocketSession session, string value)
         {
-            var message = MessageHelper.Json2Object(value);
-            if (message.MsgType == MedicalCrab.Core.Models.MsgType.P2P)
+            try
             {
-                SuperWebSocket.WebSocketSession reciveSession =  session.AppServer.GetSessionByID(message.Reciver);
-                SendToClient(reciveSession, message, value);
+                var message = MessageHelper.Json2Object(value);
+                if (message.MsgType == MedicalCrab.Core.Models.MsgType.P2P)
+                {
+                    SuperWebSocket.WebSocketSession reciveSession =  this.Chat.getSessionByName(message.Reciver);
+                    SendToClient(reciveSession, message, value);
+                }
             }
+            catch
+            {
+
+            }
+          
+           
         }
 
         public void SendToClient(SuperWebSocket.WebSocketSession reciveSession,Message message,string value)
         {
+            if (reciveSession == null) return;
+
             reciveSession.Send(value);
             //any more
         }

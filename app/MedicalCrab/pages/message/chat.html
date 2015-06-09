@@ -1,40 +1,48 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <title></title>
-    <script src="../../js/mui.js"></script>
-    <link href="../../css/mui.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" type="text/css" href="../../css/custom.css"/>
-    <link rel="stylesheet" type="text/css" href="../../libs/bootstrap/css/bootstrap.css"/>
-    <script src="../../js/message/message.js" type="text/javascript" charset="utf-8"></script>
-    <script type="text/javascript" charset="utf-8">
-      	mui.init();
-    </script>
-</head>
-<body>
-	<header class="mui-bar mui-bar-nav">
-		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-		<h1 class="mui-title">聊天</h1>
-	</header>
-	<div class="mui-content">
-		<div class="messages">
-			ss
-		</div>
-		<div class="mui-bar mui-bar-footer">
-			<div class="row">
-				<div class="col-sm-9">
-					<input type="text" class="msg-text" placeholder="说两句吧">
-				</div>
-				<div class="col-sm-3">
-					<button class="mui-btn mui-btn-blue mui-pull-right">发送</button>
-				</div>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/mui.js"></script>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/custom.css" />
+		<link rel="stylesheet" type="text/css" href="../../libs/bootstrap/css/bootstrap.css" />
+		<script src="../../js/app.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../libs/socket.io.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/message/message.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">聊天</h1>
+		</header>
+		<div class="mui-content">
+			<div class="messages">
+				ss
 			</div>
-			
+			<div class="mui-bar mui-bar-footer">
+
+				<table border="" cellspacing="" cellpadding="" class="table custom-table">
+					<tr>
+						<td align="center" valign="middle">
+							<input type="text" class="msg-text" placeholder="说两句吧" id="chat_text">
+						</td>
+						<td width="60px">
+							<button class="mui-btn mui-btn-blue mui-pull-right" id="btn_send">发送</button>
+						</td>
+					</tr>
+				</table>
+			</div>
+
 		</div>
-		
-	</div>
-	
-</body>
+
+	</body>
+
 </html>
