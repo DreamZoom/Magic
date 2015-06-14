@@ -10,13 +10,13 @@ namespace IM.ConsoleServer
     {
         static void Main(string[] args)
         {
+           
             IMChat.WebChat wc = new IMChat.WebChat();
             wc.Start();
             Console.WriteLine("Press 'q' To Exit");
 
-            while ('q' == Console.ReadKey().KeyChar)
+            while ('q' == Console.ReadKey().KeyChar)     
             {
-
                 wc.Close();
             }
         }

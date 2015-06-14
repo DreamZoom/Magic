@@ -90,7 +90,7 @@ namespace Magic.Mvc
         {
             Check.IsNull(Connection);
 
-            if (Connection.State != ConnectionState.Open)
+            if (Connection.State == ConnectionState.Closed)
             {
                 Connection.Open();
             }

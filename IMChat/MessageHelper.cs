@@ -17,5 +17,11 @@ namespace IMChat
             var o = js.Deserialize < MedicalCrab.Core.Models.Message>(reader);
             return o as MedicalCrab.Core.Models.Message;
         }
+
+        public static string Object2Json(MedicalCrab.Core.Models.Message message)
+        {
+            string json = JsonConvert.SerializeObject(message);
+            return json;
+        }
     }
 }

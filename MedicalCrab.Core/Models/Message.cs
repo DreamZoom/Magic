@@ -28,10 +28,16 @@ namespace MedicalCrab.Core.Models
         public DateTime SendTime { get; set; }
 
         [Display(Name = "接收时间")]
-        public DateTime? ReciveTime { get; set; }
+        public DateTime ReciveTime { get; set; }
 
         [Display(Name = "是否处理")]
         public bool IsProc { get; set; }
+
+        [Display(Name = "是否阅读")]
+        public bool IsRead { get; set; }
+
+        [Display(Name = "是否接收")]
+        public bool IsRecived { get; set; }
 
     }
 }

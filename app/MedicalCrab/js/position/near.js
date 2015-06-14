@@ -22,7 +22,9 @@ mui.plusReady(function(){
 	
 	//点击附近的人
 	mui(document).on("tap","a[user]",function(){
-		app.open("../user/showuser.html");
+		//app.open("../user/showuser.html");
+		var username=this.getAttribute("data-username");
+		app.open("../message/chat.html",{username:username});
 	});
 	
 });

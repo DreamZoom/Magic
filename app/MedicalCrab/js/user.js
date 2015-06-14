@@ -9,8 +9,9 @@
 			app.setToken(data.token);
 			app.setUser(data.user);			
 			var self =plus.webview.currentWebview();
-			//self.close();
+			
 			app.open("center.html");
+			self.close();
 		}
 		else{ 
 			mui.toast("token 无效");

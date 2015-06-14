@@ -1,8 +1,32 @@
 
+
 mui.plusReady(function(){
 	
-	function Chat(url,username){
-		url=url+"/"+username;
+	template.helper("imageFormat",function(image){
+		return app.Request.ServerUrl+image;
+	});
+	//与谁聊天
+	var self = plus.webview.currentWebview();
+	var recivername = self.username;
+	
+	var user = app.getUser();
+	
+	var reciver,chat;
+	var loading = plus.nativeUI.showWaiting();
+	app.api.get("user/userinfo",{username:recivername},function(data){
+	    reciver=data.data;
+		
+		chat=new Chat('ws://192.168.0.109:2014',user.UserName,reciver.UserName); 
+		$(".mui-title").html(reciver.UserName); 
+		loading.close();
+	},function(){
+		loading.close();
+		self.close();
+	});
+	
+
+	function Chat(url,username,reciver){
+		url=url+"/"+username+"@"+reciver;
 		
 		this.socket=new WebSocket(url);
 		
@@ -23,18 +47,20 @@ mui.plusReady(function(){
 			
 		}
 		
-		this.sendTextMessage=function(user,text){
+		this.sendTextMessage=function(text){
 			var username=app.getUser().UserName;
 			var message={
 				ID:0,
 				Sender:username,
-				Reciver:user,
+				Reciver:reciver,
 				Content:text,
 				ContentType:0,
 				MsgType:0,
 				SendTime:"2015/6/9 ",
 				ReciveTime:"2015/6/9",
-				IsProc:false
+				IsProc:false,
+				IsRead:false,
+				IsRecived:false
 			};
 	 
 			this.socket.send(JSON.stringify(message));
@@ -42,9 +68,7 @@ mui.plusReady(function(){
 		
 	}
 	
-	var chat=new Chat('ws://192.168.0.111:2014',"wxllzf"); 
-	
-	function sendMessage(message,user){
+	function sendMessage(message){
 		var user=app.getUser();
 		var data={
 			user:user,
@@ -52,6 +76,7 @@ mui.plusReady(function(){
 				content:message
 			}
 		};
+		//ChatLog(message);
 		var h = template("template-talk2",data);
 	    $(".messages").append(h);
 	}
@@ -59,7 +84,7 @@ mui.plusReady(function(){
 	function reciveMessage(message,user){
 		var user=app.getUser();
 		var data={
-			user:user,
+			user:reciver,
 			message:{
 				content:message
 			}
@@ -67,11 +92,16 @@ mui.plusReady(function(){
 		var h = template("template-talk1",data);
 	    $(".messages").append(h);
 	}
-	
+ 
+    function ChatLog(message){
+    	var key=user.UserName+"-"+reciver.UserName;
+    	app.storage.setItem(key,message);
+    }
+
 	mui(document).on("tap","#btn_send",function(){
 		
 		var txt =$("#chat_text").val();
-		sendMessage(txt,"");
-		chat.sendTextMessage("wxllzf",txt);
+		sendMessage(txt);
+		chat.sendTextMessage(txt);
 	});
 });

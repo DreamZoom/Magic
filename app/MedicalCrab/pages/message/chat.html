@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
@@ -23,7 +22,7 @@
 		<script type="text/template" id="template-talk1">
 			<div class="talk talk1">
 				<span class="user">
-					<img src="{{user.UserImage}}" width="30px" height="30px" />
+					<img src="{{user.UserImage | imageFormat}}" width="30px" height="30px" />
 				</span>
 				<span class="msginfo">
 					{{message.content}}
@@ -33,7 +32,7 @@
 		<script type="text/template" id="template-talk2">
 			<div class="talk talk2">
 				<span class="user">
-					<img src="{{user.UserImage}}" width="30px" height="30px" />
+					<img src="{{user.UserImage | imageFormat}}" width="30px" height="30px" />
 				</span>
 				<span class="msginfo">
 					{{message.content}} 
@@ -46,25 +45,7 @@
 		</header>
 		<div class="mui-content">
 			<div class="messages">
-				<div class="talk talk1">
-					<span class="user">
-						sss
-					</span>
-					<span class="msginfo">
-						呜呜呜呜，
-						哦哦哦哦哦，
-						此处处处长，
-						快快快快快
-					</span>
-				</div>
-				<div class="talk talk2">
-					<span class="user">
-						sss
-					</span>
-					<span class="msginfo">
-						快快快快快
-					</span>
-				</div>		
+				
 			</div>
 			<div class="mui-bar mui-bar-footer">
 

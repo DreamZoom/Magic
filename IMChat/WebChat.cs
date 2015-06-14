@@ -18,8 +18,10 @@ namespace IMChat
 
         public WebChat()
         {
+            Magic.Mvc.DataAccessProvider.Current = new Magic.Mvc.DataAccess(@"Data Source=dreamzoom-pc\sqlexpress;Initial Catalog=db_MedicalCrab;Persist Security Info=True;User ID=sa;Password=123456");
+
             ws = new WebSocketServer();
-            ws.NewSessionConnected += ws_NewSessionConnected;
+           // ws.NewSessionConnected += ws_NewSessionConnected;
             ws.NewMessageReceived += ws_NewMessageReceived;
             ws.NewDataReceived += ws_NewDataReceived;
             ws.SessionClosed += ws_SessionClosed;
@@ -46,11 +48,28 @@ namespace IMChat
             }
         }
 
+        public string GetReciver(WebSocketSession session)
+        {
+            string path = session.Path.Substring(1);
+            string[] rs= path.Split('@');
+            return rs[1];
+        }
+
+        public string GetSender(WebSocketSession session)
+        {
+            string path = session.Path.Substring(1);
+            string[] rs = path.Split('@');
+            return rs[0];
+        }
+
         public WebSocketSession getSessionByName(string name)
         {
             string path = "/" + name;
-            var session = ws.GetSessions(m => m.Path == path).FirstOrDefault();
-            return session;
+            var sessions = ws.GetAllSessions();
+            foreach(var s in sessions){
+                if (GetSender(s) == name) return s;
+            }
+            return null;
         }
 
 
