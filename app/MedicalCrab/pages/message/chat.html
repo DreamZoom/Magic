@@ -20,24 +20,24 @@
 
 	<body>
 		<script type="text/template" id="template-talk1">
-			<div class="talk talk1">
-				<span class="user">
-					<img src="{{user.UserImage | imageFormat}}" width="30px" height="30px" />
-				</span>
-				<span class="msginfo">
-					{{message.content}}
-				</span>
+			<div class="talk talk-left">
+				<div class="user">
+					<img src="{{user.UserImage | imageFormat}}"/>
+				</div>
+				<div class="message">
+					<span class="message-content">{{message.Content}}</span>
+				</div>
 			</div>
 		</script>
 		<script type="text/template" id="template-talk2">
-			<div class="talk talk2">
-				<span class="user">
-					<img src="{{user.UserImage | imageFormat}}" width="30px" height="30px" />
-				</span>
-				<span class="msginfo">
-					{{message.content}} 
-				</span>
-			</div>		
+			<div class="talk talk-right">
+				<div class="user">
+					<img src="{{user.UserImage | imageFormat}}"/>
+				</div>
+				<div class="message">
+					<span class="message-content">{{message.Content}} </span>
+				</div>
+			</div>
 		</script>
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
@@ -45,9 +45,9 @@
 		</header>
 		<div class="mui-content">
 			<div class="messages">
-				<div class="talk talk-left">
+				<!--<div class="talk talk-left">
 					<div class="user">
-						user
+						<img src="../../images/user-photo.png"/>
 					</div>
 					<div class="message">
 						<span class="message-content">message2
@@ -58,12 +58,13 @@
 				</div>
 				<div class="talk talk-right">
 					<div class="user">
-						user2
+						<img src="../../images/user-photo.png"/>
 					</div>
 					<div class="message">
 						<span class="message-content">message2</span>
 					</div>
 				</div>
+			-->
 			</div>
 			<div class="mui-bar mui-bar-footer">
 

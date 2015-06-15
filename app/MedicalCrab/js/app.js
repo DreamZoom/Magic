@@ -46,8 +46,11 @@
 			page.show();
 			return;
 		}
+		var id = url.substring(url.lastIndexOf('/')+1);
+		alert(id);
+		
 		mui.openWindow({
-			id: url,
+			id: id,
 			url: url,
 			waiting: {
 				autoShow: true
@@ -60,7 +63,13 @@
 		});
 	}
 
-
+    app.fireEvent=function(id,event,data){
+    	var view =plus.webview.getWebviewById(id);
+    	if(view){
+    		mui.fire(view,event,data);
+    	}
+    	
+    }
 	/*
 	 *  获取用户
 	 */
@@ -101,7 +110,7 @@
 
 	app.storage = {
 		setItem: function(key, value) {
-			var s = JSON.stringify(value);
+			var s = JSON.stringify(value); 
 			plus.storage.setItem(key, s);
 		},
 		getItem: function(key) {
@@ -278,7 +287,7 @@ mui.plusReady(function() {
 		})
 
 	}
-    app.updatelocation();
+    //app.updatelocation();
 	/*
 	 * 初始化app.request
 	 */
