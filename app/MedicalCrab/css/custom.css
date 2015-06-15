@@ -232,26 +232,25 @@ icon {
 	border-radius: 6px;
 	padding: 5px;
 	display: inline-block;
+	position: relative;
 }
 .talk-left .message .message-content:before{
-	position: absolute;
-	float: left;
+	position: absolute;	
 	content:"\0";
 	border: 8px solid ;
 	border-color:transparent #1B6D85  transparent transparent; 
 	width:0px;
 	height:0px;
-	left: -20px;
+	left: -16px;
 }
 
 .talk-right .message .message-content:before{
 	position: absolute;
-	float: right;
 	content:"\0";
 	border: 8px solid ;
 	border-color:transparent transparent  transparent #1B6D85; 
 	width:0px;
 	height:0px;
-	right:-20px;
+	right:-16px;
 }
 
