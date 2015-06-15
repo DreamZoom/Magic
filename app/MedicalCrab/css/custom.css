@@ -190,3 +190,68 @@ icon {
 }
 
 
+.talk{
+	
+}
+
+.talk .user{
+	width: 40px;
+	height: 40px;
+	text-align: center;
+}
+.talk-left .user{
+	float: left;
+	
+}
+
+.talk-right .user{
+	float: right;
+}
+
+
+
+.talk .message{
+	padding: 5px;
+}
+.talk-left .message{
+	margin-left: 40px;
+	margin-right: 40px;
+}
+
+.talk-right .message{
+	margin-right: 40px;
+	margin-left: 40px;
+	text-align: right;
+}
+.talk-right .message .message-content{
+	text-align: left;
+}
+.talk .message-content{
+	border: 1px solid #1B6D85;
+	background: #1B6D85;
+	border-radius: 6px;
+	padding: 5px;
+	display: inline-block;
+}
+.talk-left .message .message-content:before{
+	position: absolute;
+	float: left;
+	content:"\0";
+	border: 8px solid ;
+	border-color:transparent #1B6D85  transparent transparent; 
+	width:0px;
+	height:0px;
+	left: -20px;
+}
+
+.talk-right .message .message-content:before{
+	position: absolute;
+	float: right;
+	content:"\0";
+	border: 8px solid ;
+	border-color:transparent transparent  transparent #1B6D85; 
+	width:0px;
+	height:0px;
+	right:-20px;
+}
+
