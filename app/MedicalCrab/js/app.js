@@ -47,7 +47,7 @@
 			return;
 		}
 		var id = url.substring(url.lastIndexOf('/')+1);
-		alert(id);
+		//alert(id);
 		
 		mui.openWindow({
 			id: id,
@@ -150,6 +150,19 @@
 			var filedname = filed.attr("name");
 			filed.val(obj[filedname]);
 		});
+	}
+	
+	
+	app.ChatHistory=function(user, message){
+
+		var key="chat_message_history";
+		var friends = app.storage.getItem(key);
+		if (!(friends instanceof Array)) {
+			friends = [];
+		}
+		
+		friends.push(message); 
+	    app.storage.setItem(key,friends);
 	}
 
 })(window);
