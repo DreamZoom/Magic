@@ -65,6 +65,8 @@
 			}
 			messages.push(message); 
     	    app.storage.setItem(key,messages);
+    	    
+    	    app.ChatHistory(opts.Reciver,message);
 		}
 		
 		this.InitHistory=function(){

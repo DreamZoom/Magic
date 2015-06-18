@@ -1,80 +1,50 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <title></title>
-    <script src="../../js/mui.js"></script> 
-    <link href="../../css/mui.min.css" rel="stylesheet"/>  
-    <link rel="stylesheet" type="text/css" href="../../css/custom.css"/>
-    <script type="text/javascript" charset="utf-8">
-      	mui.init();
-    </script>
-</head>
-<body>
-	<header class="mui-bar mui-bar-nav">
-		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-		<h1 class="mui-title">消息</h1>
-	</header>
-	<div class="mui-content">
-    	<ul class="mui-table-view">
-    		<li class="mui-table-view-cell">
-    			<a class="mui-navigate-right">
-    				<img class="mui-media-object mui-pull-left" src="../../images/user-photo.png">
-    				<div class="mui-media-body">
-    					主标题
-    					<p class='mui-ellipsis'>这里是摘要</p>
-    				</div>
-    			</a>
-    		</li>
-    		<li class="mui-table-view-cell">
-    			<a class="mui-navigate-right">
-    				<img class="mui-media-object mui-pull-left" src="../../images/user-photo.png">
-    				<div class="mui-media-body">
-    					主标题
-    					<p class='mui-ellipsis'>这里是摘要</p>
-    				</div>
-    			</a>
-    		</li>
-    		<li class="mui-table-view-cell">
-    			<a class="mui-navigate-right">
-    				<img class="mui-media-object mui-pull-left" src="../../images/user-photo.png">
-    				<div class="mui-media-body">
-    					主标题
-    					<p class='mui-ellipsis'>这里是摘要</p>
-    				</div>
-    			</a>
-    		</li>
-    		<li class="mui-table-view-cell">
-    			<a >
-    				<img class="mui-media-object mui-pull-left" src="../../images/user-photo.png">
-    				<div class="mui-media-body">
-    					主标题
-    					<p class='mui-ellipsis'>这里是摘要</p>
-    				</div>
-    				<span class="mui-badge mui-badge-red mui-badge-positive">12</span>
-    			</a>
-    		</li>
-    		
-    		<li class="mui-table-view-cell">
-    			<a class="mui-navigate-right">
-    				<img class="mui-media-object mui-pull-left" src="../../images/user-photo.png">
-    				<div class="mui-media-body">
-    					主标题
-    					<p class='mui-ellipsis'>这里是摘要</p>
-    				</div>
-    			</a>
-    		</li>
-    		<li class="mui-table-view-cell">
-    			<a class="mui-navigate-right">
-    				<img class="mui-media-object mui-pull-left" src="../../images/user-photo.png">
-    				<div class="mui-media-body">
-    					主标题
-    					<p class='mui-ellipsis'>这里是摘要</p>
-    				</div>
-    			</a>
-    		</li>
-    	</ul>
-	</div>
-</body>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../../js/angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/mui.js"></script>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/custom.css" />
+		<script src="../../js/app.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/message/chat_user.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+       
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">消息</h1>
+		</header>
+		<div class="mui-content">
+			<ul class="mui-table-view" id="app"  ng-controller="UserListController">
+				
+				<li class="mui-table-view-cell" ng-repeat="u in users">
+					<div class="mui-slider-right mui-disabled">
+						<a class="mui-btn mui-btn-red">删除</a>
+					</div>
+					<div class="mui-slider-handle">
+						<a>
+							<img class="mui-media-object mui-pull-left" src="{{ServerUrl+u.User.UserImage}}"> 
+							<span class="mui-badge mui-badge-red mui-badge-positive mui-pull-right" ng-show="u.NotReads>0">{{u.NotReads}}</span>
+							<div class="mui-media-body">
+								{{u.User.UserName}}
+								<p class='mui-ellipsis'>{{u.Message.Content}}</p>
+							</div>
+							
+						</a>
+					</div>
+				</li>
+
+			</ul>
+		</div>
+	</body>
+
 </html>

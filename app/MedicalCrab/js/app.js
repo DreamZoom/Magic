@@ -155,16 +155,49 @@
 	
 	app.ChatHistory=function(user, message){
 
+        function get(arr,func){
+        	for(var i=0; i<arr.length;i++){
+        		if(func && func(arr[i])){ 
+        			return i;
+        		}
+        	}
+        	return ;
+        }
+
 		var key="chat_message_history";
 		var friends = app.storage.getItem(key);
 		if (!(friends instanceof Array)) {
 			friends = [];
 		}
 		
-		friends.push(message); 
+		var msg = {
+			User:user,
+			Message:message,
+			NotReads:0
+		}
+		
+		var index = get(friends,function(d){
+			alert(d.User.UserName==user.UserName);
+		    return d.User.UserName==user.UserName;
+		});
+		alert(index);
+		if(typeof(index) != 'undefined'){
+			friends.splice(index,1);
+		}
+		//{User:}	
+		friends.push(msg); 
 	    app.storage.setItem(key,friends);
 	}
 
+    app.getChatHistory=function(){
+    	var key="chat_message_history";
+    	
+		var friends = app.storage.getItem(key); 
+		if (!(friends instanceof Array)) {
+			friends = [];
+		}
+		return friends;
+    }
 })(window);
 
 
