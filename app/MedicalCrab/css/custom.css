@@ -34,24 +34,181 @@ body {
 .mui-table-view:before {
 	height: 0px;
 }
-.mui-table-view-cell:after{
+.mui-table-view-cell:after {
 	left: 0px;
 }
 icon {
 	margin-right: 10px;
 	color: #007AFF;
 }
-
-.mui-switch-custom:before{
+.mui-switch-custom:before {
 	content: attr(data-off);
 }
-
-.mui-switch-custom.mui-active:before{
+.mui-switch-custom.mui-active:before {
 	content: attr(data-on);
 }
+.user-head {
+	background: #D6E9C6;
+	padding-top: 40px;
+	padding-bottom: 20px;
+}
+.user-head .user-logo {
+	width: 100%;
+	height: 100%;
+}
+.messages {
+	height: 100%;
+}
 
+.custom-table {
+	border: 0px;
+}
+.custom-table td {
+	padding: 0px !important;
+	border: 0px !important;
+}
+.span1,
+.span2,
+.span3,
+.span4,
+.span5,
+.span6,
+.span7,
+.span8,
+.span9,
+.span10 {
+	display: inline-block;
+	margin: 0px;
+	margin-left: -2px;
+	padding: 0px;
+	padding-left: 2px;
+	border: 0px;
+}
+.span1 {
+	width: 10%;
+}
+.span2 {
+	width: 20%;
+}
+.span3 {
+	width: 30%;
+}
+.span4 {
+	width: 40%;
+}
+.span5 {
+	width: 50%;
+}
+.span6 {
+	width: 60%;
+}
+.span7 {
+	width: 70%;
+}
+.span8 {
+	width: 80%;
+}
+.span9 {
+	width: 90%;
+}
+.span10 {
+	width: 100%;
+}
+.messages {
+	margin-bottom: 60px;
+}
+.talk {
+	margin-top: 8px;
+	padding-bottom: 5px;
+}
+.talk {} .talk .user {
+	width: 40px;
+	height: 40px;
+	text-align: center;
+}
+.talk .user img {
+	width: 100%;
+}
+.talk-left .user {
+	float: left;
+}
+.talk-right .user {
+	float: right;
+}
+.talk .message {
+	padding: 0px 10px;
+}
+.talk-left .message {
+	margin-left: 40px;
+	margin-right: 40px;
+}
+.talk-right .message {
+	margin-right: 40px;
+	margin-left: 40px;
+	text-align: right;
+}
+.talk-right .message .message-content {
+	text-align: left;
+}
+.talk .message-content {
+	border: 1px solid #1B6D85;
+	background: #1B6D85;
+	border-radius: 6px;
+	padding: 10px;
+	display: inline-block;
+	position: relative;
+	color: #FFFFFF;
+	font-size: 16px;
+}
+.talk-left .message .message-content:before {
+	position: absolute;
+	content: "\0";
+	border: 8px solid;
+	border-color: transparent #1B6D85 transparent transparent;
+	width: 0px;
+	height: 0px;
+	left: -16px;
+}
+.talk-right .message .message-content:before {
+	position: absolute;
+	content: "\0";
+	border: 8px solid;
+	border-color: transparent transparent transparent #1B6D85;
+	width: 0px;
+	height: 0px;
+	right: -16px;
+}
+.message-input-box {
+	margin-right: 60px;
+}
+.message-send-button {
+	float: right;
+	right: 0;
+	width: 60px;
+	text-align: center;
+	vertical-align:middle;
+	padding: 3px;
+	/*padding-top: 50%;*/
+}
 
+.message-chat-box {
+	bottom: 0px;
+	padding: 2px;
+	position: fixed;
+	right: 0;
+	left: 0;
+	z-index: 10;
+	padding-right: 10px;
+	padding-left: 10px;
+	background-color: rgba(247, 247, 247, .98);
+	border-bottom: 0;
+	-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, .85);
+	box-shadow: 0 0 1px rgba(0, 0, 0, .85);
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
 
-
-
-
+.message-chat-box input{
+	margin:0px;
+	width: 100%;
+}

@@ -25,6 +25,9 @@ namespace Magic.Mvc
             {
                 if (!Magic.Mvc.Equals.IsNull(identity) && identity.Name == p.Name) continue;
 
+                var notmaps = p.GetCustomAttributes(typeof(Model.NotMapingAttribute), false);
+                if (notmaps != null && notmaps.Length > 0) continue;
+
                 fileds.Add(string.Format("[{0}]", p.Name));
                 values.Add(string.Format("@{0}", p.Name));
             }
@@ -46,6 +49,9 @@ namespace Magic.Mvc
             var identity = model.getIdentify();
             foreach (var p in propertys)
             {
+                var notmaps = p.GetCustomAttributes(typeof(Model.NotMapingAttribute), false);
+                if (notmaps != null && notmaps.Length > 0) continue;
+
                 if (primarys.Any(m => m.Name == p.Name))
                 {
                     wheres.Add(string.Format("[{0}]=@{0}", p.Name));
@@ -70,6 +76,9 @@ namespace Magic.Mvc
             var primarys = model.getPrimaryKeys();
             foreach (var p in primarys)
             {
+                var notmaps = p.GetCustomAttributes(typeof(Model.NotMapingAttribute), false);
+                if (notmaps != null && notmaps.Length > 0) continue;
+
                 wheres.Add(string.Format("[{0}]=@{0}", p.Name));
             }
 
@@ -89,6 +98,9 @@ namespace Magic.Mvc
             var propertys = type.GetProperties();
             foreach (var p in propertys)
             {
+                var notmaps = p.GetCustomAttributes(typeof(Model.NotMapingAttribute), false);
+                if (notmaps != null && notmaps.Length > 0) continue;
+
                 fileds.Add(string.Format("[{0}]", p.Name));
             }
             string topString = "";
@@ -218,7 +230,8 @@ namespace Magic.Mvc
                 var propertys = type.GetProperties();
                 foreach (var p in propertys)
                 {
-                    p.SetValue(temp, dr[p.Name], null);
+                   if( table.Columns.Contains(p.Name))
+                       p.SetValue(temp, dr[p.Name], null);
                 }
                 list.Add(temp);
             }

@@ -28,7 +28,7 @@
 	}
 
 	//api服务器地址
-	app.RomateUrl = "http://192.168.0.111:2835/";
+	app.RomateUrl = "http://192.168.0.109:2835/";
 	//app.RomateUrl = "http://192.168.1.53:2835/";
 	app.ApiUrl = app.RomateUrl + "api/";
 	//全局对象
@@ -46,21 +46,30 @@
 			page.show();
 			return;
 		}
+		var id = url.substring(url.lastIndexOf('/')+1);
+		//alert(id);
+		
 		mui.openWindow({
-			id: url,
+			id: id,
 			url: url,
 			waiting: {
 				autoShow: true
 			},
 			show: {
-				duration: 100,
+				duration: 160,
 				aniShow: "pop-in"
 			},
 			extras: params
 		});
 	}
 
-
+    app.fireEvent=function(id,event,data){
+    	var view =plus.webview.getWebviewById(id);
+    	if(view){
+    		mui.fire(view,event,data);
+    	}
+    	
+    }
 	/*
 	 *  获取用户
 	 */
@@ -101,8 +110,7 @@
 
 	app.storage = {
 		setItem: function(key, value) {
-			var s = JSON.stringify(value);
-			alert(s);
+			var s = JSON.stringify(value); 
 			plus.storage.setItem(key, s);
 		},
 		getItem: function(key) {
@@ -143,7 +151,53 @@
 			filed.val(obj[filedname]);
 		});
 	}
+	
+	
+	app.ChatHistory=function(user, message){
 
+        function get(arr,func){
+        	for(var i=0; i<arr.length;i++){
+        		if(func && func(arr[i])){ 
+        			return i;
+        		}
+        	}
+        	return ;
+        }
+
+		var key="chat_message_history";
+		var friends = app.storage.getItem(key);
+		if (!(friends instanceof Array)) {
+			friends = [];
+		}
+		
+		var msg = {
+			User:user,
+			Message:message,
+			NotReads:0
+		}
+		
+		var index = get(friends,function(d){
+			alert(d.User.UserName==user.UserName);
+		    return d.User.UserName==user.UserName;
+		});
+		alert(index);
+		if(typeof(index) != 'undefined'){
+			friends.splice(index,1);
+		}
+		//{User:}	
+		friends.push(msg); 
+	    app.storage.setItem(key,friends);
+	}
+
+    app.getChatHistory=function(){
+    	var key="chat_message_history";
+    	
+		var friends = app.storage.getItem(key); 
+		if (!(friends instanceof Array)) {
+			friends = [];
+		}
+		return friends;
+    }
 })(window);
 
 
@@ -255,13 +309,21 @@ mui.plusReady(function() {
 	app.updatelocation = function() {
         
 		plus.geolocation.getCurrentPosition(function(position) {
-			
+			var lasttime = app.storage.getItem("position-datetime");
+			if(lasttime){
+				var nowtime =new Date();
+				var difftime=nowtime-lasttime;
+				var days=Math.floor(difftime/(60*1000));
+				if(days<30) return;
+			}
 			var user =app.getUser();
+			if(!user)return;
 			var result =mui.extend({UserName:user.UserName},position.coords);
-			app.log(result);
 			app.api.post("user/UpdateLocation",result,function(response){
 				if(response.result){
-				     app.log(response.data);
+					//alert(response.data);
+				     app.storage.setItem("position",response.data);
+				     app.storage.setItem("position-datetime",new Date());
 				}
 			},function(){
 				 
@@ -271,7 +333,7 @@ mui.plusReady(function() {
 		})
 
 	}
-    app.updatelocation();
+    //app.updatelocation();
 	/*
 	 * 初始化app.request
 	 */

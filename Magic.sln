@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Magic.MeiChat", "Magic.MeiChat\Magic.MeiChat.csproj", "{EE6E518F-E060-4D2B-9AD0-1782BC80E651}"
 EndProject
@@ -10,6 +10,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalCrab.Core", "MedicalCrab.Core\MedicalCrab.Core.csproj", "{70D14A95-58C1-47E5-A7C3-1DFA2BD6FD40}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalCrab.Web", "MedicalCrab.Web\MedicalCrab.Web.csproj", "{E69AFDB7-8DCC-4326-A6CE-5FCE6F0AAC36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMWSService", "IMWSService\IMWSService.csproj", "{77A369A9-C754-42ED-93BF-06EDF49F7969}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMChat", "IMChat\IMChat.csproj", "{24F8FEC0-AE11-4A5F-843E-DBB422D27131}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IM.Console", "IM.Console\IM.Console.csproj", "{24438E5E-93CB-4807-A532-0F874115CBE4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +39,18 @@ Global
 		{E69AFDB7-8DCC-4326-A6CE-5FCE6F0AAC36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E69AFDB7-8DCC-4326-A6CE-5FCE6F0AAC36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E69AFDB7-8DCC-4326-A6CE-5FCE6F0AAC36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77A369A9-C754-42ED-93BF-06EDF49F7969}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77A369A9-C754-42ED-93BF-06EDF49F7969}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77A369A9-C754-42ED-93BF-06EDF49F7969}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77A369A9-C754-42ED-93BF-06EDF49F7969}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24F8FEC0-AE11-4A5F-843E-DBB422D27131}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24F8FEC0-AE11-4A5F-843E-DBB422D27131}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24F8FEC0-AE11-4A5F-843E-DBB422D27131}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24F8FEC0-AE11-4A5F-843E-DBB422D27131}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24438E5E-93CB-4807-A532-0F874115CBE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24438E5E-93CB-4807-A532-0F874115CBE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24438E5E-93CB-4807-A532-0F874115CBE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24438E5E-93CB-4807-A532-0F874115CBE4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
