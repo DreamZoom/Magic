@@ -67,6 +67,7 @@
     <Compile Include="LikeAttribute.cs" />
     <Compile Include="MagicModelBuilder.cs" />
     <Compile Include="Model\Attributes\IdentifyAttribute.cs" />
+    <Compile Include="Model\Attributes\NotMapingAttribute.cs" />
     <Compile Include="Model\IModel.cs" />
     <Compile Include="Model\Attributes\KeyAttribute.cs" />
     <Compile Include="Model\Model.cs" />

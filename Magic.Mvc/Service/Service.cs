@@ -114,7 +114,7 @@ namespace Magic.Mvc.Service
 
         public virtual IEnumerable<Model.Model> GetModelList(string where, string order)
         {
-            string sql = SqlProviders.Current.BuildSelectSQL(ModelType, 1);
+            string sql = SqlProviders.Current.BuildSelectSQL(ModelType);
             if (!string.IsNullOrWhiteSpace(where))
             {
                 sql += string.Format(" where {0} ", where);

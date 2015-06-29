@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/mui.js"></script>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/custom.css" />
+		<link rel="stylesheet" type="text/css" href="../../libs/bootstrap/css/bootstrap.css" />
+		<script src="../../js/app.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../libs/socket.io.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/template.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/message/chat.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+	</head>
+
+	<body>
+		<script type="text/template" id="template-talk1">
+			<div class="talk talk-left">
+				<div class="user">
+					<img src="{{user.UserImage | imageFormat}}" />
+				</div>
+				<div class="message">
+					<span class="message-content">{{message.Content}}</span>
+				</div>
+			</div>
+		</script>
+		<script type="text/template" id="template-talk2">
+			<div class="talk talk-right">
+				<div class="user">
+					<img src="{{user.UserImage | imageFormat}}" />
+				</div>
+				<div class="message">
+					<span class="message-content">{{message.Content}} </span>
+				</div>
+			</div>
+		</script>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">聊天</h1>
+		</header>
+		<div class="mui-content">
+			<div class="messages">
+				<!--<div class="talk talk-left">
+					<div class="user">
+						<img src="../../images/user-photo.png"/>
+					</div>
+					<div class="message">
+						<span class="message-content">message2
+							大多数收到了收到了号是多
+							少的还是的客户就是扩大进
+							口是垃圾啊康师傅卡死地方啦圣诞节</span>
+					</div>
+				</div>
+				<div class="talk talk-right">
+					<div class="user">
+						<img src="../../images/user-photo.png"/>
+					</div>
+					<div class="message">
+						<span class="message-content">message2</span>
+					</div>
+				</div>
+			-->
+			</div>
+
+			<div class="message-chat-box">
+				<div class="message-send-button">
+					<button class="mui-btn mui-btn-blue mui-pull-right" id="btn_send">发送</button>
+				</div>
+				<div class="message-input-box">
+					<input type="text" class="msg-text" placeholder="说两句吧" id="chat_text">
+				</div>
+			</div>
+
+		</div>
+
+	</body>
+
+</html>

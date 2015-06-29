@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/template.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/mui.min.js"></script>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../libs/bootstrap/css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="../../libs/bootstrap/css/bootstrap-theme.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/custom.css" />
+		<script src="../../js/app.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/user/showuser.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+		<style type="text/css">
+			html,
+			body {
+				background-color: #fff; 
+			}
+		</style>
+	</head>
+
+	<body>
+		<script type="text/template" id="usercard-template">
+			<div class="container">
+				<div class="user-head row">
+					<div class="col-sm-4 ">
+						<img src="{{user.UserImage | imageFormat}}" class="user-logo img-circle" />
+					</div>
+					<div class="col-sm-8">
+						<h4 class="mui-ellipsis">{{user.UserName}}</h4>
+						<p class="small mui-ellipsis-2">{{user.SignDiscription}}</p>
+					</div>
+				</div>
+			</div>
+			<div>
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell ">
+						<div class="row mui-navigate-right">
+							<div class="col-sm-4">
+								账户信息
+							</div>
+							<div class="col-sm-8">
+								<p>{{user.UserName}}</p>
+							</div>
+						</div>
+					</li>
+					<li class="mui-table-view-cell">
+						<div class="row mui-navigate-right">
+							<div class="col-sm-4">
+								昵称
+							</div>
+							<div class="col-sm-8">
+								<p>{{user.UserName}}</p>
+							</div>
+						</div>
+					</li>
+					<li class="mui-table-view-cell">
+						<div class="row mui-navigate-right">
+							<div class="col-sm-4">
+								性别
+							</div>
+							<div class="col-sm-8">
+								<p>{{user.Sex}}</p>
+							</div>
+						</div>
+					</li>
+					<li class="mui-table-view-cell">
+						<div class="row mui-navigate-right">
+							<div class="col-sm-4">
+								邮箱
+							</div>
+							<div class="col-sm-8">
+								<p>{{user.Email}}</p>
+							</div>
+						</div>
+					</li>
+					<li class="mui-table-view-cell">
+						<div class="row mui-navigate-right">
+							<div class="col-sm-4">
+								电话 
+							</div>
+							<div class="col-sm-8">
+								<p>{{user.Phone}}</p>
+							</div>
+						</div>
+					</li>
+				</ul>
+                
+			</div>
+           
+		</script>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">名片</h1>
+			<a class="mui-btn mui-btn-primary mui-btn-link mui-pull-right cmd-ok">添加好友</a>
+		</header>
+		<div class="mui-content" id="card-content">
+			
+		</div>
+		
+	</body>
+
+</html>
