@@ -42,10 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Dynamic.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\MsgType.cs" />
     <Compile Include="Models\PositionLog.cs" />
     <Compile Include="Models\vNearUserPosition.cs" />
+    <Compile Include="Services\DynamicService.cs" />
     <Compile Include="Services\MessageService.cs" />
     <Compile Include="Services\PositionLogService.cs" />
     <Compile Include="Services\vNearUserPositionService.cs" />

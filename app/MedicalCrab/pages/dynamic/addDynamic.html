@@ -8,6 +8,7 @@
 		<link rel="stylesheet" type="text/css" href="../../css/font-awesome.min.css"/>
 		<script src="../../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../js/mui.js"></script>
+		<script src="../../js/app.js"></script>
 		<script src="../../js/dynamic/addDynamic.js"></script>
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
@@ -16,7 +17,7 @@
 	<body>
 		<header class="mui-bar mui-bar-nav">
 			<button type="button" class="mui-btn mui-pull-left mui-action-back">关闭</button>
-			<button type="button" class="mui-btn mui-pull-right">发布</button>
+			<button type="button" class="mui-btn mui-pull-right" id="btnSend">发布</button>
 			<h1 class="mui-title">我的动态我做主</h1>
 		</header>
 		 <footer class="mui-bar mui-bar-tab">
@@ -27,34 +28,10 @@
 		</footer>
 		<div class="mui-content">
 			<div style="margin: 10px 2px 0px 2px;border: 0px;">
-				<textarea style="margin-bottom: 0px;border: 0px;" rows="10" placeholder="来说点自己周围的新鲜事吧"></textarea>
+				<textarea id="txtContent" style="margin-bottom: 0px;border: 0px;" rows="10" placeholder="来说点自己周围的新鲜事吧"></textarea>
 			</div>
 			<div>
-				<ul class="mui-table-view">
-					<!--<li class="mui-table-view-cell mui-media mui-col-xs-3">
-						<img id="img001" class="mui-media-object" src="/storage/emulated/legacy/com.taou.maimai/images/-820645443_1434474389600.jpeg">
-					</li>
-					<li class="mui-table-view-cell mui-media mui-col-xs-3">
-						<img id="img002" class="mui-media-object" src="../images/shuijiao.jpg">
-					</li>
-					<li class="mui-table-view-cell mui-media mui-col-xs-3">
-					   <img class="mui-media-object" src="../images/shuijiao.jpg">
-					</li>
-					<li class="mui-table-view-cell mui-media mui-col-xs-3">
-						<img class="mui-media-object" src="../images/shuijiao.jpg">
-					</li>
-					<li class="mui-table-view-cell mui-media mui-col-xs-3">
-						<img class="mui-media-object" src="../images/shuijiao.jpg">
-					</li>
-					<li class="mui-table-view-cell mui-media mui-col-xs-3">
-					   <img class="mui-media-object" src="../images/shuijiao.jpg">
-					</li>
-					<li class="mui-table-view-cell mui-media mui-col-xs-3">
-					   <img class="mui-media-object" src="../images/shuijiao.jpg">
-					</li>
-					<li class="mui-table-view-cell mui-media mui-col-xs-3">
-						<img class="mui-media-object" src="../images/shuijiao.jpg">
-					</li>-->
+				<ul class="mui-table-view mui-grid-view" id="ImageList">
 				</ul>
 			</div>
 			<div class="mui-content-padded">

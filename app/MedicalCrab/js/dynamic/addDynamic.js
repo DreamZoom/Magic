@@ -22,6 +22,20 @@ mui.plusReady(function(){
 			cancel:"取消",
 			buttons:btn
 		},function(e){
+			//获取序号
+			var Array = document.getElementsByName("imgTag");
+			var currentIndex = 0;
+			if(undefined==Array){
+				currentIndex = 0;
+			}else{
+				currentIndex = Array.length;
+			}
+			//var ulHtml = $("#ImageList").html();
+			var ulHtml = '<li class="mui-table-view-cell mui-media mui-col-xs-3">';
+			ulHtml += '<img name="imgTag" class="mui-media-object" src="#" style="width:100%;height:100%;">';
+			ulHtml += '</li>';
+			
+			
 			var index = e.index;
 			var txt = "";
 			switch(index){
@@ -33,8 +47,10 @@ mui.plusReady(function(){
 				camera.captureImage(function(path){
 					//转换为本地资源可以直接为Img添加src属性则可以预览
 					plus.io.resolveLocalFileSystemURL(path,function(entry){
-						var pic = document.getElementById("img002");    
-	    				pic.src = entry.toLocalURL();
+//						var pic = document.getElementsByName("imgTag");   
+//	    				pic[currentIndex].src = entry.toLocalURL();
+						ulHtml = ulHtml.replace("#",entry.toLocalURL());
+	    				$("#ImageList").append(ulHtml);
 					},function(errors){
 						mui.toast(errors);
 					});
@@ -45,15 +61,18 @@ mui.plusReady(function(){
 				break;
 				case 2:
 				plus.gallery.pick(function(ePath){
-					var pic = document.getElementById("img001");    
-	    				pic.src = ePath;
+					alert(currentIndex);
+//					var pic = document.getElementsByName("imgTag");   
+//	    				pic[currentIndex].src = ePath;
+	    				ulHtml = ulHtml.replace("#",ePath);
+	    				$("#ImageList").append(ulHtml);
 				},function(error){},{filter:"image",multiple:false});
 				break;
 			}
 		});
 	});
 	
-	plus.storage.clear();
+	plus.storage.removeItem("TagKey");
 	//添加标签
 	$("#aTag").click(function(){
 		var currentKey = plus.storage.getItem("TagKey");
@@ -62,6 +81,81 @@ mui.plusReady(function(){
 		}else{
 			mui.toast("最多能添加4个标签");	
 		}
+	});
+	
+	
+	$("#btnSend").click(function(){
+		var content = $("#txtContent").val();
+		if(0 == content.length){
+			mui.toast("请填写动态内容");
+			return false;
+		} 
+		
+		var pic = $('img[name="imgTag"]').src;
+		var tag001 = $("#tag001").html();
+		var tag002 = $("#tag002").html();
+		var tag003 = $("#tag003").html();
+		var tag004 = $("#tag004").html();
+		var serverUrl = app.ApiUrl + "Dynamic/Add";
+
+		console.log(serverUrl+app.getUser().UserName+"::"+tag002);
+		
+		if(undefined == pic){
+			mui.ajax(serverUrl+"?username="+app.getUser().UserName,{
+					data:{
+						fContent:content,
+						fImage:"",
+						fImageCount:"0",
+						fTag1:tag001,
+						fTag2:tag002,
+						fTag3:tag003,
+						fTag4:tag004,
+						fType:"1"
+					},
+					dataType:'json',
+					type:'post',
+					timeout:100000,
+					success:function(data){
+						if("NO" == data.result){
+							mui.toast("发布动态失败");
+						}else{
+							mui.back();
+						}
+					},
+					error:function(xhr,type,errorThrown){
+						mui.toast("请求错误");
+					} 
+				});
+		}else{
+//			var filename = file.substr(file.lastIndexOf('/') + 1);
+//			var server = app.ApiUrl + "user/UploadHandImage";
+//
+//			var wt = plus.nativeUI.showWaiting();
+//			var task = plus.uploader.createUpload(server, {
+//				method: "POST"
+//			}, function(t, status) { //上传完成
+//				wt.close(); 
+//				
+//				if (status == 200) {
+//					mui.toast("上传头像成功");	
+//				} else {
+//					mui.toast("上传失败：" + status);
+//				}
+//				self.close(); 
+//			});
+//	
+//			task.addData("username", app.getUser().UserName);
+//			task.addData("");
+//			for(var p in params){
+//				task.addData(p, ""+params[p]);
+//				console.log(p+"-----"+params[p]);
+//			}
+//			task.addFile(file, {
+//				key: "upload_img"
+//			}); 
+//			
+//			task.start();
+		}	
 	});
 	
 	
@@ -146,7 +240,7 @@ var prompt_dialog = function(){
 			//提交信息
 			$("#tagTitle").text("动态标签：");
 			var currentKey = plus.storage.getItem("TagKey");
-			alert(currentKey);
+
 			if(undefined == currentKey){
 				currentKey = 1;
 			}else{
