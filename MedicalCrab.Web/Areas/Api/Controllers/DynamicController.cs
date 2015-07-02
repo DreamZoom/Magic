@@ -39,7 +39,7 @@ namespace MedicalCrab.Web.Areas.Api.Controllers
 
         public ActionResult GetList() 
         {
-            var list = dynamicService.GetDynamic();
+            var list = dynamicService.GetModelList("");
             if(null != list)
             {
                 return this.SuccessJson(list, "YES");

@@ -35,11 +35,5 @@ namespace MedicalCrab.Core.Services
             return true;
         }
 
-        public List<MedicalCrab.Core.Models.tDynamic> GetDynamic() 
-        {
-            var list = this.GetModelList("");
-            return (List<MedicalCrab.Core.Models.tDynamic>)list;
-        }
-
     }
 }
