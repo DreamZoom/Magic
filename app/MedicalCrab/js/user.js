@@ -7,11 +7,11 @@
 	win.user.logined=function(data){
 		if(data.token){
 			app.setToken(data.token);
-			app.setUser(data.user);			
-			var self =plus.webview.currentWebview();
+			app.setUser(data.user);
 			
+			var self =plus.webview.currentWebview();
 			app.open("center.html");
-			self.close();
+			app.log(app.getUser());
 		}
 		else{ 
 			mui.toast("token 无效");

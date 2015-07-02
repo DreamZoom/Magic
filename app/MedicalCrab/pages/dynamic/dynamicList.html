@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script src="../../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/mui.js"></script>
+		<script src="../../js/template/template.js"></script>
+		<link href="../../css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/custom.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/font-awesome.min.css"/>
+		<script  id="dynamicList" type="text/html">
+			{{each list as value }}
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell mui-media">
+					<div>
+						<a href="#">
+							<img class="mui-media-object mui-pull-left" src="{{value.Image}}"  />
+						</a>	
+						<div class="mui-media-body">
+							<p class="mui-ellipsis">{{value.Name}}|{{value.Company}}</p>
+							<p class='mui-ellipsis'>地点|职位|最后登陆天数</p>
+						</div>
+					</div>
+					<!--动态内容-->
+					<div class="mui-media-body">
+						我是一个好的工程师，我需要一个好的工作环境
+					</div>
+					<!--图片部分-->
+					<div class="mui-content">
+		        		<ul class="mui-table-view mui-grid-view">
+					        <li class="mui-table-view-cell mui-media mui-col-xs-4">
+					            <a href="#">
+					                <img class="mui-media-object" src="../images/shuijiao.jpg">
+					             </a>
+					        </li>
+					        <li class="mui-table-view-cell mui-media mui-col-xs-4">
+					            <a href="#">
+					                <img class="mui-media-object" src="../images/muwu.jpg">
+					                </a>
+					        </li>
+					        <li class="mui-table-view-cell mui-media mui-col-xs-4">
+					            <a href="#"><img class="mui-media-object" src="../images/cbd.jpg">
+								</a>
+					        </li>
+					        <li class="mui-table-view-cell mui-media mui-col-xs-4">
+					            <a href="#">
+					                <img class="mui-media-object" src="../images/yuantiao.jpg">
+					                </a>
+					        </li>
+		    			</ul>   
+					</div>
+					<!--操作部分-->
+					<div class="mui-media-body">
+						<p class="mui-ellipsis">
+							标签
+							<span>
+								<a class="" href="#">
+									删除
+								</a>
+								<a class="" href="#">
+									点赞
+								</a>
+								<a class="" href="#">
+									评论
+								</a>
+							</span>
+						</p>
+					</div>
+				</li>
+			</ul>
+			{{/each}}
+		</script>
+	</head>
+	<body>
+		<div>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-divider">我是第一列</li>
+			</ul>
+		</div>
+		<div>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell mui-media">
+					<div>
+						<a href="#">
+							<img class="mui-media-object mui-pull-left" src="../../images/icon100.png"  />
+						</a>	
+						<div class="mui-media-body">
+							<p class="mui-ellipsis">名字|公司</p>
+							<p class='mui-ellipsis'>地点|职位|最后登陆天数</p>
+						</div>
+					</div>
+					<!--动态内容-->
+					<div class="mui-media-body">
+						我是一个好的工程师，我需要一个好的工作环境
+					</div>
+					<!--图片部分-->
+					<div class="mui-content">
+		        		<ul class="mui-table-view mui-grid-view">
+					        <li class="mui-table-view-cell mui-media mui-col-xs-4">
+					            <a href="#">
+					                <img class="mui-media-object" src="../images/shuijiao.jpg">
+					             </a>
+					        </li>
+					        <li class="mui-table-view-cell mui-media mui-col-xs-4">
+					            <a href="#">
+					                <img class="mui-media-object" src="../images/muwu.jpg">
+					                </a>
+					        </li>
+					        <li class="mui-table-view-cell mui-media mui-col-xs-4">
+					            <a href="#"><img class="mui-media-object" src="../images/cbd.jpg">
+								</a>
+					        </li>
+					        <li class="mui-table-view-cell mui-media mui-col-xs-4">
+					            <a href="#">
+					                <img class="mui-media-object" src="../images/yuantiao.jpg">
+					                </a>
+					        </li>
+		    			</ul>   
+					</div>
+					<!--操作部分-->
+					<div class="mui-media-body">
+						<p class="mui-ellipsis">
+							标签
+							<span>
+								<a class="" href="#">
+									删除
+								</a>
+								<a class="" href="#">
+									点赞
+								</a>
+								<a class="" href="#">
+									评论
+								</a>
+							</span>
+						</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div id="content">	
+		</div>
+		<script id="test" type="text/html">
+			{{if isAdmin}}
+			<hi>{{title}}</hi>
+		<ul>
+			{{each list as value i}}
+			 <li>索引:{{i+1}}：{{value}}</li>
+			 {{/each}}
+			 </ul>
+			 {{/if}}
+		</script>
+		<script>
+var data = {
+	title: '基本例子',
+	isAdmin: true,
+	list: ['文艺', '博客', '摄影', '电影', '民谣', '旅行', '吉他']
+};
+var html = template('test', data);
+document.getElementById('content').innerHTML = html;
+</script>
+	</body>
+</html>
