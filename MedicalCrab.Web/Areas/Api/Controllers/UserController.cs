@@ -128,5 +128,40 @@ namespace MedicalCrab.Web.Areas.Api.Controllers
             return result;
         }
 
+
+        MedicalCrab.Core.Services.vUserFriendsService userFriendsService = new Core.Services.vUserFriendsService();
+        /// <summary>
+        /// 获取好友列表
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        public ActionResult getFriends(string username)
+        {
+            
+            try
+            {
+                var list = userFriendsService.GetModelList(string.Format("[UserName]='{0}'",username));
+
+                return this.SuccessJson(list, "获取好友列表成功。");
+            }
+            catch (Exception err)
+            {
+                return this.ErrorJson(err.Message);
+            }
+        }
+
+        public ActionResult SearchUser(string username)
+        {
+            try
+            {
+                var list = userService.GetModelList(string.Format("[UserName] like '%{0}%'", username));
+
+                return this.SuccessJson(list, "搜索好友成功。");
+            }
+            catch (Exception err)
+            {
+                return this.ErrorJson(err.Message);
+            }
+        }
     }
 }

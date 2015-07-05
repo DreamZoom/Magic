@@ -28,7 +28,7 @@
 	}
 
 	//api服务器地址
-	app.RomateUrl = "http://192.168.0.109:2835/";
+	app.RomateUrl = "http://192.168.0.254:2835/";
 	//app.RomateUrl = "http://192.168.1.53:2835/";
 	app.ApiUrl = app.RomateUrl + "api/";
 	//全局对象
@@ -177,15 +177,15 @@
 		}
 		
 		var index = get(friends,function(d){
-			alert(d.User.UserName==user.UserName);
+			
 		    return d.User.UserName==user.UserName;
 		});
-		alert(index);
+
 		if(typeof(index) != 'undefined'){
 			friends.splice(index,1);
 		}
 		//{User:}	
-		friends.push(msg); 
+		friends.unshift(msg); 
 	    app.storage.setItem(key,friends);
 	}
 
@@ -306,7 +306,7 @@ mui.plusReady(function() {
 	/*
 	 * 用户地理位置更新
 	 */
-	app.updatelocation = function() {
+	app.updatelocation = function(success) {
         
 		plus.geolocation.getCurrentPosition(function(position) {
 			var lasttime = app.storage.getItem("position-datetime");
@@ -324,6 +324,9 @@ mui.plusReady(function() {
 					//alert(response.data);
 				     app.storage.setItem("position",response.data);
 				     app.storage.setItem("position-datetime",new Date());
+				     if(success){
+				     	success(response.data);
+				     }
 				}
 			},function(){
 				 
@@ -422,3 +425,25 @@ mui.plusReady(function() {
 		}
 	});
 });
+
+
+
+(function($){
+	
+	/*
+	 * 依赖于jquery 和 arttemplate
+	 */
+	
+	$.fn.template=function(options){
+		//初始化参数
+		var opts=$.extend({
+			api:"",//api
+			params:{},//附加参数
+			target:"",//模板id
+		},options);
+		
+		
+		
+	}
+	
+})(jQuery);

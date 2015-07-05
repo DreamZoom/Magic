@@ -1,6 +1,8 @@
 mui.plusReady(function(){
 	
 	var pos = app.storage.getItem("position");
+	
+	
 	template.helper("imageFormat",function(image){
 		return app.Request.ServerUrl+image;
 	});
@@ -10,15 +12,27 @@ mui.plusReady(function(){
 		$("#list").html(html);
 	}
 	
-	var loading = plus.nativeUI.showWaiting(); 
-	app.api.get("Position/GetNearUser",{Latitude:pos.Latitude,Longitude:pos.Longitude},function(response){	
-		app.storage.setItem("user-position-history",response.data);
-		var html = template("near-list",{data:response.data});
-		$("#list").html(html);
-		loading.close();
-	},function(){
-		loading.close(); 
-	});
+	if(!pos){
+		app.updatelocation(function(position){
+			InitNear(position); 
+		});
+	}
+	else{
+		InitNear(pos)
+	}
+	
+	function InitNear(pos){
+		var loading = plus.nativeUI.showWaiting(); 
+		app.api.get("Position/GetNearUser",{Latitude:pos.Latitude,Longitude:pos.Longitude},function(response){	
+			app.storage.setItem("user-position-history",response.data);
+			var html = template("near-list",{data:response.data});
+			$("#list").html(html);
+			loading.close();
+		},function(){
+			loading.close(); 
+		});
+	}
+	
 	
 	//点击附近的人
 	mui(document).on("tap","a[user]",function(){

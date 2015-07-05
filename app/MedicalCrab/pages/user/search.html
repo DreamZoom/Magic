@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../font-icon/css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/custom.css" />
+ 
+        <script src="../../js/angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/template.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/app.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/user/search.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+	</head>
+
+	<body>
+		
+		<script type="text/template" id='template-result-list'>
+			<li class="mui-table-view-divider">搜索结果:</li>
+			{{each users as user i}}
+			<li class="mui-table-view-cell">
+				<a >
+					<img class="mui-media-object mui-pull-left" src="{{user.UserImage | imageFormat}}">
+					<div class="mui-media-body">
+						{{user.UserName}}
+						<p class='mui-ellipsis'>{{user.SignDiscription}}</p>
+					</div>
+				</a>
+			</li>
+			{{/each}}
+			{{if users.length==0}}
+			<li class="mui-table-view-cell">
+				<a style="color: #888888;"  >	
+						对不起！未搜索到结果。
+				</a>
+			</li>
+			{{/if}}
+		</script>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">新朋友</h1>
+		</header>
+		<div class="mui-content">
+			<ul class="mui-table-view" ng-app="">
+				<li class="mui-table-view-cell">
+					<div class="mui-input-row input-search">
+						<span class="icon-search"></span>
+						<input type="text" class="mui-input-clear" placeholder="用户名" ng-model="username" id="username">
+					</div>
+				</li>
+				<li class="mui-table-view-cell btn-search" ng-show="username.length>0">
+					<a class="mui-navigate-right">搜索:<span class="input-search-key">{{username}}</span></a>
+				</li>
+			</ul>
+            <ul class="mui-table-view" id="user-search-list">
+		
+			</ul>
+		</div>
+	</body>
+
+</html>

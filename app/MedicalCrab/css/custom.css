@@ -59,7 +59,6 @@ icon {
 .messages {
 	height: 100%;
 }
-
 .custom-table {
 	border: 0px;
 }
@@ -186,11 +185,10 @@ icon {
 	right: 0;
 	width: 60px;
 	text-align: center;
-	vertical-align:middle;
+	vertical-align: middle;
 	padding: 3px;
 	/*padding-top: 50%;*/
 }
-
 .message-chat-box {
 	bottom: 0px;
 	padding: 2px;
@@ -207,8 +205,30 @@ icon {
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
 }
-
-.message-chat-box input{
-	margin:0px;
+.message-chat-box input {
+	margin: 0px;
 	width: 100%;
+}
+.mui-input-row input {
+	margin-bottom: 0px;
+}
+
+.input-search{
+	border-bottom: 1px solid #2AC845;
+}
+.input-search input {
+	margin-left: 40px;
+	border-left-width: 0px !important;
+	border-top-width: 0px !important;
+	border-right-width: 0px !important;
+	border-bottom-width: 0px !important;
+}
+.input-search .icon-search{
+       margin: 12px;
+       color: #2AC845;
+       position: absolute;
+}
+.input-search-key{
+	padding-left: 5px;
+	color: #2AC845;
 }

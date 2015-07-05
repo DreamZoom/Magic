@@ -47,6 +47,10 @@ namespace IMChat
                     SuperWebSocket.WebSocketSession reciveSession = this.Chat.getSessionByName(message.Reciver);
                     SendToClient(reciveSession, message, value);
                 }
+                else if (message.MsgType == MsgType.GROUP)
+                {
+                    ProcGroupMessage(session, message);
+                }
             }
             catch
             {
@@ -101,7 +105,7 @@ namespace IMChat
         public void SendToClient(SuperWebSocket.WebSocketSession reciveSession, Message message)
         {
             string value = MessageHelper.Object2Json(message);
-            reciveSession.Send(value);
+            SendToClient(reciveSession, message, value);
         }
 
         public void ReadMessage(string username,string recivename)
@@ -124,5 +128,22 @@ namespace IMChat
             AsyncReadMessage awm = (AsyncReadMessage)ar.AsyncState;
             awm.EndInvoke(ar);
         }
+
+
+        #region 处理群组消息
+
+        MedicalCrab.Core.Services.GroupUsersService groupUserService = new MedicalCrab.Core.Services.GroupUsersService();
+
+        public void ProcGroupMessage(SuperWebSocket.WebSocketSession session,Message message)
+        {
+            string groupNo = message.Reciver.Split('@').FirstOrDefault();
+            var groupUsers = groupUserService.GetModelList(string.Format("GroupNo='{0}'", groupNo));
+            foreach (var user in groupUsers)
+            {
+                SuperWebSocket.WebSocketSession reciveSession = this.Chat.getSessionByName(message.Reciver);
+                SendToClient(reciveSession, message);
+            }
+        }
+        #endregion
     }
 }

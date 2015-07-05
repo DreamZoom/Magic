@@ -7,6 +7,7 @@ namespace MedicalCrab.Core.Models
 {
     public enum MsgType
     {
-        P2P
+        P2P,//私聊消息
+        GROUP,//群组消息
     }
 }
