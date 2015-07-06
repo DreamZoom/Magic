@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/custom.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/font-awesome.min.css"/>
+		<script src="../../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/mui.js"></script>
+		<script src="../../js/app.js"></script>
+		<script src="../../js/dynamic/addDynamic.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<button type="button" class="mui-btn mui-pull-left mui-action-back">关闭</button>
+			<button type="button" class="mui-btn mui-pull-right" id="btnSend">发布</button>
+			<h1 class="mui-title">我的动态我做主</h1>
+		</header>
+		 <footer class="mui-bar mui-bar-tab">
+			<a id="photos">照片</a>
+			&nbsp;&nbsp;
+			<a href="javascript:void(0);" id="aTag">标签</a>
+			<!--<a href="#mui-popover">标签</a>-->
+		</footer>
+		<div class="mui-content">
+			<div style="margin: 10px 2px 0px 2px;border: 0px;">
+				<textarea id="txtContent" style="margin-bottom: 0px;border: 0px;" rows="10" placeholder="来说点自己周围的新鲜事吧"></textarea>
+			</div>
+			<div>
+				<ul class="mui-table-view mui-grid-view" id="ImageList">
+				</ul>
+			</div>
+			<div class="mui-content-padded">
+				<h5 id="tagTitle"></h5>
+				<span id="tag001"></span>
+				<span id="tag002"></span>
+				<span id="tag003"></span>
+				<span id="tag004"></span> 
+			</div>
+		</div>
+		<!--<div id="mui-popover" class="mui-popover">
+			  <header class="mui-bar mui-bar-nav">
+    			<h1 class="mui-title">Popover title</h1>
+  			  </header>
+			  <ul class="mui-table-view">
+			    <li class="mui-table-view-cell">Item1</li>
+			    <li class="mui-table-view-cell">Item2</li>
+			    <li class="mui-table-view-cell">Item3</li>
+			    <li class="mui-table-view-cell">Item4</li>
+			    <li class="mui-table-view-cell">Item5</li>
+			    <li class="mui-table-view-cell">Item6</li>
+			    <li class="mui-table-view-cell">Item7</li>
+			    <li class="mui-table-view-cell">Item8</li>
+			  </ul>
+		</div>	-->
+	</body>
+</html>

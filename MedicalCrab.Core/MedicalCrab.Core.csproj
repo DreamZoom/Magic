@@ -42,17 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Friends.cs" />
-    <Compile Include="Models\Group.cs" />
-    <Compile Include="Models\GroupUsers.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\MsgType.cs" />
     <Compile Include="Models\PositionLog.cs" />
     <Compile Include="Models\vNearUserPosition.cs" />
-    <Compile Include="Models\vUserFriends.cs" />
-    <Compile Include="Services\FriendsService.cs" />
-    <Compile Include="Services\GroupService.cs" />
-    <Compile Include="Services\GroupUsersService.cs" />
     <Compile Include="Services\MessageService.cs" />
     <Compile Include="Services\PositionLogService.cs" />
     <Compile Include="Services\vNearUserPositionService.cs" />
