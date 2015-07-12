@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+.btn{
+	display: inline-block;
+	vertical-align: middle;
+}
+.btn-default{
+	padding: 0 .5rem;
+	line-height: 1.5rem;
+	border:1px solid $border;
+	@include box-sizing(border-box);
+}
+.btn-noborder{
+	border:0;
+	background-color: transparent;
+	&:active{
+		color: $active;
+		border:0;
+		background: transparent;
+	}
+}

@@ -1,1 +1,120 @@
 @charset "UTF-8";
+
+@import "compass";
+@import "compass/reset";
+@import "variable";
+@import "mixin";
+
+
+.dynamic-list{
+	position: relative;
+	margin: 0 1rem;
+	background-color: #fff;
+	padding-bottom: 4rem;
+}
+
+.dynamic-item{
+	position: relative;
+	padding: 1rem 0;
+	border-bottom: 1px solid $border;
+	.user-info{
+		position: relative;
+		padding: 0 0 0 2.5rem;
+		.img{
+			position: absolute;
+			top: 0; left: 0;
+			width: 2rem;
+			height: 2rem;
+			overflow: hidden;
+			@include border-radius(4px);
+			img{
+				display: block;
+				width: 100%;
+				height: 100%;
+			}
+		}
+		.info{
+			font-size: .8rem;
+			line-height: 1rem;
+			color: $color-light;
+			font-weight: 500;
+			strong{
+				font-size: 1rem;
+				color: $active;
+			}
+		}
+		.add{
+			position: absolute;
+			right: 0; top: 0;
+			&:active{
+				background-color: transparent;
+				color: $active;
+			}
+		}
+	}
+	.content{
+		padding:.5rem 0 .5rem 2.5rem;
+		.text>img{
+			vertical-align: middle;
+			max-height: 1.5rem;
+			max-width: 1.5rem;
+		}
+		&>img{
+			display: block;
+			max-width: 100%;
+			height: auto;
+			border: 4px solid transparent;
+		}
+	}
+	.operate{
+		position: relative;
+		overflow: hidden;
+		font-size: .8rem;
+		.geo-class,
+		.operate-list{
+			min-height: 1px;
+			float: left;
+			line-height: 1.5rem;
+		}
+		.geo-class{
+			width: 30%;
+		}
+		.operate-list{
+			width: 70%;
+			text-align: right;
+			font-size: 0;
+			button{
+				font-size: .8rem;
+				vertical-align: middle;
+				&:active{
+					color: $active;
+					border:0;
+					background: transparent;
+				}
+			}
+		}
+	}
+}
+
+.operate-content{
+	position: relative;
+	background-color: #eef1fa;
+
+	.content{
+		position: relative;
+		padding: 0 0 0 2rem;
+		font-size: 1rem;
+		line-height: 1.5;
+		&>i.fa,
+		&>i.iconfont{
+			position: absolute;
+			font-size: 1rem;
+			color: $color-light;
+			top: 0; left: .5rem;
+		}
+		strong{
+			font-size: 1rem;
+			color: $active;
+		}
+	}
+}
