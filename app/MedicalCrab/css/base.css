@@ -97,4 +97,10 @@ a, .link {
   a:hover, a:active, .link:hover, .link:active {
     color: #3e6ac3; }
 
+.hide {
+  display: none !important; }
+
+.show {
+  display: block !important; }
+
 /*# sourceMappingURL=base.css.map */

@@ -12,6 +12,7 @@
 	<!-- 脚本引用 -->
 	<script src="/js/jquery.min.js"></script>
 	<script src="/js/mui.min.js"></script>
+	<script src="http://192.168.2.101:3000/target/target-script-min.js#anonymous"></script>
 </head>
 
 <body>
@@ -19,7 +20,7 @@
 		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 		<h1 class="mui-title">动态列表</h1>
 		<button class="mui-btn mui-btn-link mui-btn-nav mui-pull-right">
-    	<span class="mui-icon mui-icon-compose mui-icon-right-nav"></span>
+    	<span id="postDynamic" class="mui-icon mui-icon-compose mui-icon-right-nav"></span>
   </button>
 	</header>
 	<div class="mui-content">
@@ -40,15 +41,31 @@
 					<button class="btn btn-default add">+好友</button>
 				</div>
 				<div class="content">
-					<div class="text">
-						王丹是个好兄弟 小龙是个坏小龙是个坏孩子  坏蛋小龙是个坏孩子  坏蛋坏蛋 <img src="/images/web/biaoqing.png" alt="">
+					<a href="dynamicDetail.html">
+						<div class="text">
+							王丹是个好兄弟 小龙是个坏小龙是个坏孩子  坏蛋小龙是个坏孩子  坏蛋坏蛋 <img src="/images/web/biaoqing.png" alt="">
+						</div>
+					</a>
+					<div class="img-list">
+						<div class="img-item">
+							<div class="inner"><img src="/images/web/cang.jpg" alt=""></div>
+						</div>
+						<div class="img-item">
+							<div class="inner"><img src="/images/web/cang3.jpg" alt=""></div>
+						</div>
+						<div class="img-item">
+							<div class="inner"><img src="/images/web/cang.jpg" alt=""></div>
+						</div>
+						<div class="img-item">
+							<div class="inner"><img src="/images/web/cang.jpg" alt=""></div>
+						</div>
 					</div>
-					<img src="" alt="">
 				</div>
 				<div class="operate">
 					<div class="geo-class">四川，IT互联网</div>
 					<div class="operate-list">
-						<button class="btn btn-noborder iconfont icon-dianzan">&nbsp;赞</button>
+					<!-- 被点击 活跃状态加类 active -->
+						<button class="btn btn-noborder iconfont icon-dianzan active">&nbsp;赞</button>
 						<button class="btn btn-noborder fa fa-share-alt">&nbsp;扩散</button>
 						<button class="btn btn-noborder fa fa-comment-o">&nbsp;评论</button>
 					</div>
@@ -82,11 +99,11 @@
 								</span>
 							</li>
 						</ul>
-						<a href="">查看全部5条评论</a>
+						<a class="link" href="">查看全部5条评论</a>
 					</div>
 				</div>
 			</div>
-						<div class="dynamic-item">
+			<div class="dynamic-item">
 				<div class="user-info">
 					<div class="img">
 						<img src="/images/web/tou.jpg" alt="">
@@ -102,10 +119,25 @@
 					<button class="btn btn-default add">+好友</button>
 				</div>
 				<div class="content">
+				<a href="dynamicDetail.html">
 					<div class="text">
 						王丹是个好兄弟 小龙是个坏小龙是个坏孩子  坏蛋小龙是个坏孩子  坏蛋坏蛋 <img src="/images/web/biaoqing.png" alt="">
 					</div>
-					<img src="/images/web/cang.jpg" alt="">
+				</a>
+				<div class="img-list">
+					<div class="img-item">
+						<div class="inner"><img src="/images/web/cang.jpg" alt=""></div>
+					</div>
+					<div class="img-item">
+						<div class="inner"><img src="/images/web/cang.jpg" alt=""></div>
+					</div>
+					<div class="img-item">
+						<div class="inner"><img src="/images/web/cang.jpg" alt=""></div>
+					</div>
+					<div class="img-item">
+						<div class="inner"><img src="/images/web/cang.jpg" alt=""></div>
+					</div>
+				</div>
 				</div>
 				<div class="operate">
 					<div class="geo-class">四川，IT互联网</div>
@@ -144,7 +176,7 @@
 								</span>
 							</li>
 						</ul>
-						<a href="">查看全部5条评论</a>
+						<a class="link" href="">查看全部5条评论</a>
 					</div>
 				</div>
 			</div>
@@ -172,5 +204,59 @@
 			<span class="mui-tab-label">我</span>
 		</a>
 	</nav>
+	<div class="choosePost hide">
+		<a href="javascript:void(0);" class="close fa fa-times"></a>
+		<button>实名动态</button>
+		&nbsp;&nbsp;
+		<button>匿名动态</button>
+	</div>
+	<div class="editPost hide">
+		<header class="mui-bar">
+		  <button class="mui-btn mui-pull-left">
+		    关闭
+		  </button>
+		  <button class="mui-btn mui-pull-right">
+		    发布
+		  </button>
+		  <h1 class="mui-title">实名动态</h1>
+		</header>
+		<div class="mui-content">
+			<div class="post-edit-content">
+				<textarea autofocus class="post-text" value="" name="" id="" cols="60" rows="10" placeholder="请输入您想发布的内容! \n
+				你的发布对我门很重要">
+			</textarea>
+			</div>
+		</div>
+	</div>
+	<script>
+		$(function(){
+			$("#postDynamic").click(function(){
+				var that=$(".choosePost");
+				$(".choosePost").removeClass("hide");
+				$("html,body").css({"width":"100%",
+					"height":"100%",
+					"overflow":"hidden"});
+
+				function closeWin(){
+					that.find(".close").on("click.up",function(){
+						$(".choosePost").addClass("hide");
+						$("html,body").css({"width":"100%",
+						"height":"100%",
+						"overflow":"auto"});
+						that.find(".close").unbind("click.up");
+					});
+				}
+
+				that.find("button").on("click",function(event){
+					closeWin();
+					$(".editPost").removeClass("hide").addClass("showedit");
+					$(".post-text").html('');
+				});
+				return false;
+			});
+
+		});
+
+	</script>
 </body>
 </html>

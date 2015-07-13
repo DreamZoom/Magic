@@ -55,8 +55,11 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   position: relative;
   padding: 1rem 0;
   border-bottom: 1px solid #d2d2d2; }
+  .dynamic-item.detail {
+    border-bottom: 0; }
   .dynamic-item .user-info {
     position: relative;
+    min-height: 2rem;
     padding: 0 0 0 2.5rem; }
     .dynamic-item .user-info .img {
       position: absolute;
@@ -83,12 +86,17 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     .dynamic-item .user-info .add {
       position: absolute;
       right: 0;
-      top: 0; }
+      top: 0;
+      line-height: 1.2rem;
+      font-size: .75rem;
+      border-color: #878b96; }
       .dynamic-item .user-info .add:active {
         background-color: transparent;
         color: #3e6ac3; }
   .dynamic-item .content {
     padding: .5rem 0 .5rem 2.5rem; }
+    .dynamic-item .content a {
+      color: #41464c; }
     .dynamic-item .content .text > img {
       vertical-align: middle;
       max-height: 1.5rem;
@@ -98,6 +106,27 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
       max-width: 100%;
       height: auto;
       border: 4px solid transparent; }
+  .dynamic-item .img-list {
+    position: relative;
+    overflow: hidden; }
+    .dynamic-item .img-list .img-item {
+      float: left;
+      width: 50%; }
+      .dynamic-item .img-list .img-item .inner {
+        padding-top: 100%;
+        height: 0;
+        overflow: hidden; }
+      .dynamic-item .img-list .img-item img {
+        display: block;
+        margin: 0 auto;
+        margin-top: -100%;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        border: solid transparent;
+        border-width: 2px 1px;
+        width: 100%;
+        min-height: 100%; }
   .dynamic-item .operate {
     position: relative;
     overflow: hidden;
@@ -114,16 +143,49 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
       text-align: right;
       font-size: 0; }
       .dynamic-item .operate .operate-list button {
+        color: #878b96;
         font-size: .8rem;
         vertical-align: middle; }
-        .dynamic-item .operate .operate-list button:active {
+        .dynamic-item .operate .operate-list button:active, .dynamic-item .operate .operate-list button.active {
           color: #3e6ac3;
           border: 0;
           background: transparent; }
 
+.operate-index {
+  border: 1px solid #d2d2d2;
+  border-width: 1px 0;
+  padding: .5rem 0; }
+  .operate-index .oitem {
+    position: relative;
+    display: inline-block;
+    width: 4rem;
+    text-align: center;
+    font-size: .8rem;
+    line-height: 1rem;
+    color: #878b96;
+    border-right: 1px solid #d2d2d2; }
+    .operate-index .oitem:active, .operate-index .oitem.active {
+      color: #3e6ac3; }
+      .operate-index .oitem:active .angle, .operate-index .oitem.active .angle {
+        display: block; }
+    .operate-index .oitem:last-child {
+      border-right: 0; }
+    .operate-index .oitem .angle {
+      position: absolute;
+      bottom: -.53rem;
+      left: 50%;
+      margin-left: -.4rem;
+      width: 0;
+      height: 0;
+      display: none;
+      border: .4rem solid;
+      border-color: transparent transparent #d2d2d2 transparent; }
+
 .operate-content {
   position: relative;
   background-color: #eef1fa; }
+  .operate-content.detail {
+    background-color: #fff; }
   .operate-content .content {
     position: relative;
     padding: 0 0 0 2rem;
@@ -138,5 +200,130 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     .operate-content .content strong {
       font-size: 1rem;
       color: #3e6ac3; }
+    .operate-content .content .link {
+      color: #3e6ac3; }
+
+.op-c-list .op-c-item {
+  position: relative;
+  padding: .5rem 1rem .5rem .5rem;
+  border-bottom: 1px solid #d2d2d2; }
+  .op-c-list .op-c-item > .text {
+    padding-left: 2.5rem;
+    font-size: .8rem;
+    color: #41464c; }
+  .op-c-list .op-c-item > button {
+    position: absolute;
+    right: .5rem;
+    top: 50%;
+    padding: 0;
+    margin-top: -.9rem;
+    border: 0;
+    font-size: .8rem;
+    font-weight: 400;
+    background-color: transparent; }
+    .op-c-list .op-c-item > button:active, .op-c-list .op-c-item > button.active {
+      color: #3e6ac3; }
+  .op-c-list .op-c-item:last-child {
+    border-bottom: 0; }
+
+.choosePost {
+  position: fixed;
+  top: 50%;
+  left: .5rem;
+  right: .5rem;
+  z-index: 10;
+  height: 8rem;
+  margin-top: -4rem;
+  background-color: #fff;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  overflow: hidden;
+  text-align: center;
+  padding: 1rem 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-box-shadow: 0 0 4px #d2d2d2;
+  -webkit-box-shadow: 0 0 4px #d2d2d2;
+  box-shadow: 0 0 4px #d2d2d2; }
+  .choosePost button {
+    width: 6rem;
+    height: 6rem;
+    text-align: center;
+    line-height: 3rem;
+    font-size: 1rem;
+    background-color: #3e6ac3;
+    color: #fff;
+    -moz-border-radius: 100%;
+    -webkit-border-radius: 100%;
+    border-radius: 100%; }
+    .choosePost button:active {
+      background-color: #6588cf; }
+  .choosePost .close {
+    position: absolute;
+    right: .5rem;
+    top: .5rem;
+    width: 1rem;
+    height: 1rem;
+    color: #3e6ac3;
+    font-size: .8rem; }
+    .choosePost .close:active {
+      color: #6588cf; }
+
+.editPost {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
+  padding: 2.2rem 0 2.5rem;
+  background-color: #fff;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+  .editPost.showedit {
+    -moz-animation: showedit 0.25s ease-in-out both;
+    -webkit-animation: showedit 0.25s ease-in-out both;
+    animation: showedit 0.25s ease-in-out both; }
+  .editPost header {
+    position: absolute;
+    top: 0;
+    left: 0; }
+
+.post-edit-content {
+  padding: 1rem .5rem; }
+
+.post-text {
+  position: relative;
+  display: block;
+  width: 100%;
+  color: #000;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px; }
+
+@-moz-keyframes showedit {
+  0% {
+    opacity: 0;
+    top: 100%; }
+  100% {
+    opacity: 1;
+    top: 0; } }
+@-webkit-keyframes showedit {
+  0% {
+    opacity: 0;
+    top: 100%; }
+  100% {
+    opacity: 1;
+    top: 0; } }
+@keyframes showedit {
+  0% {
+    opacity: 0;
+    top: 100%; }
+  100% {
+    opacity: 1;
+    top: 0; } }
 
 /*# sourceMappingURL=dynamic.css.map */
