@@ -2,8 +2,48 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script src="../../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/mui.js"></script>
+		<link href="../../css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/custom.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/font-awesome.min.css"/>
 	</head>
+
 	<body>
+		<header class="mui-bar mui-bar-nav">
+			<h1 id="title" class="mui-title">最新动态</h1>
+			<a class="mui-icon mui-icon-compose mui-pull-right"></a>
+		</header>
+		<div class="mui-content"></div>
 	</body>
+	<script src="../../js/mui.js"></script>
+	<script type="text/javascript">
+		//启用双击监听
+		mui.init({
+			gestureConfig:{
+				doubletap:true
+			},
+			subpages:[{
+				url:'dynamicList.html',
+				id:'dynamicList',
+				styles:{
+					top: '45px',
+					bottom: '0px',
+				}
+			}]
+		});
+	
+		var contentWebview = null;
+		document.querySelector('header').addEventListener('doubletap',function () {
+			if(contentWebview==null){
+				contentWebview = plus.webview.currentWebview().children()[0];
+			}
+			if(mui.os.ios){
+				contentWebview.evalJS("mui('#pullrefresh').pullRefresh().scrollTo(0,0,100)");
+			}else{
+				contentWebview.evalJS('mui.scrollTo(0, 100)');
+			}
+		});
+	</script>
 </html>
