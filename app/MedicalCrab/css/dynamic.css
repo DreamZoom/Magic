@@ -273,7 +273,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 .editPost {
   position: fixed;
-  top: 0;
+  top: 100%;
   left: 0;
   z-index: 9999;
   width: 100%;
@@ -284,6 +284,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
   .editPost.showedit {
+    top: 0;
     -moz-animation: showedit 0.25s ease-in-out both;
     -webkit-animation: showedit 0.25s ease-in-out both;
     animation: showedit 0.25s ease-in-out both; }
@@ -303,6 +304,39 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   border-radius: 4px; }
+
+.comment-input {
+  position: fixed;
+  width: 100%;
+  height: 2.5rem;
+  border-top: 1px solid #d2d2d2;
+  left: 0;
+  bottom: 0;
+  z-index: 9999;
+  background-color: #ddd;
+  padding: .22rem 3.5rem .25rem .5rem; }
+  .comment-input input[type="text"] {
+    width: 100%;
+    padding: 3px 5px;
+    height: 2rem;
+    font-size: .8rem;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-user-modify: read-write-plaintext-only; }
+  .comment-input input[type="button"] {
+    position: absolute;
+    right: .5rem;
+    top: .22rem;
+    line-height: 2rem;
+    padding: 0 .5rem;
+    color: #fff;
+    background-color: #3e6ac3;
+    box-shadow: none;
+    border: 0;
+    outline: 0; }
+    .comment-input input[type="button"]:active {
+      background-color: #6588cf; }
 
 @-moz-keyframes showedit {
   0% {

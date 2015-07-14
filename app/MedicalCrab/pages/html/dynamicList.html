@@ -2,7 +2,10 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0" />
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
 	<title>医蟹-标题-</title>
 	<!-- 样式引用 -->
 	<link rel="stylesheet" type="text/css" href="/css/mui.min.css"/>
@@ -67,7 +70,7 @@
 					<!-- 被点击 活跃状态加类 active -->
 						<button class="btn btn-noborder iconfont icon-dianzan active">&nbsp;赞</button>
 						<button class="btn btn-noborder fa fa-share-alt">&nbsp;扩散</button>
-						<button class="btn btn-noborder fa fa-comment-o">&nbsp;评论</button>
+						<button class="btn btn-noborder fa fa-comment-o comment">&nbsp;评论</button>
 					</div>
 				</div>
 				<div class="operate-content">
@@ -144,7 +147,7 @@
 					<div class="operate-list">
 						<button class="btn btn-noborder iconfont icon-dianzan">&nbsp;赞</button>
 						<button class="btn btn-noborder fa fa-share-alt">&nbsp;扩散</button>
-						<button class="btn btn-noborder fa fa-comment-o">&nbsp;评论</button>
+						<button class="btn btn-noborder fa fa-comment-o comment">&nbsp;评论</button>
 					</div>
 				</div>
 				<div class="operate-content">
@@ -204,6 +207,12 @@
 			<span class="mui-tab-label">我</span>
 		</a>
 	</nav>
+	<footer>
+		<div class="comment-input hide">
+			<input type="text" placeholder="评论内容">
+			<input type="button" value="评论">
+		</div>
+	</footer>
 	<div class="choosePost hide">
 		<a href="javascript:void(0);" class="close fa fa-times"></a>
 		<button>实名动态</button>
@@ -222,8 +231,7 @@
 		</header>
 		<div class="mui-content">
 			<div class="post-edit-content">
-				<textarea autofocus class="post-text" value="" name="" id="" cols="60" rows="10" placeholder="请输入您想发布的内容! \n
-				你的发布对我门很重要">
+				<textarea autofocus class="post-text" value="" name="" id="" cols="60" rows="10" placeholder="请输入您想发布的内容!">
 			</textarea>
 			</div>
 		</div>
@@ -253,6 +261,19 @@
 					$(".post-text").html('');
 				});
 				return false;
+			});
+
+
+			// 评论框
+			$(".btn.comment").on("click",function(event){
+				var that=$(".comment-input");
+				var inputbox=$(".comment-input").removeClass("hide").find("input[type='text']");
+				inputbox.focus();
+				$("nav.mui-bar.mui-bar-tab").hide();
+				inputbox.on("blur",function(){
+					that.addClass("hide");
+					$("nav.mui-bar.mui-bar-tab").show();
+				});
 			});
 
 		});
