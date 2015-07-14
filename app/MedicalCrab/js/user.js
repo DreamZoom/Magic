@@ -10,7 +10,7 @@
 			app.setUser(data.user);
 			
 			var self =plus.webview.currentWebview();
-			app.open("center.html");
+			app.open("../../index.html");
 			app.log(app.getUser());
 		}
 		else{ 

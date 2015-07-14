@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/custom.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/font-awesome.min.css"/>
+		<script type="text/javascript" src="../../js/template.js"></script>
+		<script src="../../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/mui.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+	</head> 
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left">
+				<span style="font-size:large;color:black">查找公众号</span>
+			</a>
+		</header>
+		<div class="mui-content">
+			<div class="mui-content-padded">
+				<div class="mui-input-row" style="padding: 4px;">
+					<input type="text" class="mui-input-clear" style="width: 70%;" placeholder="带清除按钮的输入框">
+					<input id="btnSearch" type="button" class="mui-btn" style="widows: 30%;" value="查询"/>
+				</div>
+			</div>	
+		</div>
+	</body>
+	<script type="text/javascript">
+		//启用双击监听
+		mui.init({
+			gestureConfig:{
+				doubletap:true
+			},
+			subpages:[{
+					url:'publicSearchList.html',
+					id:'publicSearchList',
+					styles:{
+						top: '140px',
+						bottom: '0px'
+					}
+			 }]
+		});
+		
+		
+		mui.plusReady(function(){
+			$("#btnSearch").bind("click",function(){
+					alert("OOOO");
+			});
+		});
+		var contentWebview = null;
+		document.querySelector('header').addEventListener('doubletap',function () {
+			if(contentWebview==null){
+				contentWebview = plus.webview.currentWebview().children()[0];
+			}
+			if(mui.os.ios){
+				contentWebview.evalJS("mui('#listrefresh').pullRefresh().scrollTo(0,0,100)");
+			}else{
+				console.log("ssPPP");
+				contentWebview.evalJS('mui.scrollTo(0, 100)');
+			}
+		});
+	</script>
+</html>

@@ -10,7 +10,8 @@ namespace IMChat
 {
     public class WebChat : IDisposable
     {
-        private const int port = 2014;
+        //private const int port = 8090;
+        private const int port = 32090;
 
         public WebSocketServer ws { get; set; }//SuperWebSocket中的WebSocketServer对象
 
@@ -18,7 +19,7 @@ namespace IMChat
 
         public WebChat()
         {
-            Magic.Mvc.DataAccessProvider.Current = new Magic.Mvc.DataAccess(@"Data Source=dreamzoom-pc\sqlexpress;Initial Catalog=db_MedicalCrab;Persist Security Info=True;User ID=sa;Password=123456");
+            Magic.Mvc.DataAccessProvider.Current = new Magic.Mvc.DataAccess(@"Data Source=localhost;Initial Catalog=db_MedicalCrab;Persist Security Info=True;User ID=sa;Password=YG201507");
 
             ws = new WebSocketServer();
            // ws.NewSessionConnected += ws_NewSessionConnected;

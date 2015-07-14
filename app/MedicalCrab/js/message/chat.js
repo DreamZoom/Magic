@@ -101,7 +101,8 @@ mui.plusReady(function(){
 	    reciver=data.data;
 		 
 		chat=new Chat({
-			url:'ws://192.168.0.109:2014',
+			//url:'ws://192.168.1.5:8090',
+			url:'ws://121.199.65.160:32090',
 			Sender:user,
 			Reciver:reciver,
 			OnReciveMessage:function(message){

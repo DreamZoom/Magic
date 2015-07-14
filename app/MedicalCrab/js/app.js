@@ -28,8 +28,10 @@
 	}
 
 	//api服务器地址
-	app.RomateUrl = "http://192.168.0.109:2835/";
-	//app.RomateUrl = "http://192.168.1.53:2835/";
+	//app.RomateUrl = "http://192.168.1.6:8070/";
+	//app.RomateUrl = "http://192.168.1.10:2835/";
+	
+	app.RomateUrl = "http://121.199.65.160:32590/";
 	app.ApiUrl = app.RomateUrl + "api/";
 	//全局对象
 	app.Request = {
@@ -177,10 +179,10 @@
 		}
 		
 		var index = get(friends,function(d){
-			alert(d.User.UserName==user.UserName);
+			//alert(d.User.UserName==user.UserName);
 		    return d.User.UserName==user.UserName;
 		});
-		alert(index);
+		//alert(index);
 		if(typeof(index) != 'undefined'){
 			friends.splice(index,1);
 		}
@@ -321,7 +323,8 @@ mui.plusReady(function() {
 			var result =mui.extend({UserName:user.UserName},position.coords);
 			app.api.post("user/UpdateLocation",result,function(response){
 				if(response.result){
-					//alert(response.data);
+					//alert(response.data);	
+					console.log(response.data);
 				     app.storage.setItem("position",response.data);
 				     app.storage.setItem("position-datetime",new Date());
 				}
@@ -333,7 +336,7 @@ mui.plusReady(function() {
 		})
 
 	}
-    //app.updatelocation();
+    app.updatelocation();
 	/*
 	 * 初始化app.request
 	 */
@@ -379,7 +382,7 @@ mui.plusReady(function() {
 			eval("var pj=" + params);
 			json = mui.extend(json, pj);
 		}
-		alert(api);
+		//alert(api);
 		app.log(api)
 		var spinner = $("<i class='fa fa-spinner fa-spin'></i>").appendTo($(this));
 		app.api.post(api, json, function(data) {
@@ -406,18 +409,18 @@ mui.plusReady(function() {
 			var source = $("#" + tid).html();
 			var template = Handlebars.compile(source);
 			$(el).html(template(d));
-			var loading = plus.nativeUI.showWaiting();
+			//var loading = plus.nativeUI.showWaiting();
 			app.api.get(api, {
 					username: username
 				},
 				function(data) {
-					loading.close();
+					//loading.close();
 					app.log(data.data);
 					localStorage.setItem("api/" + api, data.data);
 					$(el).html(template(data.data));
 				},
 				function(err) {
-					loading.close();
+					//loading.close();
 				});
 		}
 	});

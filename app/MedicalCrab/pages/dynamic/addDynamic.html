@@ -14,48 +14,57 @@
 			mui.init();
 		</script>
 	</head>
-	<body>
+	<body> 
 		<header class="mui-bar mui-bar-nav">
 			<button type="button" class="mui-btn mui-pull-left mui-action-back">关闭</button>
 			<button type="button" class="mui-btn mui-pull-right" id="btnSend">发布</button>
 			<h1 class="mui-title">我的动态我做主</h1>
 		</header>
-		 <footer class="mui-bar mui-bar-tab">
-			<a id="photos">照片</a>
-			&nbsp;&nbsp;
-			<a href="javascript:void(0);" id="aTag">标签</a>
-			<!--<a href="#mui-popover">标签</a>-->
-		</footer>
-		<div class="mui-content">
-			<div style="margin: 10px 2px 0px 2px;border: 0px;">
-				<textarea id="txtContent" style="margin-bottom: 0px;border: 0px;" rows="10" placeholder="来说点自己周围的新鲜事吧"></textarea>
-			</div>
-			<div>
+		<footer class="mui-bar mui-bar-tab" style="position:absolute;z-index: 101;">
+			<div style="height: 70%;">
 				<ul class="mui-table-view mui-grid-view" id="ImageList">
+				<li class="mui-table-view-cell mui-media mui-col-xs-3">
+			<img name="imgTag" class="mui-media-object" src="../../images/icon100.png" style="width:100%;height:100%;">
+			</li>
+							<li class="mui-table-view-cell mui-media mui-col-xs-3">
+			<img name="imgTag" class="mui-media-object" src="../../images/icon100.png" style="width:100%;height:100%;">
+			</li>
+							<li class="mui-table-view-cell mui-media mui-col-xs-3">
+			<img name="imgTag" class="mui-media-object" src="../../images/469.png" style="width:100%;height:100%;">
+			</li>
+							<li class="mui-table-view-cell mui-media mui-col-xs-3">
+			<img name="imgTag" class="mui-media-object" src="../../images/icon100.png" style="width:100%;height:100%;">
+			</li>
+							<li class="mui-table-view-cell mui-media mui-col-xs-3">
+			<img name="imgTag" class="mui-media-object" src="../../images/icon100.png" style="width:100%;height:100%;">
+			</li>
+			<li class="mui-table-view-cell mui-media mui-col-xs-3" style="width:100px;height: 100px;"> 
+				<img name="imgTag" class="mui-media-object" src="../../images/746.jpg" style="width:100%;height:100%;">
+			</li>
 				</ul>
 			</div>
-			<div class="mui-content-padded">
+		    <div class="mui-content-padded">
 				<h5 id="tagTitle"></h5>
 				<span id="tag001"></span>
 				<span id="tag002"></span>
 				<span id="tag003"></span>
 				<span id="tag004"></span> 
 			</div>
+			<div style="width: 100%;height: 100%;">
+				<ul class="mui-table-view mui-grid-view">
+					<li class="mui-table-view-cell mui-media mui-col-xs-2">							
+						<a id="photos" class="mui-icon mui-icon-camera"></a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-2">							
+						<a id="aTag" class="mui-icon mui-icon-compose"></a>
+					</li>
+				</ul>
+			</div>  
+		</footer>
+		<div class="mui-content">
+			<div style="margin: 10px 2px 0px 2px;border: 0px;z-index: 99;">
+				<textarea id="txtContent" style="margin-bottom: 0px;border: 0px;" rows="10" placeholder="来说点自己周围的新鲜事吧"></textarea>
+			</div>
 		</div>
-		<!--<div id="mui-popover" class="mui-popover">
-			  <header class="mui-bar mui-bar-nav">
-    			<h1 class="mui-title">Popover title</h1>
-  			  </header>
-			  <ul class="mui-table-view">
-			    <li class="mui-table-view-cell">Item1</li>
-			    <li class="mui-table-view-cell">Item2</li>
-			    <li class="mui-table-view-cell">Item3</li>
-			    <li class="mui-table-view-cell">Item4</li>
-			    <li class="mui-table-view-cell">Item5</li>
-			    <li class="mui-table-view-cell">Item6</li>
-			    <li class="mui-table-view-cell">Item7</li>
-			    <li class="mui-table-view-cell">Item8</li>
-			  </ul>
-		</div>	-->
 	</body>
 </html>

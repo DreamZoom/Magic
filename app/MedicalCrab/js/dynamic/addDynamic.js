@@ -8,11 +8,6 @@ var spanClass = [{tagClass:"mui-badge"},
 	{tagClass:"mui-badge mui-badge-purple"}
 ];
 
-/*MUI初始化配置*/
-mui.init({
-	
-});
-
 /*MUI 涉及HTML5 扩展API建议都写在MUI.plusReady()中*/
 mui.plusReady(function(){
 	document.getElementById("photos").addEventListener('tap',function(){
@@ -83,9 +78,8 @@ mui.plusReady(function(){
 		}
 	});
 	
-	
 	$("#btnSend").click(function(){
-		var content = $("#txtContent").val();
+		var content = $("#txtContent").val(); 
 		if(0 == content.length){
 			mui.toast("请填写动态内容");
 			return false;
@@ -101,7 +95,7 @@ mui.plusReady(function(){
 		console.log(serverUrl+app.getUser().UserName+"::"+tag002);
 		
 		if(undefined == pic){
-			mui.ajax(serverUrl+"?username="+app.getUser().UserName,{
+			$.ajax(serverUrl+"?username="+app.getUser().UserName,{
 					data:{
 						fContent:content,
 						fImage:"",
@@ -114,12 +108,12 @@ mui.plusReady(function(){
 					},
 					dataType:'json',
 					type:'post',
-					timeout:100000,
+					timeout:10000,
 					success:function(data){
 						if("NO" == data.result){
 							mui.toast("发布动态失败");
 						}else{
-							mui.back();
+							//mui.currentWebview().close();
 						}
 					},
 					error:function(xhr,type,errorThrown){
@@ -127,88 +121,27 @@ mui.plusReady(function(){
 					} 
 				});
 		}else{
-//			var filename = file.substr(file.lastIndexOf('/') + 1);
-//			var server = app.ApiUrl + "user/UploadHandImage";
-//
-//			var wt = plus.nativeUI.showWaiting();
-//			var task = plus.uploader.createUpload(server, {
-//				method: "POST"
-//			}, function(t, status) { //上传完成
-//				wt.close(); 
-//				
-//				if (status == 200) {
-//					mui.toast("上传头像成功");	
-//				} else {
-//					mui.toast("上传失败：" + status);
+//			var task = plus.uploader.createUpload("url",
+//			{method:"post",blocksize:204800,timeout:10000,retry:2},
+//			function(t,state){
+//				//成功
+//				if(200 == state){
+//					
+//				}else{
+//					
 //				}
-//				self.close(); 
 //			});
-//	
-//			task.addData("username", app.getUser().UserName);
-//			task.addData("");
-//			for(var p in params){
-//				task.addData(p, ""+params[p]);
-//				console.log(p+"-----"+params[p]);
+//			//添加任务
+//			pic.forEach(item){
+//				task.addFile(item,{key:"",name:"",mime:""});
 //			}
-//			task.addFile(file, {
-//				key: "upload_img"
-//			}); 
-//			
-//			task.start();
+			
 		}	
 	});
-	
-	
-//图片转换为base64
-//var f1=null;
-//function appendFile(path){
-// 	var img = new Image();
-//	img.src = path;
-//	img.onload = function(){
-//	    var that = this;
-//	    //压缩
-//	    var w = that.width,
-//	        h = that.height,
-//	        scale = w / h; 
-//	        w = 320 || w;
-//	        h = w / scale;
-//	    var canvas = document.createElement('canvas');
-//	    var ctx = canvas.getContext('2d');
-//	
-//	    $(canvas).attr({width : w, height : h});
-//	    ctx.drawImage(that, 0, 0, w, h);
-//	
-//	    var base64 = canvas.toDataURL('image/jpeg', 1 || 0.8 );  
-//	
-//	    f1 =base64;
-//	    var pic = document.getElementById("img002");    
-//	    pic.src = base64;
-//	}
-//}
-//
-//
-//  var viewFiles = document.getElementById("im001");
-//  var viewImg = document.getElementById("img001");
-//
-//  viewFiles.addEventListener("change", function () {
-//      //通过 this.files 取到 FileList ，这里只有一个
-//      viewFile(this.files[0],viewImg); 
-//      alert(this.files[0]);
-//  }, false);
-
 });
 
 
 
-/*显示图片函数*/
-function viewFile(source,target) {
-    //通过file.size可以取得图片大小
-    var reader = new FileReader();
-    reader.onload = function(evt){
-        target.src = evt.target.result;
-    }
-    reader.readAsDataURL(source);
-}
 
 /*退出页面，提示对话框*/
 var old_back = mui.back;
@@ -251,7 +184,8 @@ var prompt_dialog = function(){
 			$("#"+tagId).html(content);
 		}
 	});
-};
+};	
+
 
 /*获取未设置值的标签*/
 var findIndex = function(index){

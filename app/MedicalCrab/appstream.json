@@ -1,0 +1,235 @@
+{
+  "version": "1.0.0",
+  "protocol": [
+    "http",
+    "https"
+  ],
+  "rooturl": "",
+  "index": {
+    "href": "index.html",
+    "resources": [
+      "manifest.json",
+      "js/jquery-2.1.0.js",
+      "js/mui.min.js",
+      "js/app.js",
+      "css/mui.min.css",
+      "fonts/mui.ttf"
+    ],
+    "refer": [
+      "pages/dynamic/newDynamic.html",
+      "pages/dynamic/addDynamic.html",
+      "pages/user/login.html",
+      "pages/position/near.html",
+      "pages/user/center.html"
+    ],
+    "priority": 0
+  },
+  "pages": {
+    "pages/user/login.html": {
+      "href": "pages/user/login.html",
+      "priority": 5
+    },
+    "pages/user/register.html": {
+      "href": "pages/user/register.html",
+      "resources": [
+        "js/mui.js",
+        "css/mui.css",
+        "css/custom.css",
+        "css/font-awesome.min.css",
+        "fonts/fontawesome-webfont.eot",
+        "fonts/fontawesome-webfont.woff2",
+        "fonts/fontawesome-webfont.woff",
+        "fonts/fontawesome-webfont.ttf",
+        "fonts/fontawesome-webfont.svg"
+      ],
+      "refer": [
+        "pages/user/login.html"
+      ],
+      "priority": 1
+    },
+    "pages/user/center.html": {
+      "href": "pages/user/center.html",
+      "priority": 4
+    },
+    "pages/user/crop.html": {
+      "href": "pages/user/crop.html",
+      "resources": [
+        "js/mui.js",
+        "js/user/crop.js",
+        "css/mui.css",
+        "css/custom.css",
+        "css/jquery.Jcrop.min.css",
+        "css/Jcrop.gif",
+        "css/font-awesome.min.css",
+        "fonts/fontawesome-webfont.eot",
+        "fonts/fontawesome-webfont.woff2",
+        "fonts/fontawesome-webfont.woff",
+        "fonts/fontawesome-webfont.ttf",
+        "fonts/fontawesome-webfont.svg",
+        "js/jquery.Jcrop.min.js",
+        "js/user.js"
+      ],
+      "refer": [
+        "pages/user/login.html",
+        "pages/user/center.html"
+      ],
+      "priority": 3
+    },
+    "pages/user/userinfo.html": {
+      "href": "pages/user/userinfo.html",
+      "resources": [
+        "css/custom.css",
+        "js/user/userinfo.js",
+        "css/font-awesome.min.css",
+        "fonts/fontawesome-webfont.eot",
+        "fonts/fontawesome-webfont.woff2",
+        "fonts/fontawesome-webfont.woff",
+        "fonts/fontawesome-webfont.ttf",
+        "fonts/fontawesome-webfont.svg"
+      ],
+      "refer": [
+        "pages/user/login.html"
+      ],
+      "priority": 4
+    },
+    "pages/dynamic/dynamicList.html": {
+      "href": "pages/dynamic/dynamicList.html",
+      "resources": [
+        "js/mui.js",
+        "js/template.js",
+        "css/font-awesome.min.css",
+        "fonts/fontawesome-webfont.eot",
+        "fonts/fontawesome-webfont.woff2",
+        "fonts/fontawesome-webfont.woff",
+        "fonts/fontawesome-webfont.ttf",
+        "fonts/fontawesome-webfont.svg",
+        "css/mui.css",
+        "css/custom.css",
+        "js/dynamic/dynamicIndex.js"
+      ],
+      "refer": [
+        "pages/user/login.html"
+      ],
+      "priority": 0
+    },
+    "pages/dynamic/newDynamic.html": {
+      "href": "pages/dynamic/newDynamic.html",
+      "resources": [
+        "js/mui.js",
+        "css/font-awesome.min.css",
+        "fonts/fontawesome-webfont.eot",
+        "fonts/fontawesome-webfont.woff2",
+        "fonts/fontawesome-webfont.woff",
+        "fonts/fontawesome-webfont.ttf",
+        "fonts/fontawesome-webfont.svg",
+        "css/mui.css",
+        "css/custom.css"
+      ],
+      "refer": [
+        "pages/dynamic/dynamicList.html"
+      ],
+      "priority": 0
+    },
+    "pages/dynamic/addDynamic.html": {
+      "href": "pages/dynamic/addDynamic.html",
+      "resources": [
+        "js/mui.js",
+        "css/mui.css",
+        "css/custom.css",
+        "css/font-awesome.min.css",
+        "fonts/fontawesome-webfont.eot",
+        "fonts/fontawesome-webfont.woff2",
+        "fonts/fontawesome-webfont.woff",
+        "fonts/fontawesome-webfont.ttf",
+        "fonts/fontawesome-webfont.svg",
+        "js/dynamic/addDynamic.js"
+      ],
+      "refer": [
+        "pages/user/login.html"
+      ],
+      "priority": 1
+    },
+    "pages/message/chat.html": {
+      "href": "pages/message/chat.html",
+      "resources": [
+        "js/mui.js",
+        "libs/socket.io.js",
+        "css/custom.css",
+        "js/message/chat.js",
+        "libs/bootstrap/css/bootstrap.css",
+        "libs/bootstrap/fonts/glyphicons-halflings-regular.eot",
+        "libs/bootstrap/fonts/glyphicons-halflings-regular.woff2",
+        "libs/bootstrap/fonts/glyphicons-halflings-regular.woff",
+        "libs/bootstrap/fonts/glyphicons-halflings-regular.ttf",
+        "js/template.js",
+        "images/user-photo.png"
+      ],
+      "refer": [
+        "pages/user/login.html"
+      ],
+      "priority": 4
+    },
+    "pages/user/showuser.html": {
+      "href": "pages/user/showuser.html",
+      "resources": [
+        "js/user/showuser.js",
+        "js/template.js",
+        "libs/bootstrap/css/bootstrap.css",
+        "libs/bootstrap/fonts/glyphicons-halflings-regular.eot",
+        "libs/bootstrap/fonts/glyphicons-halflings-regular.woff2",
+        "libs/bootstrap/fonts/glyphicons-halflings-regular.woff",
+        "libs/bootstrap/fonts/glyphicons-halflings-regular.ttf",
+        "css/font-awesome.min.css",
+        "fonts/fontawesome-webfont.eot",
+        "fonts/fontawesome-webfont.woff2",
+        "fonts/fontawesome-webfont.woff",
+        "fonts/fontawesome-webfont.ttf",
+        "fonts/fontawesome-webfont.svg",
+        "css/custom.css",
+        "libs/bootstrap/css/bootstrap-theme.css"
+      ],
+      "refer": [
+        "pages/user/login.html"
+      ],
+      "priority": 5
+    },
+    "pages/position/near.html": {
+      "href": "pages/position/near.html",
+      "resources": [
+        "js/template.js",
+        "css/custom.css",
+        "js/position/near.js"
+      ],
+      "refer": [
+        "pages/user/login.html",
+        "pages/message/chat.html",
+        "pages/user/showuser.html"
+      ],
+      "priority": 3
+    }
+  },
+  "idle": {
+    "resources": [
+      "images/icon100.png",
+      "js/inputs.js",
+      "libs/bootstrap/css/bootstrap.css.map",
+      "libs/bootstrap/fonts/glyphicons-halflings-regular.svg",
+      "js/template/template.js",
+      "js/angular.min.js",
+      "js/message/chat_user.js",
+      "fonts/FontAwesome.otf",
+      "js/handlebars-v3.0.3.js",
+      "js/dynamic/newDynamic.js",
+      "css/font-awesome.css",
+      "js/user/center.js",
+      "libs/bootstrap/js/npm.js",
+      "libs/bootstrap/js/bootstrap.min.js",
+      "pages/list.html",
+      "pages/message/chat_users.html",
+      "libs/bootstrap/js/bootstrap.js",
+      "libs/bootstrap/css/bootstrap.min.css",
+      "libs/bootstrap/css/bootstrap-theme.css.map",
+      "libs/bootstrap/css/bootstrap-theme.min.css"
+    ]
+  }
+}
