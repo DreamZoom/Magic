@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+@import "compass";
+
+@import "compass/reset";
+
+@import "variable";
+@import "mixin";
+@import "icon";
+@import "button";
+
+
+html,body{
+	font-size: 20px;
+}
+
+.mui-content{
+	background-color: #fff;
+}
+
+a,.link{
+	text-decoration: none;
+	color: $active;
+	&:hover,
+	&:active{
+		color: $active;
+	}
+}
+
+.hide{
+	display: none !important;
+}
+
+.show{
+	display: block !important;
+}
