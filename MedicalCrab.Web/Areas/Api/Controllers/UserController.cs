@@ -6,6 +6,7 @@ using System.Net;
 using System.Web.Http;
 using System.Web.Mvc;
 using MedicalCrab.Core;
+using MedicalCrab.Core.Utility;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -45,11 +46,14 @@ namespace MedicalCrab.Web.Areas.Api.Controllers
         {
             try
             {
+                HXRestApi api = new HXRestApi("YXA6SVlUUCWEEeWx_C8p0OTisQ", "YXA65l1CuWGQBgTVZZTrIf8TfS4gQA8", "imchat", "dreamzoom");
                
                 if (!ModelState.IsValid)
                 {
                     throw new Exception(string.Join(",", ModelState.ToArray()));
                 }
+                api.AccountCreate(user.UserName, "123456");
+
                 userService.Register(user);
                 return this.SuccessJson("注册成功。");
             }
@@ -135,12 +139,19 @@ namespace MedicalCrab.Web.Areas.Api.Controllers
         /// </summary>
         /// <param name="username"></param>
         /// <returns></returns>
-        public ActionResult getFriends(string username)
+        public ActionResult getFriends(string usernames)
         {
             
             try
             {
-                var list = userFriendsService.GetModelList(string.Format("[UserName]='{0}'",username));
+                var ls =usernames.Split(',');
+                List<string> strList = new List<string>();
+                foreach(var s in ls){
+                    var s1 = string.Format("'{0}'",s);
+                    strList.Add(s1);
+                }
+
+                var list = userService.GetModelList(string.Format("[UserName] in ({0})", string.Join(",",strList)));
 
                 return this.SuccessJson(list, "获取好友列表成功。");
             }
@@ -161,6 +172,19 @@ namespace MedicalCrab.Web.Areas.Api.Controllers
             catch (Exception err)
             {
                 return this.ErrorJson(err.Message);
+            }
+        }
+
+        public ActionResult getUserImage(string username)
+        {
+            try
+            {
+                var u = userService.getByUserName(username);
+                return File(Server.MapPath(u.UserImage), "jpeg/jpg");
+            }
+            catch (Exception err)
+            {
+                return Content("/upload/defult_user.jpg");
             }
         }
     }
