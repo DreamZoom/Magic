@@ -103,6 +103,9 @@
         },
         "Statistic": {
             "description": "管理统计插件"
+        },
+        "imchat": {
+        	"description": "H5Plug Plugin Demo2"
         }
     },
     "plus": {

@@ -7,6 +7,7 @@
 		<title></title>
 		<script src="../../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../js/mui.js"></script>
+		<script src="../../js/imchat.js" type="text/javascript" charset="utf-8"></script>
 		<link href="../../css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css" href="../../css/custom.css" />
 		<link rel="stylesheet" type="text/css" href="../../libs/bootstrap/css/bootstrap.css" />
@@ -26,7 +27,7 @@
 					<img src="{{user.UserImage | imageFormat}}" />
 				</div>
 				<div class="message">
-					<span class="message-content">{{message.Content}}</span>
+					<span class="message-content">{{message}}</span>
 				</div>
 			</div>
 		</script>
@@ -36,7 +37,7 @@
 					<img src="{{user.UserImage | imageFormat}}" />
 				</div>
 				<div class="message">
-					<span class="message-content">{{message.Content}} </span>
+					<span class="message-content">{{message}} </span>
 				</div>
 			</div>
 		</script>

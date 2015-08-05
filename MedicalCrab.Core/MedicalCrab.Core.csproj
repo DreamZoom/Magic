@@ -35,6 +35,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,10 +43,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Dynamic.cs" />
+    <Compile Include="Models\Friends.cs" />
+    <Compile Include="Models\Group.cs" />
+    <Compile Include="Models\GroupUsers.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\MsgType.cs" />
     <Compile Include="Models\PositionLog.cs" />
     <Compile Include="Models\vNearUserPosition.cs" />
+    <Compile Include="Models\vUserFriends.cs" />
+    <Compile Include="Services\DynamicService.cs" />
+    <Compile Include="Services\FriendsService.cs" />
+    <Compile Include="Services\GroupService.cs" />
+    <Compile Include="Services\GroupUsersService.cs" />
     <Compile Include="Services\MessageService.cs" />
     <Compile Include="Services\PositionLogService.cs" />
     <Compile Include="Services\vNearUserPositionService.cs" />
@@ -55,6 +65,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\UserSevice.cs" />
     <Compile Include="Utility\Check.cs" />
+    <Compile Include="Utility\HXRestApi.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Magic.Mvc\Magic.Mvc.csproj">
