@@ -152,7 +152,7 @@ namespace Magic.Mvc
             //SELECT ROW_NUMBER() OVER(ORDER by UserName asc) AS rownumber,*                           
             //FROM (SELECT  [UserName],[Password] FROM [User]) T 
             //) TT WHERE rownumber BETWEEN 0 AND 0
-            string sql = @"SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER By ID) AS rownumber,* FROM ({1}) T ) TT  WHERE rownumber BETWEEN {2} AND {3}";
+            string sql = @"SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER By {0}) AS rownumber,* FROM ({1}) T ) TT  WHERE rownumber BETWEEN {2} AND {3}";
             return string.Format(sql, _orderField, _safeSql, start, end);
         }
 

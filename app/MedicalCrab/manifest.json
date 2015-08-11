@@ -58,9 +58,7 @@
         "Storage": {
             "description": "管理应用本地数据"
         },
-        "UI": {
-            "description": "管理系统原生控件"
-        },
+        
         "Uploader": {
             "description": "管理文件上传任务"
         },
@@ -74,7 +72,7 @@
             "description": "文件压缩与解压缩"
         },
         "Barcode": {},
-        "Maps": {},"Speech":{}
+        "Maps": {},"Speech":{},"Webview":{},"NativeUI":{},"Navigator":{}
     },
     "plus": {
         "splashscreen": {

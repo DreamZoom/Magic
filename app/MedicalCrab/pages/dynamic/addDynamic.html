@@ -6,6 +6,7 @@
 		<link href="../../css/mui.css" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css" href="../../css/custom.css" />
 		<link rel="stylesheet" type="text/css" href="../../css/font-awesome.min.css"/>
+		<link rel="stylesheet" href="../../css/dynamicCss/add.css" />
 		<script src="../../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../js/mui.js"></script>
 		<script src="../../js/app.js"></script>
@@ -20,29 +21,7 @@
 			<button type="button" class="mui-btn mui-pull-right" id="btnSend">发布</button>
 			<h1 class="mui-title">我的动态我做主</h1>
 		</header>
-		<footer class="mui-bar mui-bar-tab" style="position:absolute;z-index: 101;">
-			<div style="height: 70%;">
-				<ul class="mui-table-view mui-grid-view" id="ImageList">
-				<li class="mui-table-view-cell mui-media mui-col-xs-3">
-			<img name="imgTag" class="mui-media-object" src="../../images/icon100.png" style="width:100%;height:100%;">
-			</li>
-							<li class="mui-table-view-cell mui-media mui-col-xs-3">
-			<img name="imgTag" class="mui-media-object" src="../../images/icon100.png" style="width:100%;height:100%;">
-			</li>
-							<li class="mui-table-view-cell mui-media mui-col-xs-3">
-			<img name="imgTag" class="mui-media-object" src="../../images/469.png" style="width:100%;height:100%;">
-			</li>
-							<li class="mui-table-view-cell mui-media mui-col-xs-3">
-			<img name="imgTag" class="mui-media-object" src="../../images/icon100.png" style="width:100%;height:100%;">
-			</li>
-							<li class="mui-table-view-cell mui-media mui-col-xs-3">
-			<img name="imgTag" class="mui-media-object" src="../../images/icon100.png" style="width:100%;height:100%;">
-			</li>
-			<li class="mui-table-view-cell mui-media mui-col-xs-3" style="width:100px;height: 100px;"> 
-				<img name="imgTag" class="mui-media-object" src="../../images/746.jpg" style="width:100%;height:100%;">
-			</li>
-				</ul>
-			</div>
+		<footer class="mui-bar mui-bar-tab">
 		    <div class="mui-content-padded">
 				<h5 id="tagTitle"></h5>
 				<span id="tag001"></span>
@@ -50,7 +29,7 @@
 				<span id="tag003"></span>
 				<span id="tag004"></span> 
 			</div>
-			<div style="width: 100%;height: 100%;">
+			<div class="ud-fill">
 				<ul class="mui-table-view mui-grid-view">
 					<li class="mui-table-view-cell mui-media mui-col-xs-2">							
 						<a id="photos" class="mui-icon mui-icon-camera"></a>
@@ -61,9 +40,20 @@
 				</ul>
 			</div>  
 		</footer>
-		<div class="mui-content">
-			<div style="margin: 10px 2px 0px 2px;border: 0px;z-index: 99;">
-				<textarea id="txtContent" style="margin-bottom: 0px;border: 0px;" rows="10" placeholder="来说点自己周围的新鲜事吧"></textarea>
+		<div class="mui-content">	
+			<div class="ud-div"> 
+				<div class="ud-div-text">
+					<textarea id="txtContent" rows="20"  placeholder="来说点自己周围的新鲜事吧"></textarea>
+				</div>
+				<div class="ud-div-image"> 
+					<ul class="mui-table-view mui-grid-view" id="IList">
+						<li id="btnLi" class="mui-table-view-cell mui-media mui-col-xs-3">
+							<div id="btnAdd" class="ud-add-image">
+								<!--<input id="btnFile" type="file" accept="image/jpeg" />-->
+							</div>
+						</li>
+					</ul>
+				</div> 
 			</div>
 		</div>
 	</body>

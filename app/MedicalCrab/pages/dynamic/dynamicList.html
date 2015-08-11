@@ -4,14 +4,15 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<script src="../../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
-		<script src="../../js/mui.js"></script>
+		<script src="../../js/mui.min.js"></script>
 		<script type="text/javascript" src="../../js/template.js"></script>
 		<script type="text/javascript" src="../../js/app.js" ></script>
 		<link href="../../css/mui.css" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css" href="../../css/custom.css" />
 		<link rel="stylesheet" type="text/css" href="../../css/font-awesome.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/dynamic.css"/>
 		<script  id="dynamicList" type="text/html">
-			{{each data as item i}}
+			{{each list as item i}}
 				<li class="mui-table-view-cell mui-media">
 					<div>
 						<a href="#">
@@ -29,25 +30,13 @@
 					<!--图片部分-->
 					<div class="mui-content">
 		        		<ul class="mui-table-view mui-grid-view">
+		        			{{each item.fImage as src}}
 					        <li class="mui-table-view-cell mui-media mui-col-xs-4">
 					            <a href="#">
-					                <img class="mui-media-object" src="../images/shuijiao.jpg">
-					             </a>
-					        </li>
-					        <li class="mui-table-view-cell mui-media mui-col-xs-4">
-					            <a href="#">
-					                <img class="mui-media-object" src="../images/muwu.jpg">
+					                <img class="mui-media-object" src="{{src}}">
 					                </a>
 					        </li>
-					        <li class="mui-table-view-cell mui-media mui-col-xs-4">
-					            <a href="#"><img class="mui-media-object" src="../images/cbd.jpg">
-								</a>
-					        </li>
-					        <li class="mui-table-view-cell mui-media mui-col-xs-4">
-					            <a href="#">
-					                <img class="mui-media-object" src="../images/yuantiao.jpg">
-					                </a>
-					        </li>
+					        {{/each}}
 		    			</ul>   
 					</div>
 					<!--操作部分-->
@@ -72,6 +61,12 @@
 		</script>
 	</head>
 	<body>
+		<header class="mui-bar mui-bar-nav">
+			<h1 id="title" class="mui-title">最新动态</h1>
+			<a  id="postDynamic" href="#popChose" class="mui-btn mui-btn-link mui-btn-nav mui-pull-right">
+    			<span class="mui-icon mui-icon-compose mui-icon-right-nav"></span>
+    		</a>
+		</header>
 		<!--下拉刷新容器-->
 		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
 			<div class="mui-scroll">
@@ -81,6 +76,18 @@
 				</ul>
 			</div>
 		</div>
+
+		<!--<div id="popChose" class="mui-backdrop">
+			<div class="choosePost hide">
+				<a href="javascript:void(0);" class="close fa fa-times"></a>
+				<button>实名动态</button>
+				&nbsp;&nbsp; 
+				<button>匿名动态</button>
+			</div>
+		</div>
+		<script>
+			var mm = mui.createMask();
+		</script>-->
 		<script src="../../js/dynamic/dynamicIndex.js"></script>
 	</body> 
 </html>

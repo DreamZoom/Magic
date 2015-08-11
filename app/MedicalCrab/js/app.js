@@ -28,10 +28,10 @@
 	}
 
 	//api服务器地址
-	//app.RomateUrl = "http://192.168.1.6:8070/";
+	app.RomateUrl = "http://192.168.1.7:8070/";
 	//app.RomateUrl = "http://192.168.1.10:2835/";
 	
-	app.RomateUrl = "http://121.199.65.160:32590/";
+	//app.RomateUrl = "http://121.199.65.160:32590/";
 	app.ApiUrl = app.RomateUrl + "api/";
 	//全局对象
 	app.Request = {

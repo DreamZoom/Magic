@@ -1,0 +1,61 @@
+.ud-div{
+	margin: 10px 2px 0px 2px;
+	border: 0px;
+	z-index: 100;
+	position: relative;
+}
+.ud-div-text{
+	margin: 10px 2px 0px 2px;
+	border: 0px;
+	z-index: 100;
+}
+.ud-div-text textarea{
+	margin-bottom: 0px;
+	border: 0px;
+	overflow:scroll;
+	overflow-x: hidden;
+}
+.ud-div-image{
+	margin-top: 10px;
+	z-index: 101;
+	position:absolute;
+	bottom: 0px;
+	width: 100%;
+}
+.ud-div-image ul li img{
+	width:100%;
+	height:100%;
+}
+.ud-div-image ul li{
+	width:100px;
+	height:100px;
+}
+.ud-add-image{
+	width: 52px;
+	height: 52px;
+	background-size: 100% 100%;
+	display: inline-block;
+	background-image: url(../../images/dynamic/addImage.png);
+}
+.ud-add-image input[type='file']{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	cursor: pointer;
+	z-index: 0;
+}
+.ud-div-image-li{
+	width:100px;
+	height:100px;
+}
+
+/*公用*/
+.ud-fill{
+	width:100%;
+	height:100%;
+}
+
+

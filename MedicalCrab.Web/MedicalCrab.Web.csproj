@@ -272,6 +272,7 @@
     <Content Include="Areas\Manage\Views\Shared\IFrame.Master" />
     <Content Include="Areas\Api\Views\Web.config" />
     <None Include="Properties\PublishProfiles\app.pubxml" />
+    <None Include="Properties\PublishProfiles\publish.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />

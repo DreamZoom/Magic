@@ -11,60 +11,51 @@ var spanClass = [{tagClass:"mui-badge"},
 /*MUI 涉及HTML5 扩展API建议都写在MUI.plusReady()中*/
 mui.plusReady(function(){
 	document.getElementById("photos").addEventListener('tap',function(){
-		var btn = [{title:"拍照"},{title:"从相册选择"}];
-		plus.nativeUI.actionSheet({
-			title:"选择照片",
-			cancel:"取消",
-			buttons:btn
-		},function(e){
-			//获取序号
-			var Array = document.getElementsByName("imgTag");
-			var currentIndex = 0;
-			if(undefined==Array){
-				currentIndex = 0;
-			}else{
-				currentIndex = Array.length;
-			}
-			//var ulHtml = $("#ImageList").html();
-			var ulHtml = '<li class="mui-table-view-cell mui-media mui-col-xs-3">';
-			ulHtml += '<img name="imgTag" class="mui-media-object" src="#" style="width:100%;height:100%;">';
-			ulHtml += '</li>';
-			
-			
-			var index = e.index;
-			var txt = "";
-			switch(index){
-				case 0:txt="AAAA"; break;
-				case 1:
-				var camera = plus.camera.getCamera();
-				var fmt = camera.supportedImageFormats[0];
-				var res = camera.supportedImageResolutions[0];
-				camera.captureImage(function(path){
-					//转换为本地资源可以直接为Img添加src属性则可以预览
-					plus.io.resolveLocalFileSystemURL(path,function(entry){
-//						var pic = document.getElementsByName("imgTag");   
-//	    				pic[currentIndex].src = entry.toLocalURL();
-						ulHtml = ulHtml.replace("#",entry.toLocalURL());
-	    				$("#ImageList").append(ulHtml);
+		if(checkNum()){
+			var btn = [{title:"拍照"},{title:"从相册选择"}];
+			plus.nativeUI.actionSheet({
+				title:"选择照片",
+				cancel:"取消",
+				buttons:btn
+			},function(e){
+				//获取序号
+				var Array = document.getElementsByName("imgTag");
+				var currentIndex = 0;
+				if(undefined==Array){
+					currentIndex = 0;
+				}else{
+					currentIndex = Array.length;
+				}
+
+				var index = e.index;
+				var txt = "";
+				switch(index){
+					case 0:txt="AAAA"; break;
+					case 1:
+					var camera = plus.camera.getCamera();
+					var fmt = camera.supportedImageFormats[0];
+					var res = camera.supportedImageResolutions[0];
+					camera.captureImage(function(path){
+						//转换为本地资源可以直接为Img添加src属性则可以预览
+						plus.io.resolveLocalFileSystemURL(path,function(entry){
+		    				addImageNode(entry.toLocalURL());
+						},function(errors){
+							mui.toast(errors);
+						});
 					},function(errors){
-						mui.toast(errors);
-					});
-				},function(errors){ 
-					//mui.toast(errors);
-				},{resolution:res,format:fmt});
-				
-				break;
-				case 2:
-				plus.gallery.pick(function(ePath){
-					alert(currentIndex);
-//					var pic = document.getElementsByName("imgTag");   
-//	    				pic[currentIndex].src = ePath;
-	    				ulHtml = ulHtml.replace("#",ePath);
-	    				$("#ImageList").append(ulHtml);
-				},function(error){},{filter:"image",multiple:false});
-				break;
-			}
-		});
+					},{resolution:res,format:fmt});
+					
+					break;
+					case 2:
+					plus.gallery.pick(function(ePath){
+		    				addImageNode(ePath);
+					},function(error){},{filter:"image",multiple:false});
+					break;
+				}
+			});
+		}else{
+			mui.toast("最多添加6张图片");
+		}
 	});
 	
 	plus.storage.removeItem("TagKey");
@@ -85,62 +76,91 @@ mui.plusReady(function(){
 			return false;
 		} 
 		
-		var pic = $('img[name="imgTag"]').src;
+		var imgList = [].slice.call($('img[name="ImageList"]'));
 		var tag001 = $("#tag001").html();
 		var tag002 = $("#tag002").html();
 		var tag003 = $("#tag003").html();
 		var tag004 = $("#tag004").html();
 		var serverUrl = app.ApiUrl + "Dynamic/Add";
+		var serverUrlB = app.ApiUrl + "Dynamic/updateFile";
+		var userName = app.getUser().UserName;
 
 		console.log(serverUrl+app.getUser().UserName+"::"+tag002);
 		
-		if(undefined == pic){
-			$.ajax(serverUrl+"?username="+app.getUser().UserName,{
-					data:{
-						fContent:content,
-						fImage:"",
-						fImageCount:"0",
-						fTag1:tag001,
-						fTag2:tag002,
-						fTag3:tag003,
-						fTag4:tag004,
-						fType:"1"
-					},
-					dataType:'json',
-					type:'post',
-					timeout:10000,
-					success:function(data){
-						if("NO" == data.result){
-							mui.toast("发布动态失败");
-						}else{
-							//mui.currentWebview().close();
-						}
-					},
-					error:function(xhr,type,errorThrown){
-						mui.toast("请求错误");
-					} 
-				});
+		var paramObject = {
+			username:userName,
+			fContent:content,
+			fImage:"",  
+			fImageCount:0,
+			fTag1:tag001,
+			fTag2:tag002,
+			fTag3:tag003,
+			fTag4:tag004,
+			fType:"1"
+		};
+		
+		if(undefined != imgList && 0 !=imgList.length){
+			updateFile(serverUrlB,imgList,paramObject);
 		}else{
-//			var task = plus.uploader.createUpload("url",
-//			{method:"post",blocksize:204800,timeout:10000,retry:2},
-//			function(t,state){
-//				//成功
-//				if(200 == state){
-//					
-//				}else{
-//					
-//				}
-//			});
-//			//添加任务
-//			pic.forEach(item){
-//				task.addFile(item,{key:"",name:"",mime:""});
-//			}
-			
-		}	
+			$.ajax(serverUrl,{
+				data:paramObject,
+				dataType:'json',
+				type:'post',
+				timeout:10000,
+				success:function(data){
+					if("NO" == data.result){
+						mui.toast("发布动态失败");
+					}else{
+						mui.toast("发布动态成功");
+					}
+				},
+				error:function(xhr,type,errorThrown){
+					mui.toast("请求错误");
+				} 
+			});
+		}
 	});
+	
+	$("#btnAdd").bind("click",function(){
+		if(checkNum()){
+			plus.gallery.pick(function(ePath){
+				addImageNode(ePath);
+			},function(error){},{filter:"image",multiple:false});
+		}else{
+			mui.toast("最多添加6张图片");
+		}
+	});
+	
 });
 
+//添加节点
+var addImageNode = function(src){
+	var liTage = document.createElement("li");
+		liTage.setAttribute("class","mui-table-view-cell mui-media mui-col-xs-3 ");
+		
+	var imgTage = document.createElement("img");   
+		imgTage.setAttribute("class","mui-media-object ud-fill");
+		imgTage.setAttribute("src",src); 
+		imgTage.setAttribute("name","ImageList"); 
+		
+		liTage.appendChild(imgTage); 
+	
+	var addTag = document.getElementById("btnLi"); 
+	var parent = document.getElementById("IList");
+	
+	parent.insertBefore(liTage,addTag);
+	var totalImage = $('img[name="ImageList"]');
+	if(6 == totalImage.length)parent.removeChild(addTag);
+};
 
+var checkNum = function(){
+	var totalImage = $('img[name="ImageList"]');
+	if(undefined == totalImage || totalImage.length < 6){
+		return true;
+	}else{
+		return false;
+	}
+};
 
 
 /*退出页面，提示对话框*/
@@ -212,6 +232,37 @@ var getNumList = function(list){
 		}
 	});
 	list.push()
+};
+
+var updateFile = function(serverUrl,imageFile,paramObject){
+	var task = plus.uploader.createUpload(serverUrl, 
+		{ method:"POST",blocksize:204800,priority:100 },
+		function(t, status) {
+			if(status == 200 && "true"==t.responseText.result){  
+				mui.toast("发布动态成功");
+			} else {
+				mui.toast("发布动态失败");
+			}
+		}
+	);
+
+	var i = imageFile.length;
+	imageFile.forEach(function(item){  
+		var filePath = item.src;
+		task.addFile(filePath,{key:"Image"+i});
+		i--;    
+	});
+	task.addData("username",paramObject.username);
+	task.addData("fContent",paramObject.fContent);
+	task.addData("fImage",paramObject.fImage);
+	task.addData("fImageCount",paramObject.fImageCount);
+	task.addData("fTag1",paramObject.fTag1);
+	task.addData("fTag2",paramObject.fTag2);
+	task.addData("fTag3",paramObject.fTag3);
+	task.addData("fTag4",paramObject.fTag4);
+	task.addData("fType",paramObject.fType);
+	
+	task.start(); 
 };
 
 
